@@ -1,0 +1,16 @@
+application: unitconversionbot
+version: v0-0-0
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  upload: static/index.html
+  static_files: static/index.html
+
+- url: /index.html
+  static_dir: static
+
+- url: /api/.*
+  script: app.app
