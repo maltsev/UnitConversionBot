@@ -1,50 +1,184 @@
+# -*- coding: utf-8 -*-
 import sys
 import json
 import webapp2
-from modules.parser import parseMessageText
-from model.expression import Expression
+import logging
+import traceback
+from google.appengine.api import mail
+from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
+from modules.converter import convertUnit, IncompatibleCategoriesException
+from modules.formatter import formatValueUnit, getSender, formatAvailableUnits
+import units
+
+
+FEEDBACK_TEXT = """
+If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev
+Thank you for chatting with me :-)
+""".strip()
 
 
 class WebHook(webapp2.RequestHandler):
     def post(self):
+        chatId = 0
+        requestBody = self.request.body
+
         try:
-            updateData = json.loads(self.request.body)
-        except ValueError:
-            updateData = {}
+            logging.debug(requestBody)
+            updateData = json.loads(requestBody)
+        except ValueError as error:
+            logging.warning(error)
+            return self.output({})
 
-        chatId = self.getChatId(updateData)
+        try:
+            messageText = self.getMessageText(updateData)
+            if not messageText:
+                return self.output({})
+
+            chatId = self.getChatId(updateData)
+            if not chatId:
+                error = 'Chat ID is empty'
+                logging.warning(error)
+                return self.output({'error': error})
+
+            response = {
+                'method': 'sendMessage',
+                'chat_id': chatId,
+                'disable_notification': True
+            }
+
+            user = self.getUser(updateData)
+            messageParts = parseMessageText(messageText)
+            expression = messageParts['expression']
+            command = messageParts['command']
+
+            if command == 'convert' or not command:
+                if expression:
+                    responseText = self.command_convert(expression)
+                else:
+                    responseText = self.command_shortHelp()
+            elif command == 'start':
+                responseText = self.command_start()
+            elif command == 'help':
+                responseText = self.command_help()
+                response['parse_mode'] = 'Markdown'
+            elif command == 'feedback':
+                updateId = updateData.get('update_id', 0)
+                responseText = self.command_feedback(updateId, expression, user)
+            else:
+                responseText = self.command_notFound()
+        except Exception as error:
+            logging.critical(error)
+            responseText = "Sorry, I'm broken :-( My master will fix me as soon as possible."
+
         if not chatId:
-            return self.output({'error': 'Chat ID is empty'}, 400)
+            self.output({})
 
-        messageText = self.getMessageText(updateData)
-        if not messageText:
-            return self.output({'error': 'Message ID is empty'}, 400)
+        logging.debug(responseText)
+        response['text'] = responseText
+        self.output(response)
 
-        (rawExpression, command) = parseMessageText(messageText)
-        if command is 'start':
-            responseText = self.command_start()
-        else:
-            responseText = self.command_convert(rawExpression)
 
-        self.output({'chat_id': chatId, 'text': responseText, 'disable_notification': True})
+
+
+    def command_notFound(self):
+        return "Sorry, I don't understand your command."
+
 
 
 
     def command_start(self):
-        return 'Hello, my friend!'
+        startInfo = """Hi!
 
-    def command_convert(self, rawExpression):
-        expression = Expression(rawExpression)
-        if not expression.isValid():
-            return 'Expression is not valid'
+My name is @UnitConversionBot. I can convert one units to another. Just type something like "100 ft to m" (in private chat with me) or "/convert 1 km2 to m2" (in group chats). For more info type /help"""
 
-        ONE_METER = 3.28084
+        startInfo += "\n\n" + FEEDBACK_TEXT
 
-        fromUnit = expression.getFromUnit()
-        if fromUnit['name'] == 'm':
-            return '{:.2f} ft'.format(fromUnit['value'] * ONE_METER)
-        else:
-            return '{:.2f} m'.format(fromUnit['value'] / ONE_METER)
+        return startInfo.strip()
+
+
+
+
+    def command_shortHelp(self):
+        return 'Please type something like "/convert 100 ft to m"'
+
+
+
+
+    def command_help(self):
+        helpInfo = formatAvailableUnits(units.index)
+
+        helpInfo += u"""\n\n
+While asking me a question tet-a-tet you can omit a command. Just type:
+- 100 $ to €
+- 1 sq foot to m2
+- 1 year to hours
+
+While asking me a question in a group please add the command "convert" (if I'm a group member too) or my username "UserConversionBot":
+- /convert 10 yr to mon
+- @UserConversionBot 1 ms to second
+
+You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
+
+        helpInfo += FEEDBACK_TEXT
+
+        return helpInfo.strip()
+
+
+
+
+    def command_feedback(self, updateId, feedbackMessage, user):
+        if not feedbackMessage:
+            return 'Please write some feedback.'
+
+        senderName, senderUsername = getSender(user)
+
+        sender = '{} <{}@unitconversionbot.appspotmail.com>'.format(
+            senderName,
+            senderUsername
+        )
+
+        try:
+            mail.send_mail(
+                sender=sender,
+                to='dakki1@gmail.com',
+                subject='Feedback #' + str(updateId),
+                body=feedbackMessage
+            )
+            return 'The feedback was sent. Thank you!'
+        except Exception as error:
+            logging.critical(error)
+            return 'Sorry, the feedback was not sent. Please try again later.'
+
+
+
+
+    def command_convert(self, expression):
+        try:
+            units = parseExpression(expression)
+            toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
+            responseMessage = formatValueUnit(toValueUnit)
+            responseType = 'success'
+        except IncompatibleCategoriesException as error:
+            responseMessage = error.args[0]
+            responseType = 'incompatibleCategoriesError'
+        except InvalidUnitException as error:
+            responseMessage = error.args[0]
+            responseType = 'invalidUnitError'
+        except InvalidExpressionException as error:
+            responseMessage = error.args[0]
+            responseType = 'invalidExpressionError'
+
+        log = {
+            'command': 'convert',
+            'type': responseType,
+            'expression': expression
+        }
+
+        if responseType == 'success':
+            log['response'] = responseMessage
+
+        logging.info(log)
+        return responseMessage
 
 
 
@@ -53,6 +187,8 @@ class WebHook(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.write(json.dumps(data))
         self.response.status = code
+
+
 
 
     def getChatId(self, updateData):
@@ -67,9 +203,46 @@ class WebHook(webapp2.RequestHandler):
         return chat.get('id')
 
 
+
+
     def getMessageText(self, updateData):
         message = updateData.get('message')
         if not message:
             return None
 
         return message.get('text', '').strip()
+
+
+
+
+    def getUser(self, updateData):
+        message = updateData.get('message')
+        if not message:
+            return None
+
+        fromUser = message.get('from')
+        if not fromUser:
+            return None
+
+        username = fromUser.get('username', '')
+        firstName = fromUser.get('first_name', '')
+        lastName = fromUser.get('last_name', '')
+
+        if firstName and lastName:
+            name = firstName + ' ' + lastName
+        elif username:
+            name = username
+        elif firstName:
+            name = firstName
+        elif lastName:
+            name = lastName
+        else:
+            name = ''
+
+        return {
+            'id': fromUser.get('id', 0),
+            'name': name,
+            'username': username,
+            'firstName': firstName,
+            'lastName': lastName
+        }

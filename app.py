@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import webapp2
 import controller
 
