@@ -4,10 +4,9 @@ import json
 import webapp2
 import logging
 import traceback
-from google.appengine.api import mail
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
 from modules.converter import convertUnit, IncompatibleCategoriesException
-from modules.formatter import formatValueUnit, getSender, formatAvailableUnits
+from modules.formatter import formatValueUnit, formatAvailableUnits
 import units
 
 
@@ -61,9 +60,6 @@ class WebHook(webapp2.RequestHandler):
             elif command == 'help':
                 responseText = self.command_help()
                 response['parse_mode'] = 'Markdown'
-            elif command == 'feedback':
-                updateId = updateData.get('update_id', 0)
-                responseText = self.command_feedback(updateId, expression, user)
             else:
                 responseText = self.command_notFound()
         except Exception as error:
@@ -122,32 +118,6 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
         helpInfo += FEEDBACK_TEXT
 
         return helpInfo.strip()
-
-
-
-
-    def command_feedback(self, updateId, feedbackMessage, user):
-        if not feedbackMessage:
-            return 'Please write some feedback.'
-
-        senderName, senderUsername = getSender(user)
-
-        sender = '{} <{}@unitconversionbot.appspotmail.com>'.format(
-            senderName,
-            senderUsername
-        )
-
-        try:
-            mail.send_mail(
-                sender=sender,
-                to='dakki1@gmail.com',
-                subject='Feedback #' + str(updateId),
-                body=feedbackMessage
-            )
-            return 'The feedback was sent. Thank you!'
-        except Exception as error:
-            logging.critical(error)
-            return 'Sorry, the feedback was not sent. Please try again later.'
 
 
 

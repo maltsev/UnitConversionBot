@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from modules.formatter import formatValueUnit, getSender
+from modules.formatter import formatValueUnit
 import units
 
 
@@ -23,16 +23,3 @@ class FormatterTests(unittest.TestCase):
                 'value': value,
                 'unit': units.index[unitName]
             }), formattedValueUnit)
-
-
-    def test_getSender(self):
-        cases = [
-            (None, ('Anonymouse', 'anonymouse')),
-            ({'name': '', 'username': '', 'id': 0}, ('Anonymouse', 'anonymouse')),
-            ({'name': 'Kirill', 'username': 'Kirill', 'id': 0}, ('Kirill', 'kirill')),
-            ({'name': 'Kirill', 'username': 'Kirill', 'id': 36}, ('Kirill', 'kirill36')),
-            ({'name': 'Kirill', 'username': '', 'id': 120}, ('Kirill', 'john120'))
-        ]
-
-        for user, expected in cases:
-            self.assertEqual(getSender(user), expected)

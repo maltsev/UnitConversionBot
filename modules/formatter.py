@@ -8,26 +8,6 @@ def formatValueUnit(valueUnit):
 
 
 
-def getSender(user):
-    if not user:
-        return ('Anonymouse', 'anonymouse')
-
-    senderName = user['name'] if user['name'] else 'Anonymouse'
-
-    if user['username']:
-        senderUsername = user['username']
-        if user['id']:
-            senderUsername += str(user['id'])
-    elif user['id']:
-        senderUsername = 'john' + str(user['id'])
-    else:
-        senderUsername = 'anonymouse'
-
-    return (senderName, senderUsername.lower())
-
-
-
-
 def formatAvailableUnits(unitsIndex):
     unitsByTypes = {}
     for unit in unitsIndex.values():
@@ -54,8 +34,6 @@ def formatAvailableUnits(unitsIndex):
         unitsList += '\n'
 
     return unitsList.strip()
-
-
 
 
 
