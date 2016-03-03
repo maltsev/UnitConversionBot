@@ -12,8 +12,9 @@ def addToIndex(index, units):
         unit = unpackUnit(packedUnit, units._TYPE)
         unit['names'].append(constantName)
 
+        allUnitNames = unit['names'] + [name.lower() for name in unit['names']]
         # unitNames could have duplicates, therefore use set()
-        for unitName in set(unit['names']):
+        for unitName in set(allUnitNames):
             if unitName in index:
                 sys.exit(u'The unit "{}" is already defined'.format(unitName))
 

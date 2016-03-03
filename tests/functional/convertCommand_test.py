@@ -10,7 +10,7 @@ class ConvertCommandTests(FunctionalTestCase):
     @log_capture(level=logging.INFO)
     def test_convertWithoutCommand(self, logs):
         requestJson = requestTemplate({
-            'text': '1,2 lb to gram',
+            'text': '1,2 LB TO Gram',
             'chat': {
                 'id': 928
             }
@@ -22,7 +22,7 @@ class ConvertCommandTests(FunctionalTestCase):
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'success', 'command': 'convert', 'expression': u'1,2 lb to gram', 'response': u'544.311 g'}"))
+        self.checkLogs(logs, ('INFO', "{'type': 'success', 'command': 'convert', 'expression': u'1,2 LB TO Gram', 'response': u'544.311 g'}"))
 
 
 

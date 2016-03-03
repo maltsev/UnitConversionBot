@@ -4,6 +4,7 @@ import units
 
 
 def parseExpression(expression):
+    expression = expression.lower()
     if expression.find(' to ') == -1:
         raise InvalidExpressionException("Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'.")
 

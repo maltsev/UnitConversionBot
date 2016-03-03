@@ -35,6 +35,7 @@ class ParserTests(unittest.TestCase):
             ('0,45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),
             (u'10 ft² to m²', 10, 'FOOT_SQUARE', 'METER_SQUARE'),
             (u'100 $ to ₽', 100, 'USD', 'RUB'),
+            ('100 fr to yen', 100, 'CHF', 'JPY'),
             (u'10 fl.oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             ('12 km/h to ft/s', 12, 'KILOMETER_PER_HOUR', 'FOOT_PER_SECOND'),
             ('1 m/s to km/h', 1, 'METER_PER_SECOND', 'KILOMETER_PER_HOUR')
