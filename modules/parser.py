@@ -21,7 +21,7 @@ def parseExpression(expression):
         errorUnits += u"'{}'".format(rawToUnit)
 
     if errorUnits:
-        raise InvalidUnitException(u"Sorry, I'm just a stupid bot :-( I don't know what {} mean. But my master probably does. I'd ask him to teach me.".format(errorUnits))
+        raise InvalidUnitException(u"Sorry, I'm just a stupid bot :-( I don't know what does {} mean. But my master probably does. I'd ask him to teach me.".format(errorUnits))
 
     return {
         'fromValueUnit': fromValueUnit,

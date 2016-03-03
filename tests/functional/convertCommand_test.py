@@ -152,7 +152,7 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 11,
-            'text': u"Sorry, I'm just a stupid bot :-( I don't know what '1 blablagram²' mean. But my master probably does. I'd ask him to teach me."
+            'text': u"Sorry, I'm just a stupid bot :-( I don't know what does '1 blablagram²' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
@@ -171,7 +171,7 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 9,
-            'text': "Sorry, I'm just a stupid bot :-( I don't know what '1.2 blablagram' and 'wtfgram' mean. But my master probably does. I'd ask him to teach me."
+            'text': "Sorry, I'm just a stupid bot :-( I don't know what does '1.2 blablagram' and 'wtfgram' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
@@ -189,7 +189,7 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 8,
-            'text': "Sorry, I'm just a stupid bot :-( I don't know what 'one ft' mean. But my master probably does. I'd ask him to teach me."
+            'text': "Sorry, I'm just a stupid bot :-( I don't know what does 'one ft' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)

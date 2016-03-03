@@ -41,7 +41,7 @@ class ParserTests(unittest.TestCase):
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
-        invalidUnitErrorTemplate = u"Sorry, I'm just a stupid bot :-( I don't know what {} mean. But my master probably does. I'd ask him to teach me."
+        invalidUnitErrorTemplate = u"Sorry, I'm just a stupid bot :-( I don't know what does {} mean. But my master probably does. I'd ask him to teach me."
 
         invalidTestCases = [
             ('10m to ft', invalidUnitErrorTemplate.format("'10m'")),
