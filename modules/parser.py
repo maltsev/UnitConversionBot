@@ -6,11 +6,11 @@ import units
 def parseExpression(expression):
     expression = expression.lower()
     if expression.find(' to ') == -1:
-        raise InvalidExpressionException("Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'.")
+        raise InvalidExpressionException(InvalidExpressionException.defaultErrorMessage)
 
     errorUnits = u''
 
-    rawFromValueUnit, rawToUnit = expression.split(' to ')
+    rawFromValueUnit, rawToUnit = expression.split(' to ')[:2]
     fromValueUnit = parseRawFromValueUnit(rawFromValueUnit)
     if not fromValueUnit:
         errorUnits += u"'{}'".format(rawFromValueUnit)
@@ -35,7 +35,7 @@ def parseRawFromValueUnit(rawFromValueUnit):
     if rawFromValueUnit.find(' ') == -1:
         return None
 
-    rawValue, rawUnit = rawFromValueUnit.split(' ')
+    rawValue, rawUnit = rawFromValueUnit.split(' ')[:2]
     unit = parseRawUnit(rawUnit)
     if not unit:
         return None
@@ -86,7 +86,7 @@ def parseMessageText(messageText):
 
 
 class InvalidExpressionException(Exception):
-    pass
+    defaultErrorMessage = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
 
 class InvalidUnitException(InvalidExpressionException):
     pass

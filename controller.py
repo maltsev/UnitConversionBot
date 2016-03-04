@@ -136,6 +136,9 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
         except InvalidExpressionException as error:
             responseMessage = error.args[0]
             responseType = 'invalidExpressionError'
+        except Exception:
+            responseMessage = InvalidExpressionException.defaultErrorMessage
+            responseType = 'invalidExpressionError'
 
         log = {
             'command': 'convert',

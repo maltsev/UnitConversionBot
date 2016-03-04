@@ -38,7 +38,7 @@ class ParserTests(unittest.TestCase):
             ('100 fr to yen', 100, 'CHF', 'JPY'),
             (u'10 fl.oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             ('12 km/h to ft/s', 12, 'KILOMETER_PER_HOUR', 'FOOT_PER_SECOND'),
-            ('1 m/s to km/h', 1, 'METER_PER_SECOND', 'KILOMETER_PER_HOUR')
+            ('1 m/s to km/h to mph', 1, 'METER_PER_SECOND', 'KILOMETER_PER_HOUR'),
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
