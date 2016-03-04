@@ -45,7 +45,6 @@ class WebHook(webapp2.RequestHandler):
                 'disable_notification': True
             }
 
-            user = self.getUser(updateData)
             messageParts = parseMessageText(messageText)
             expression = messageParts['expression']
             command = messageParts['command']
@@ -181,38 +180,3 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
             return None
 
         return message.get('text', '').strip()
-
-
-
-
-    def getUser(self, updateData):
-        message = updateData.get('message')
-        if not message:
-            return None
-
-        fromUser = message.get('from')
-        if not fromUser:
-            return None
-
-        username = fromUser.get('username', '')
-        firstName = fromUser.get('first_name', '')
-        lastName = fromUser.get('last_name', '')
-
-        if firstName and lastName:
-            name = firstName + ' ' + lastName
-        elif username:
-            name = username
-        elif firstName:
-            name = firstName
-        elif lastName:
-            name = lastName
-        else:
-            name = ''
-
-        return {
-            'id': fromUser.get('id', 0),
-            'name': name,
-            'username': username,
-            'firstName': firstName,
-            'lastName': lastName
-        }
