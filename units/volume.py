@@ -9,6 +9,7 @@ def _getNames(lengthNames):
         names.append('cu ' + lengthName)
 
     names.append(shortName + '3')
+    names.append(shortName + '^3')
     return names
 
 
