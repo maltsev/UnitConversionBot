@@ -16,7 +16,7 @@ class ParserTests(unittest.TestCase):
             ('@UnitConversionBot 1 m/s to km/h', '1 m/s to km/h', ''),
             ('/ foob', '/ foob', ''),
             (u'/convert 1 фут в метры', u'1 фут в метры', 'convert'),
-            (u'10 ft² to m²', u'10 ft² to m²', ''),
+            (u'10 ft² to m²\n 100 km\h to m\s', u'10 ft² to m²', ''),
             ('', '', '')
         ]
 

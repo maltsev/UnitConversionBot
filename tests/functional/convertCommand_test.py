@@ -101,6 +101,24 @@ class ConvertCommandTests(FunctionalTestCase):
 
 
 
+    def test_convertMultilineExpression(self):
+        requestJson = requestTemplate({
+            'text': '100 m/s to km/h\n10 fl.oz to litres',
+            'chat': {
+                'id': 19
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 19,
+            'text': '360 km/h'
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
+
+
+
+
     @log_capture(level=logging.INFO)
     def test_invalidExpression(self, logs):
         requestJson = requestTemplate({

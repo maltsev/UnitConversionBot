@@ -63,6 +63,9 @@ def parseRawUnit(rawUnit):
 
 
 def parseMessageText(messageText):
+    # Take only the first line
+    messageText = messageText.split('\n')[0]
+
     # Remove @mentions
     messageText = re.sub('@\w+', '', messageText)
 
