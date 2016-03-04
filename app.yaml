@@ -14,3 +14,14 @@ handlers:
 
 - url: /api/.*
   script: app.app
+
+skip_files:
+  - ^\.git$
+  - ^tests$
+  - .*\.pyc$
+  - ^logo\.png$
+  - ^logo\.pxm$
+  - ^updateCurrencies\.py$
+  - ^\.gitignore$
+  - ^devRequirements\.txt$
+  - ^README\.md$
