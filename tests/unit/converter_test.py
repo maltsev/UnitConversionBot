@@ -15,7 +15,7 @@ class ConverterTests(unittest.TestCase):
 
             # Area
             ((50.5, 'FOOT_SQUARE'),       (4.6916, 'METER_SQUARE')),
-            ((100,  'KILOMETER_SQUARE'), (38.6102, 'MILE_SQUARE')),
+            ((100,  'KILOMETER_SQUARE'),  (38.6102, 'MILE_SQUARE')),
 
             # Volume
             ((1.2,  'METER_CUBIC'),     (1200, 'LITER')),
@@ -34,10 +34,12 @@ class ConverterTests(unittest.TestCase):
             ((500, 'OUNCE'), (31.25, 'POUND')),
 
             # Time
-            ((1,   'YEAR'),  (365.2425, 'DAY')),
+            ((1,   'YEAR'), (365.2425, 'DAY')),
 
             # Currency
-            ((2.1, 'USD'),   (2.1, 'USD')),
+            ((2.1, 'USD'), (2, 'USD')),
+            ((10,  'USD'), (9, 'EUR')),
+            ((10,  'GBP'), (14, 'USD'))
         ]
 
         # Invalid case
@@ -62,7 +64,8 @@ class ConverterTests(unittest.TestCase):
             }
 
             result = convertUnit(fromValueUnit, toValueUnit['unit'])
-            result['value'] = round(result['value'], 4)
+            precision = 0 if fromValueUnit['unit']['type'] == 'currency' else 4
+            result['value'] = round(result['value'], precision)
 
             self.assertEqual(
                 result,
