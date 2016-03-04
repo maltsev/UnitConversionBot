@@ -9,6 +9,7 @@ def _getNames(lengthNames):
         names.append('sq ' + lengthName)
 
     names.append(shortName + '2')
+    names.append(shortName + '^2')
     return names
 
 
