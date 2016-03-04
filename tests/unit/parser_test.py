@@ -2,7 +2,6 @@
 import unittest
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException
 import units
-from units import length, mass, time
 
 
 class ParserTests(unittest.TestCase):

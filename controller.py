@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-import sys
 import json
 import webapp2
 import logging
-import traceback
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
 from modules.converter import convertUnit, IncompatibleCategoriesException
 from modules.formatter import formatValueUnit, formatAvailableUnits
