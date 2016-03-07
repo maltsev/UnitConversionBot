@@ -12,7 +12,7 @@ KILOMETER =  (1000,     ['km', 'kilometer', 'kilometers', 'kilometre', 'kilometr
 INCH = (0.0254,         ['in', 'inch', 'inches'])
 FOOT = (INCH[0] * 12,   ['ft', 'foot', 'feet'])
 YARD = (INCH[0] * 36,   ['yd', 'yard', 'yards'])
-MILE = (FOOT[0] * 5280, ['mile', 'mile', 'miles'])
+MILE = (FOOT[0] * 5280, ['mi', 'mile', 'miles'])
 
 NAUTICAL_MILE = (1852, ['nmi', 'nautical mile', 'nautical miles'])
 

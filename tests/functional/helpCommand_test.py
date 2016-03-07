@@ -16,7 +16,7 @@ helpMessage = u"""
 - square meter `m2`
 - hectare `ha`
 - square kilometer `km2`
-- square mile `mile2`
+- square mile `mi2`
 
 *Volume*
 - cubic nanometer `nm3`
@@ -34,7 +34,7 @@ helpMessage = u"""
 - cubic yard `yd3`
 - cubic meter `m3`
 - cubic kilometer `km3`
-- cubic mile `mile3`
+- cubic mile `mi3`
 
 *Currency*
 - yen `¥`
@@ -58,7 +58,7 @@ helpMessage = u"""
 - meter `m`
 - hectometer `hm`
 - kilometer `km`
-- mile `mile`
+- mile `mi`
 - nautical mile `nmi`
 
 *Mass*
