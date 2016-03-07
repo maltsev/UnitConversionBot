@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 def formatValueUnit(valueUnit):
-    strValue = u'{:.3f}'.format(valueUnit['value']).rstrip('0').rstrip('.')
+    strValue = u'{:,.3f}'.format(valueUnit['value']).rstrip('0').rstrip('.')
     strUnit = valueUnit['unit']['shortName']
 
     return strValue + ' ' + strUnit

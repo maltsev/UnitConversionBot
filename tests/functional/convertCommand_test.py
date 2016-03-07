@@ -102,7 +102,7 @@ class ConvertCommandTests(FunctionalTestCase):
 
     def test_convertMultilineExpression(self):
         requestJson = requestTemplate({
-            'text': '100 m/s to km/h\n10 fl.oz to litres',
+            'text': '1000 m/s to km/h\n10 fl.oz to litres',
             'chat': {
                 'id': 19
             }
@@ -110,7 +110,7 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 19,
-            'text': '360 km/h'
+            'text': '3,600 km/h'
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
