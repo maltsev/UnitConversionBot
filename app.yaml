@@ -18,8 +18,8 @@ handlers:
 skip_files:
   - ^\.git$
   - ^tests$
+  - ^scripts$
   - .*\.pyc$
-  - ^updateCurrencies\.py$
   - ^static/logo\.png$
   - ^static/logo\.pxm$
   - ^\.gitignore$
