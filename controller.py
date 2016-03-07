@@ -125,18 +125,12 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
             toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
             responseMessage = formatValueUnit(toValueUnit)
             responseType = 'success'
-        except IncompatibleCategoriesException as error:
-            responseMessage = error.args[0]
-            responseType = 'incompatibleCategoriesError'
-        except InvalidUnitException as error:
-            responseMessage = error.args[0]
-            responseType = 'invalidUnitError'
-        except InvalidExpressionException as error:
-            responseMessage = error.args[0]
-            responseType = 'invalidExpressionError'
+        except(IncompatibleCategoriesException, InvalidExpressionException) as error:
+            responseMessage = unicode(error)
+            responseType = error.__class__.__name__
         except Exception:
             responseMessage = InvalidExpressionException.defaultErrorMessage
-            responseType = 'invalidExpressionError'
+            responseType = InvalidExpressionException.__name__
 
         log = {
             'command': 'convert',

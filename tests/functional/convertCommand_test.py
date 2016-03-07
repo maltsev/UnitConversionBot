@@ -9,7 +9,7 @@ class ConvertCommandTests(FunctionalTestCase):
     @log_capture(level=logging.INFO)
     def test_convertWithoutCommand(self, logs):
         requestJson = requestTemplate({
-            'text': '1,2 LB TO Gram',
+            'text': '1.2 LB TO Gram',
             'chat': {
                 'id': 928
             }
@@ -21,7 +21,7 @@ class ConvertCommandTests(FunctionalTestCase):
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'success', 'command': 'convert', 'expression': u'1,2 LB TO Gram', 'response': u'544.311 g'}"))
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'success', 'expression': u'1.2 LB TO Gram', 'response': u'544.311 g'}))
 
 
 
@@ -59,7 +59,7 @@ class ConvertCommandTests(FunctionalTestCase):
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'success', 'command': 'convert', 'expression': u'1 ft\\xb2 to m\\xb2', 'response': u'0.093 m\\xb2'}"))
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'success', 'expression': u'1 ft² to m²', 'response': u'0.093 m²'}))
 
 
 
@@ -129,11 +129,11 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 113,
-            'text': "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
+            'text': u"Sorry, I'm just a stupid bot :-( I don't know what does 'фут' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'invalidExpressionError', 'command': 'convert', 'expression': u'1 \\u0444\\u0443\\u0442 \\u0432 \\u043c\\u0435\\u0442\\u0440\\u044b'}"))
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'InvalidUnitException', 'expression': u'1 фут в метры'}))
 
 
 
@@ -153,7 +153,7 @@ class ConvertCommandTests(FunctionalTestCase):
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'incompatibleCategoriesError', 'command': 'convert', 'expression': u'1 ft to g'}"))
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'IncompatibleCategoriesException', 'expression': u'1 ft to g'}))
 
 
 
@@ -169,11 +169,11 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 11,
-            'text': u"Sorry, I'm just a stupid bot :-( I don't know what does '1 blablagram²' mean. But my master probably does. I'd ask him to teach me."
+            'text': u"Sorry, I'm just a stupid bot :-( I don't know what does 'blablagram²' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
-        self.checkLogs(logs, ('INFO', "{'type': 'invalidUnitError', 'command': 'convert', 'expression': u'1 blablagram\\xb2 to gram'}"))
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'InvalidUnitException', 'expression': u'1 blablagram² to gram'}))
 
 
 
@@ -188,15 +188,15 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 9,
-            'text': "Sorry, I'm just a stupid bot :-( I don't know what does '1.2 blablagram' and 'wtfgram' mean. But my master probably does. I'd ask him to teach me."
+            'text': "Sorry, I'm just a stupid bot :-( I don't know what does 'blablagram' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
 
 
 
-
-    def test_convertInvalidUnitValue(self):
+    @log_capture(level=logging.INFO)
+    def test_convertInvalidUnitValue(self, logs):
         requestJson = requestTemplate({
             'text': 'one ft to m',
             'chat': {
@@ -206,7 +206,8 @@ class ConvertCommandTests(FunctionalTestCase):
 
         expectedResponseJson = responseTemplate({
             'chat_id': 8,
-            'text': "Sorry, I'm just a stupid bot :-( I don't know what does 'one ft' mean. But my master probably does. I'd ask him to teach me."
+            'text': u"Sorry, I don't understand the number 'one'. Please type it in a more ordinary way, like 100 or 12.5"
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'InvalidValueException', 'expression': u'one ft to m'}))

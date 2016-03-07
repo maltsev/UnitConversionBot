@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest
-from modules.parser import parseMessageText, parseExpression, InvalidExpressionException
+from modules.parser import parseMessageText, parseExpression, normalizeExpression, InvalidExpressionException
 import units
 
 
@@ -26,29 +26,32 @@ class ParserTests(unittest.TestCase):
             })
 
 
+
+
     def test_parseExpression(self):
         cases = [
             ('1 ft to m', 1, 'FOOT', 'METER'),
             ('10 meters to kilometer', 10, 'METER', 'KILOMETER'),
-            ('1.5 km to hour', 1.5, 'KILOMETER', 'HOUR'),
-            ('0,45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),
+            ('1.5 km in hour', 1.5, 'KILOMETER', 'HOUR'),
+            ('0.45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),
             (u'10 ft² to m²', 10, 'FOOT_SQUARE', 'METER_SQUARE'),
             ('100 km^2 to m^2', 100, 'KILOMETER_SQUARE', 'METER_SQUARE'),
             (u'100 $ to ₽', 100, 'USD', 'RUB'),
             ('100 fr to yen', 100, 'CHF', 'JPY'),
+            (u'10 fl. oz. to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
+            (u'10 fl oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             (u'10 fl.oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
-            ('12 in^3 to m^3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
-            ('12 km/h to ft/s', 12, 'KILOMETER_PER_HOUR', 'FOOT_PER_SECOND'),
-            ('1 m/s to km/h to mph', 1, 'METER_PER_SECOND', 'KILOMETER_PER_HOUR'),
+            ('12 in^3=m^3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
+            ('12 km/hr to ft/s', 12, 'KILOMETER_PER_HOUR', 'FOOT_PER_SECOND'),
+            ('1 m/s to km/h to mph', 1, 'METER_PER_SECOND', 'MILE_PER_HOUR'),
+            ('100,000m to ft', 100000, 'METER', 'FOOT'),
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
-        invalidUnitErrorTemplate = u"Sorry, I'm just a stupid bot :-( I don't know what does {} mean. But my master probably does. I'd ask him to teach me."
+        invalidUnitErrorTemplate = u"Sorry, I'm just a stupid bot :-( I don't know what does '{}' mean. But my master probably does. I'd ask him to teach me."
 
         invalidTestCases = [
-            ('10m to ft', invalidUnitErrorTemplate.format("'10m'")),
-            ('10m=ft', invalidExpressionError),
-            (u'1 фут в метры', invalidExpressionError)
+            (u'1 фут в метры', invalidUnitErrorTemplate.format(u'фут'))
         ]
 
         for expression, value, fromUnitName, toUnitName in cases:
@@ -63,4 +66,17 @@ class ParserTests(unittest.TestCase):
         for expression, errorMessage in invalidTestCases:
             with self.assertRaises(InvalidExpressionException) as cm:
                 parseExpression(expression)
-            self.assertEqual(str(cm.exception), errorMessage)
+            self.assertEqual(unicode(cm.exception), errorMessage)
+
+
+
+
+    def test_normalizeExpression(self):
+        cases = [
+            ('Convert 100,000M to cubic foot', u'100000 m to ft³'),
+            (u'100.1fl oz = m²', u'100.1 fl.oz = m²'),
+            (u'100.4€ in ₽', u'100.4 € in ₽')
+        ]
+
+        for expression, expectedNormalizedExpression in cases:
+            self.assertEqual(normalizeExpression(expression), expectedNormalizedExpression)

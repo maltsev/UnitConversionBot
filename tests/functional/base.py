@@ -13,7 +13,7 @@ class FunctionalTestCase(unittest.TestCase):
         if os.environ['RUN_ON_INSTANCE']:
             return
 
-        expectedLogs = [('root', type, message) for type, message in expectedLogs]
+        expectedLogs = [('root', type, unicode(message)) for type, message in expectedLogs]
         logs.check(*expectedLogs)
 
 
@@ -44,18 +44,18 @@ class FunctionalTestCase(unittest.TestCase):
 
 
 
-def responseTemplate(responseJson):
+def responseTemplate(response):
     template = {
         'method': 'sendMessage',
         'disable_notification': True
     }
 
-    template.update(responseJson)
+    template.update(response)
     return template
 
 
-def requestTemplate(messageJson):
+def requestTemplate(message):
     return {
         'update_id': random.randint(1, sys.maxint),
-        'message': messageJson
+        'message': message
     }

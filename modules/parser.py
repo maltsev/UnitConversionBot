@@ -4,62 +4,71 @@ import units
 
 
 def parseExpression(expression):
-    expression = expression.lower()
-    if expression.find(' to ') == -1:
+    expression = normalizeExpression(expression)
+    expressionParts = expression.split(' ')
+    if len(expressionParts) < 3:
         raise InvalidExpressionException(InvalidExpressionException.defaultErrorMessage)
 
-    errorUnits = u''
+    rawFromValue = expressionParts[0]
+    try:
+        fromValue = float(rawFromValue)
+    except ValueError:
+        raise InvalidValueException(InvalidValueException.errorMessage.format(rawFromValue))
 
-    rawFromValueUnit, rawToUnit = expression.split(' to ')[:2]
-    fromValueUnit = parseRawFromValueUnit(rawFromValueUnit)
-    if not fromValueUnit:
-        errorUnits += u"'{}'".format(rawFromValueUnit)
+    rawFromUnit = expressionParts[1]
+    fromUnit = getUnit(rawFromUnit)
 
-    toUnit = parseRawToUnit(rawToUnit)
-    if not toUnit:
-        if errorUnits:
-            errorUnits += ' and '
-        errorUnits += u"'{}'".format(rawToUnit)
-
-    if errorUnits:
-        raise InvalidUnitException(u"Sorry, I'm just a stupid bot :-( I don't know what does {} mean. But my master probably does. I'd ask him to teach me.".format(errorUnits))
+    rawToUnit = expressionParts[-1]
+    toUnit = getUnit(rawToUnit)
 
     return {
-        'fromValueUnit': fromValueUnit,
+        'fromValueUnit': {
+            'value': fromValue,
+            'unit': fromUnit
+        },
         'toUnit': toUnit
     }
 
 
 
-def parseRawFromValueUnit(rawFromValueUnit):
-    if rawFromValueUnit.find(' ') == -1:
-        return None
 
-    rawValue, rawUnit = rawFromValueUnit.split(' ')[:2]
-    unit = parseRawUnit(rawUnit)
+def normalizeExpression(expression):
+    expression = expression.lower()
+    expression = expression.replace(',', '').replace('convert', '').replace('=', ' = ')
+    # Add whitespace after number
+    expression = re.sub(r'([\.\d]+)(\D)', '\\1 \\2', expression)
+    expression = re.sub(r'\s+', ' ', expression)
+    expression = normalizeUnitsInExpression(expression)
+    expression = expression.strip()
+
+    return expression
+
+
+
+
+def normalizeUnitsInExpression(expression):
+    denormalizedUnitNames = filter(lambda n: ' ' in n, units.index.keys())
+    denormalizedUnitNames.sort(key=len, reverse=True)
+
+    for denormalizedUnitName in denormalizedUnitNames:
+        shortName = units.index[denormalizedUnitName]['shortName']
+        expression = expression.replace(denormalizedUnitName, shortName)
+
+    expression = re.sub(r'(fl\.? ?oz\.? ?|oz\.? ?fl\.? ?)', 'fl.oz ', expression)
+
+    return expression
+
+
+
+
+def getUnit(rawUnit):
+    unit = units.index.get(rawUnit)
     if not unit:
-        return None
+        raise InvalidUnitException(InvalidUnitException.errorMessage.format(rawUnit))
 
-    rawValue = rawValue.replace(',', '.')
-    try:
-        value = float(rawValue)
-    except:
-        return None
-
-    return {
-        'value': value,
-        'unit': unit
-    }
+    return unit
 
 
-
-def parseRawToUnit(rawToUnit):
-    return parseRawUnit(rawToUnit)
-
-
-def parseRawUnit(rawUnit):
-    rawUnit = rawUnit.strip().lower()
-    return units.index.get(rawUnit)
 
 
 def parseMessageText(messageText):
@@ -85,8 +94,14 @@ def parseMessageText(messageText):
 
 
 
+
 class InvalidExpressionException(Exception):
     defaultErrorMessage = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
 
+
+class InvalidValueException(InvalidExpressionException):
+    errorMessage = u"Sorry, I don't understand the number '{}'. Please type it in a more ordinary way, like 100 or 12.5"
+
+
 class InvalidUnitException(InvalidExpressionException):
-    pass
+    errorMessage = u"Sorry, I'm just a stupid bot :-( I don't know what does '{}' mean. But my master probably does. I'd ask him to teach me."

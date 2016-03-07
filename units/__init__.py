@@ -4,13 +4,14 @@ import length, mass, time, currency, area, volume, speed
 
 
 def addToIndex(index, units):
-    for constantName in dir(units):
-        if constantName[0] == '_':
+    for unitKey in dir(units):
+        if unitKey[0] == '_':
             continue
 
-        packedUnit = getattr(units, constantName)
-        unit = unpackUnit(packedUnit, units._TYPE)
-        unit['names'].append(constantName)
+        packedUnit = getattr(units, unitKey)
+        unit = unpackUnit(packedUnit, unitKey, units._TYPE)
+        if ' ' in unit['shortName']:
+            sys.exit('The unit\'s "{}" shortName contains a whitespace'.format(unitName))
 
         allUnitNames = unit['names'] + [name.lower() for name in unit['names']]
         # unitNames could have duplicates, therefore use set()
@@ -25,12 +26,14 @@ def addToIndex(index, units):
 
 
 
-def unpackUnit(packedUnit, type):
+def unpackUnit(packedUnit, unitKey, type):
     try:
         unitNames = packedUnit[1]
     except TypeError as err:
         print packedUnit
         raise err
+
+    unitNames.append(unitKey)
 
     return {
         'value': packedUnit[0],
