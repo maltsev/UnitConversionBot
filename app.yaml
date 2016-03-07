@@ -19,9 +19,9 @@ skip_files:
   - ^\.git$
   - ^tests$
   - .*\.pyc$
-  - ^logo\.png$
-  - ^logo\.pxm$
   - ^updateCurrencies\.py$
+  - ^static/logo\.png$
+  - ^static/logo\.pxm$
   - ^\.gitignore$
   - ^devRequirements\.txt$
   - ^README\.md$
