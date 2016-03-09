@@ -17,7 +17,7 @@ convert - Convert from one unit to another (e.g., "10 ft to m")
 help - Help and a full list of available units
 
 /setinline
-/setnoinline
+Convert units (e.g., "10 ft to m")
 
 /setinlinefeedback
 Disabled

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import hashlib
 import webapp2
 import logging
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
@@ -14,28 +15,45 @@ Thank you for chatting with me :-)
 """.strip()
 
 
+CRITICAL_ERROR_MESSAGE = "Sorry, I'm broken :-( My master will fix me as soon as possible."
+
+BOT_NAME = '@UnitConversionBot'
+
+
 class WebHook(webapp2.RequestHandler):
     def post(self):
-        chatId = 0
-        requestBody = self.request.body
+        logging.debug(self.request.body)
 
         try:
-            logging.debug(requestBody)
-            updateData = json.loads(requestBody)
+            updateData = json.loads(self.request.body)
         except ValueError as error:
             logging.warning(error)
             return self.output({})
 
+        if 'message' in updateData:
+            response = self.sendMessage(updateData)
+        elif 'inline_query' in updateData:
+            response = self.answerInlineQuery(updateData)
+        else:
+            response = {}
+
+        logging.debug(response)
+        self.output(response)
+
+
+
+
+    def sendMessage(self, updateData):
         try:
             messageText = self.getMessageText(updateData)
             if not messageText:
-                return self.output({})
+                return {}
 
             chatId = self.getChatId(updateData)
             if not chatId:
                 error = 'Chat ID is empty'
                 logging.warning(error)
-                return self.output({'error': error})
+                return {'error': error}
 
             response = {
                 'method': 'sendMessage',
@@ -49,26 +67,71 @@ class WebHook(webapp2.RequestHandler):
 
             if command == 'convert' or not command:
                 if expression:
-                    responseText = self.command_convert(expression)
+                    response['text'] = self.command_convert(expression)
                 else:
-                    responseText = self.command_shortHelp()
+                    response['text'] = self.command_shortHelp()
             elif command == 'start':
-                responseText = self.command_start()
+                response['text'] = self.command_start()
             elif command == 'help':
-                responseText = self.command_help()
+                response['text'] = self.command_help()
                 response['parse_mode'] = 'Markdown'
             else:
-                responseText = self.command_notFound()
+                response['text'] = self.command_notFound()
         except Exception as error:
             logging.critical(error)
-            responseText = "Sorry, I'm broken :-( My master will fix me as soon as possible."
+            response['text'] = CRITICAL_ERROR_MESSAGE
 
-        if not chatId:
-            self.output({})
+        return response
 
-        logging.debug(responseText)
-        response['text'] = responseText
-        self.output(response)
+
+
+
+    def answerInlineQuery(self, updateData):
+        inlineQuery = updateData.get('inline_query')
+        if not inlineQuery:
+            return {}
+
+        inlineQueryId = inlineQuery.get('id')
+        if not inlineQueryId:
+            return {}
+
+        response = {
+            'method': 'answerInlineQuery',
+            'inline_query_id': inlineQueryId,
+            'cache_time': 60*60*12,
+            'is_personal': False,
+            'results': []
+        }
+
+        try:
+            messageText = inlineQuery.get('query', '').strip()
+            if not messageText:
+                response['results'] = self.getInlineResult({
+                    'title': '10 ft to m',
+                    'message_text': '10 ft = 3.048 m',
+                    'description': 'Please type a convert expression (e.g., "10 ft to m").'
+                })
+                return response
+
+            expression = parseMessageText(messageText)['expression']
+            response['results'] = self.getInlineResult(self.command_convertInline(expression))
+        except Exception as error:
+            logging.critical(error)
+            response['results'] = self.getInlineResult({
+                'title': 'Error',
+                'message_text': BOT_NAME,
+                'description': CRITICAL_ERROR_MESSAGE
+            })
+
+        return response
+
+
+
+
+    def getInlineResult(self, inlineResultArticle):
+        inlineResultArticle['type'] = 'article'
+        inlineResultArticle['id'] = hashlib.md5(inlineResultArticle['title'].encode('utf-8')).hexdigest()
+        return json.dumps([inlineResultArticle], sort_keys=True)
 
 
 
@@ -125,7 +188,7 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
             toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
             responseMessage = formatValueUnit(toValueUnit)
             responseType = 'success'
-        except(IncompatibleCategoriesException, InvalidExpressionException) as error:
+        except (IncompatibleCategoriesException, InvalidExpressionException) as error:
             responseMessage = unicode(error)
             responseType = error.__class__.__name__
         except Exception:
@@ -143,6 +206,46 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
 
         logging.info(log)
         return responseMessage
+
+
+
+
+    def command_convertInline(self, expression):
+        try:
+            units = parseExpression(expression)
+            toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
+            responseMessage = formatValueUnit(toValueUnit)
+            responseType = 'success'
+        except (IncompatibleCategoriesException, InvalidExpressionException) as error:
+            responseMessage = unicode(error)
+            responseType = error.__class__.__name__
+        except Exception:
+            responseMessage = InvalidExpressionException.defaultErrorMessage
+            responseType = InvalidExpressionException.__name__
+
+        log = {
+            'command': 'convert',
+            'type': responseType,
+            'expression': expression
+        }
+
+        if responseType == 'success':
+            log['response'] = responseMessage
+            fullResponse = u'{} = {}'.format(formatValueUnit(units['fromValueUnit']), formatValueUnit(toValueUnit))
+            log['fullResponse'] = fullResponse
+            response = {
+                'title': responseMessage,
+                'message_text': fullResponse
+            }
+        else:
+            response = {
+                'title': 'Error',
+                'message_text': BOT_NAME,
+                'description': responseMessage
+            }
+
+        logging.info(log)
+        return response
 
 
 
