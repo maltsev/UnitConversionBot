@@ -9,6 +9,8 @@ from webtest import TestApp
 from app import app
 
 class FunctionalTestCase(unittest.TestCase):
+    maxDiff = None
+
     def checkLogs(self, logs, *expectedLogs):
         if os.environ['RUN_ON_INSTANCE']:
             return
