@@ -69,3 +69,7 @@ target/
 
 # pyenv
 .python-version
+
+
+# Custom
+/stats/

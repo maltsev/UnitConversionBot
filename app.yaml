@@ -19,6 +19,7 @@ skip_files:
   - ^\.git$
   - ^tests$
   - ^scripts$
+  - ^stats$
   - .*\.pyc$
   - ^static/logo\.png$
   - ^static/logo\.pxm$
