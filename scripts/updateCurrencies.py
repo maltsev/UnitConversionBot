@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
 import requests
 
-currenciesTemplateFile = open('../units/__currencyTemplate.py', 'r')
+unitsDir = os.path.join(os.path.dirname(__file__), '..', 'units')
+
+currenciesTemplateFile = open(os.path.join(unitsDir, '__currencyTemplate.py'), 'r')
 currenciesTemplate = currenciesTemplateFile.read().decode('utf-8')
 
 rawResponse = requests.get('http://api.fixer.io/latest?base=USD')
@@ -25,5 +28,5 @@ if currenciesTemplate.find('!') != -1:
     print currenciesTemplate
     sys.exit(1)
 
-currencyFile = open('../units/currency.py', 'w')
+currencyFile = open(os.path.join(unitsDir, 'currency.py'), 'w')
 currencyFile.write(currenciesTemplate)
