@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Main symbol — µ (U+00B5), second — μ (U+03BC)
-NANOGRAM =  (   1e-9,  [u'µg', 'nanogram', 'nanograms', 'nanogramme', 'nanogrammes', u'μg', 'ug'])
+NANOGRAM =  (   1e-9,  ['ng', 'nanogram', 'nanograms', 'nanogramme', 'nanogrammes'])
+MICROGRAM = (   1e-6,  [u'µg', 'microgram', 'micrograms', 'microgramme', 'microgrammes', u'μg', 'ug'])
 MILLIGRAM = (   0.001, ['mg', 'milligram', 'milligrams', 'milligramme', 'milligrammes'])
 GRAM =      (   1,     ['g', 'gram', 'grams', 'gramme', 'grammes'])
 KILOGRAM =  (1000,     ['kg', 'kilogram', 'kilograms', 'kilogramme', 'kilogrammes'])

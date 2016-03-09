@@ -62,7 +62,8 @@ helpMessage = u"""
 - nautical mile `nmi`
 
 *Mass*
-- nanogram `ug`
+- nanogram `ng`
+- microgram `ug`
 - milligram `mg`
 - gram `g`
 - ounce `oz`
