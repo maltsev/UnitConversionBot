@@ -36,8 +36,9 @@ def normalizeExpression(expression):
     expression = expression.lower()
     expression = expression.replace(',', '').replace('convert', '').replace('=', ' = ')
     # Add whitespace after number
-    expression = re.sub(r'([\.\d]+)(\D)', '\\1 \\2', expression)
+    expression = re.sub(r'([\./\d]+)(\D)', '\\1 \\2', expression)
     expression = re.sub(r'\s+', ' ', expression)
+    expression = expression.replace('/ ', '/')
     expression = normalizeUnitsInExpression(expression)
     expression = expression.strip()
 

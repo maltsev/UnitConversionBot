@@ -48,10 +48,12 @@ class ParserTests(unittest.TestCase):
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
+        invalidValueErrorTemplate = u"Sorry, I don't understand the number '{}'. Please type it in a more ordinary way, like 100 or 12.5"
         invalidUnitErrorTemplate = u"Sorry, I'm just a stupid bot :-( I don't know what does '{}' mean. But my master probably does. I'd ask him to teach me."
 
         invalidTestCases = [
-            (u'1 фут в метры', invalidUnitErrorTemplate.format(u'фут'))
+            (u'1 фут в метры', invalidUnitErrorTemplate.format(u'фут')),
+            (u'1/4 inch to cm', invalidValueErrorTemplate.format('1/4'))
         ]
 
         for expression, value, fromUnitName, toUnitName in cases:
@@ -75,7 +77,7 @@ class ParserTests(unittest.TestCase):
         cases = [
             ('Convert 100,000M to cubic foot', u'100000 m to ft³'),
             (u'100.1fl oz = m²', u'100.1 fl.oz = m²'),
-            (u'100.4€ in ₽', u'100.4 € in ₽')
+            (u'1/4€ in ₽', u'1/4 € in ₽')
         ]
 
         for expression, expectedNormalizedExpression in cases:
