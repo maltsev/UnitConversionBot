@@ -8,7 +8,7 @@ KILOGRAM =  (1000,     ['kg', 'kilogram', 'kilograms', 'kilogramme', 'kilogramme
 TONNE =     (   1e6,   ['t', 'tonne', 'tonnes', 'megagramm', 'megagramms', 'megagramme', 'megamgrammes'])
 
 
-POUND = (453.59237,     ['lb', 'pound', 'pounds'])
+POUND = (453.59237,     ['lb', 'pound', 'pounds', 'lbm', 'lbs'])
 OUNCE = (POUND[0] / 16, ['oz', 'ounce', 'ounces'])
 
 
