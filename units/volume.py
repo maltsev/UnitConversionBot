@@ -20,7 +20,7 @@ DECIMETER_CUBIC =  ( _l.DECIMETER[0]**3, _getNames(_l.DECIMETER[1]))
 METER_CUBIC =      (     _l.METER[0]**3, _getNames(_l.METER[1]))
 KILOMETER_CUBIC =  ( _l.KILOMETER[0]**3, _getNames(_l.KILOMETER[1]))
 
-LITER =      ( DECIMETER_CUBIC[0], ['l', 'liter', 'liters', 'litre', 'litres'])
+LITER =      ( DECIMETER_CUBIC[0], ['l', 'liter', 'liters', 'litre', 'litres', 'lt', 'ltr'])
 MILLILITER = (CENTIMETER_CUBIC[0], ['ml', 'milliliter', 'milliliters', 'millilitre', 'millilitres'])
 
 INCH_CUBIC = (_l.INCH[0]**3, _getNames(_l.INCH[1]))
