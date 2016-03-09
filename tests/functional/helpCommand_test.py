@@ -37,14 +37,14 @@ helpMessage = u"""
 - cubic mile `mi3`
 
 *Currency*
-- yen `¥`
-- Russian ruble `₽`
-- yuan `yuan`
 - Canadian dollar `C$`
-- US dollar `$`
+- Russian ruble `₽`
 - Swiss franc `Fr`
+- US dollar `$`
 - euro `€`
 - pound sterling `£`
+- yen `¥`
+- yuan `yuan`
 
 *Length*
 - nanometer `nm`

@@ -25,7 +25,10 @@ def formatAvailableUnits(unitsIndex):
         unitsList += u'*{}*\n'.format(typeUnits['type'].capitalize())
 
         units = typeUnits['units'].values()
-        units.sort(sortUnitsAsc)
+        if typeUnits['type'] == 'currency':
+            units.sort(key=lambda x: x['baseName'])
+        else:
+            units.sort(key=lambda x: x['value'])
 
         for unit in units:
             safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
@@ -34,17 +37,3 @@ def formatAvailableUnits(unitsIndex):
         unitsList += '\n'
 
     return unitsList.strip()
-
-
-
-
-def sortUnitsAsc(a, b):
-    a = a['value']
-    b = b['value']
-
-    if a > b:
-        return 1
-    elif a < b:
-        return -1
-    else:
-        return 0
