@@ -25,7 +25,7 @@ def formatAvailableUnits(unitsIndex):
         unitsList += u'*{}*\n'.format(typeUnits['type'].capitalize())
 
         units = typeUnits['units'].values()
-        if typeUnits['type'] == 'currency':
+        if typeUnits['type'] == 'currencies':
             units.sort(key=lambda x: x['baseName'])
         else:
             units.sort(key=lambda x: x['value'])

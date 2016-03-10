@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-import length, mass, time, currency, area, volume, speed
+import length, mass, time, currencies, area, volume, speed
 
 
 def addToIndex(index, units):
@@ -45,7 +45,7 @@ def unpackUnit(packedUnit, unitKey, type):
 
 
 index = {}
-index = addToIndex(index, currency)
+index = addToIndex(index, currencies)
 index = addToIndex(index, length)
 index = addToIndex(index, area)
 index = addToIndex(index, volume)

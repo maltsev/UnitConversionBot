@@ -36,7 +36,7 @@ class ConverterTests(unittest.TestCase):
             # Time
             ((1,   'YEAR'), (365.2425, 'DAY')),
 
-            # Currency
+            # Currencies
             ((2.1, 'USD'), (2, 'USD')),
             ((10,  'USD'), (9, 'EUR')),
             ((10,  'GBP'), (14, 'USD'))
@@ -64,7 +64,7 @@ class ConverterTests(unittest.TestCase):
             }
 
             result = convertUnit(fromValueUnit, toValueUnit['unit'])
-            precision = 0 if fromValueUnit['unit']['type'] == 'currency' else 4
+            precision = 0 if fromValueUnit['unit']['type'] == 'currencies' else 4
             result['value'] = round(result['value'], precision)
 
             self.assertEqual(
