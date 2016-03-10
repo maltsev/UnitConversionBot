@@ -14,7 +14,8 @@ def formatAvailableUnits(unitsIndex):
         return ''
 
     unitsCategoryName = units[0]['category']
-    if unitsCategoryName == 'currencies':
+    isCurrencies = unitsCategoryName == 'currencies'
+    if isCurrencies:
         units.sort(key=lambda x: x['baseName'])
     else:
         # Some units may have equal value (like dm3 and liter)
@@ -23,7 +24,11 @@ def formatAvailableUnits(unitsIndex):
 
     unitsList = ''
     for unit in units:
-        safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
+        if isCurrencies:
+            # Hack: use short name of currency (e.g., "forint" instead of "Hungarian Forint") in help
+            safeShortName = unit['names'][-2] if len(unit['names']) > 3 else unit['shortName']
+        else:
+            safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
         unitsList += u'- {} `{}`\n'.format(unit['baseName'], safeShortName)
 
     return unitsList.strip()
