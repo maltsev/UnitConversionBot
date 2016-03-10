@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 USD = (1,      [u'$',    'US dollar', 'US dollars', 'American dollar', 'American dollars'])
-EUR = (1.10280332605, [u'€',    'euro', 'euros'])
-JPY = (0.00885034073812, [u'¥',    'yen', 'yens'])
-GBP = (1.42097933896, [u'£',    'pound sterling', 'pounds sterling'])
-CHF = (1.00693780145, [u'Fr',   'Swiss franc', 'Swiss francs', 'franc', 'francs', 'Fr.'])
-CAD = (0.750469043152, [u'C$',   'Canadian dollar', 'Canadian dollars'])
-RUB = (0.0139431121026, [u'₽',    'Russian ruble', 'Russian rubles', 'ruble', 'rubles', 'rouble', 'roubles'])
-CNY = (0.153713723561, [u'yuan', 'yuan', 'yuans'])
+EUR = (1.08570560007, [u'€',    'euro', 'euros'])
+JPY = (0.00876501007976, [u'¥',    'yen', 'yens'])
+GBP = (1.41500757029, [u'£',    'pound sterling', 'pounds sterling'])
+CHF = (0.992358836955, [u'Fr',   'Swiss franc', 'Swiss francs', 'franc', 'francs', 'Fr.'])
+CAD = (0.752728641325, [u'C$',   'Canadian dollar', 'Canadian dollars'])
+RUB = (0.014203940173, [u'₽',    'Russian ruble', 'Russian rubles', 'ruble', 'rubles', 'rouble', 'roubles'])
+CNY = (0.15337658553, [u'yuan', 'yuan', 'yuans'])
 
 
 _BASE = USD
