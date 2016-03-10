@@ -88,6 +88,8 @@ def parseMessageText(messageText):
         expression = parts[2].strip()
         command = parts[1].strip()
 
+    expression = expression.strip('\'"')
+
     return {
         'expression': expression,
         'command': command

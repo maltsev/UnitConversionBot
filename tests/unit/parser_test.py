@@ -8,13 +8,14 @@ class ParserTests(unittest.TestCase):
     def test_parseMessageText(self):
         cases = [
             ('1 ft to m', '1 ft to m', ''),
+            ("'1 ft to m'", '1 ft to m', ''),
             ('/start', '', 'start'),
             ('/start start', 'start', 'start'),
             ('/convert@UnitConversionBot 1 day to hours', '1 day to hours', 'convert'),
             ('@UnitConversionBot 1 in to meter', '1 in to meter', ''),
             ('@UnitConversionBot 1 m/s to km/h', '1 m/s to km/h', ''),
             ('/ foob', '/ foob', ''),
-            (u'/convert 1 фут в метры', u'1 фут в метры', 'convert'),
+            (u'/convert "1 фут в метры"', u'1 фут в метры', 'convert'),
             (u'10 ft² to m²\n 100 km\h to m\s', u'10 ft² to m²', ''),
             ('', '', '')
         ]
