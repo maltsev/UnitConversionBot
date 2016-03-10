@@ -64,7 +64,7 @@ class ConverterTests(unittest.TestCase):
             }
 
             result = convertUnit(fromValueUnit, toValueUnit['unit'])
-            precision = 0 if fromValueUnit['unit']['type'] == 'currencies' else 4
+            precision = 0 if fromValueUnit['unit']['category'] == 'currencies' else 4
             result['value'] = round(result['value'], precision)
 
             self.assertEqual(

@@ -9,23 +9,23 @@ def formatValueUnit(valueUnit):
 
 
 def formatAvailableUnits(unitsIndex):
-    unitsByTypes = {}
+    unitsByCategories = {}
     for unit in unitsIndex.values():
-        unitType = unit['type']
-        if unitType not in unitsByTypes:
-            unitsByTypes[unitType] = {
-                'type': unit['type'],
+        unitCategory = unit['category']
+        if unitCategory not in unitsByCategories:
+            unitsByCategories[unitCategory] = {
+                'category': unit['category'],
                 'units': {}
             }
 
-        unitsByTypes[unitType]['units'][unit['baseName']] = unit
+        unitsByCategories[unitCategory]['units'][unit['baseName']] = unit
 
     unitsList = u'*Full list of available units:*\n'
-    for typeUnits in unitsByTypes.values():
-        unitsList += u'*{}*\n'.format(typeUnits['type'].capitalize())
+    for categoryUnits in unitsByCategories.values():
+        unitsList += u'*{}*\n'.format(categoryUnits['category'].capitalize())
 
-        units = typeUnits['units'].values()
-        if typeUnits['type'] == 'currencies':
+        units = categoryUnits['units'].values()
+        if categoryUnits['category'] == 'currencies':
             units.sort(key=lambda x: x['baseName'])
         else:
             units.sort(key=lambda x: x['value'])

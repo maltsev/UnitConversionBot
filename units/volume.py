@@ -35,4 +35,4 @@ IMPERIAL_GALLON      = (IMPERIAL_FLUID_OUNCE[0] * 160,        ['gal', 'imperial 
 
 
 _BASE = METER_CUBIC
-_TYPE = 'volume'
+_CATEGORY = 'volume'

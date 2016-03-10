@@ -17,4 +17,4 @@ FOOT_PER_SECOND =    (       _l.FOOT[0] / _SECOND_VALUE, ['ft/s'] + _getNames('p
 
 
 _BASE = METER_PER_SECOND
-_TYPE = 'speed'
+_CATEGORY = 'speed'

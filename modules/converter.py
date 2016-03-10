@@ -2,7 +2,7 @@
 def convertUnit(fromValueUnit, toUnit):
     fromUnit = fromValueUnit['unit']
 
-    if fromUnit['type'] != toUnit['type']:
+    if fromUnit['category'] != toUnit['category']:
         errorMessage = u"Sorry, I can't convert {} to {} (at least in this universe).".format(
             fromUnit['baseName'],
             toUnit['baseName']

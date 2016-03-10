@@ -17,4 +17,4 @@ MILE = (FOOT[0] * 5280, ['mi', 'mile', 'miles'])
 NAUTICAL_MILE = (1852, ['nmi', 'nautical mile', 'nautical miles'])
 
 _BASE = METER
-_TYPE = 'length'
+_CATEGORY = 'length'

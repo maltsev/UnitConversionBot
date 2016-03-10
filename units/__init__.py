@@ -9,7 +9,7 @@ def addToIndex(index, units):
             continue
 
         packedUnit = getattr(units, unitKey)
-        unit = unpackUnit(packedUnit, unitKey, units._TYPE)
+        unit = unpackUnit(packedUnit, unitKey, units._CATEGORY)
         if ' ' in unit['shortName']:
             sys.exit('The unit\'s "{}" shortName contains a whitespace'.format(unitName))
 
@@ -26,7 +26,7 @@ def addToIndex(index, units):
 
 
 
-def unpackUnit(packedUnit, unitKey, type):
+def unpackUnit(packedUnit, unitKey, category):
     try:
         unitNames = packedUnit[1]
     except TypeError as err:
@@ -37,7 +37,7 @@ def unpackUnit(packedUnit, unitKey, type):
 
     return {
         'value': packedUnit[0],
-        'type': type,
+        'category': category,
         'shortName': unitNames[0],
         'baseName': unitNames[1],
         'names': unitNames
