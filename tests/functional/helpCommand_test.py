@@ -3,50 +3,10 @@ import os
 import unittest
 from base import FunctionalTestCase, requestTemplate, responseTemplate
 
-helpMessage = u"""
-*Full list of available units:*
-*Area*
-- square nanometer `nm2`
-- square millimeter `mm2`
-- square centimeter `cm2`
-- square inch `in2`
-- square decimeter `dm2`
-- square foot `ft2`
-- square yard `yd2`
-- square meter `m2`
-- hectare `ha`
-- square kilometer `km2`
-- square mile `mi2`
 
-*Volume*
-- cubic nanometer `nm3`
-- cubic millimeter `mm3`
-- cubic centimeter `cm3`
-- milliliter `ml`
-- cubic inch `in3`
-- imperial fluid ounce `fl.oz`
-- imperial pint `pt`
-- liter `l`
-- cubic decimeter `dm3`
-- imperial quart `qt`
-- imperial gallon `gal`
-- cubic foot `ft3`
-- cubic yard `yd3`
-- cubic meter `m3`
-- cubic kilometer `km3`
-- cubic mile `mi3`
-
-*Currency*
-- Canadian dollar `C$`
-- Russian ruble `₽`
-- Swiss franc `Fr`
-- US dollar `$`
-- euro `€`
-- pound sterling `£`
-- yen `¥`
-- yuan `yuan`
-
-*Length*
+class HelpCommandTests(FunctionalTestCase):
+    def test_lengthHelp(self):
+        self.assertHelp('length', """
 - nanometer `nm`
 - micrometer `um`
 - millimeter `mm`
@@ -60,8 +20,69 @@ helpMessage = u"""
 - kilometer `km`
 - mile `mi`
 - nautical mile `nmi`
+        """)
 
-*Mass*
+
+
+
+    def test_areaHelp(self):
+        self.assertHelp('area', """
+- square nanometer `nm2`
+- square millimeter `mm2`
+- square centimeter `cm2`
+- square inch `in2`
+- square decimeter `dm2`
+- square foot `ft2`
+- square yard `yd2`
+- square meter `m2`
+- hectare `ha`
+- square kilometer `km2`
+- square mile `mi2`
+        """)
+
+
+
+
+    def test_volumeHelp(self):
+        self.assertHelp('volume', """
+- cubic nanometer `nm3`
+- cubic millimeter `mm3`
+- cubic centimeter `cm3`
+- milliliter `ml`
+- cubic inch `in3`
+- imperial fluid ounce `fl.oz`
+- imperial pint `pt`
+- cubic decimeter `dm3`
+- liter `l`
+- imperial quart `qt`
+- imperial gallon `gal`
+- cubic foot `ft3`
+- cubic yard `yd3`
+- cubic meter `m3`
+- cubic kilometer `km3`
+- cubic mile `mi3`
+        """)
+
+
+
+
+    def test_currenciesHelp(self):
+        self.assertHelp('currencies', u"""
+- Canadian dollar `C$`
+- Russian ruble `₽`
+- Swiss franc `Fr`
+- US dollar `$`
+- euro `€`
+- pound sterling `£`
+- yen `¥`
+- yuan `yuan`
+        """)
+
+
+
+
+    def test_massHelp(self):
+        self.assertHelp('mass', """
 - nanogram `ng`
 - microgram `ug`
 - milligram `mg`
@@ -70,8 +91,25 @@ helpMessage = u"""
 - pound `lb`
 - kilogram `kg`
 - tonne `t`
+        """)
 
-*Time*
+
+
+
+    def test_speedHelp(self):
+        self.assertHelp('speed', """
+- kilometer per hour `km/h`
+- foot per second `ft/s`
+- mile per hour `mph`
+- knot `kn`
+- meter per second `m/s`
+        """)
+
+
+
+
+    def test_timeHelp(self):
+        self.assertHelp('time', """
 - millisecond `ms`
 - second `s`
 - minute `min`
@@ -80,14 +118,33 @@ helpMessage = u"""
 - week `wk`
 - month `mon`
 - year `yr`
+        """)
 
-*Speed*
-- kilometer per hour `km/h`
-- foot per second `ft/s`
-- mile per hour `mph`
-- knot `kn`
-- meter per second `m/s`
 
+
+
+    def test_defaultHelp(self):
+        requestJson = requestTemplate({
+            'text': '/help',
+            'chat': {
+                'id': 8654
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 8654,
+            'parse_mode': 'Markdown',
+            'text': u"""
+The bot supports following unit categories:
+- length
+- area
+- volume
+- currencies
+- mass
+- speed
+- time
+
+To get all available units of specific category type "/help #category#" ("/help length", for example).
 
 While asking me a question tet-a-tet you can omit a command. Just type:
 - 100 $ to €
@@ -98,33 +155,36 @@ While asking me a question in a group please add the command "convert" (if I'm a
 - /convert 10 yr to mon
 - @UserConversionBot 1 ms to second
 
+You can also ask me without adding me to the chat. Just type '@UnitConversionBot 100 ft to m' when you need my help.
+
 You can use both short (`m2`) and full unit names (square meter).
 
 
 If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev
-Thank you for chatting with me :-)""".strip()
+Thank you for chatting with me :-)
+            """.strip()
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
 
 
-class HelpCommandTests(FunctionalTestCase):
-    def test_help(self):
+
+
+    def assertHelp(self, unitsCategory, expectedUnits):
         requestJson = requestTemplate({
-            'text': '/help help',
+            'text': '/help ' + unitsCategory,
             'chat': {
                 'id': 8654
             }
         })
 
+        expectedText = u'*The full list of {} units:*\n'.format(unitsCategory)
+        expectedText += expectedUnits.strip()
+
         expectedResponseJson = responseTemplate({
             'chat_id': 8654,
             'parse_mode': 'Markdown',
-            'text': helpMessage
+            'text': expectedText
         })
 
-        if os.environ['RUN_ON_INSTANCE']:
-            responseData = self.makeRequest(requestJson)
-            self.assertEqual(responseData['response'].status_code, 200)
-            self.assertEqual(responseData['contentType'], 'application/json')
-            self.assertTrue('You can use both short ' in responseData['json']['text'])
-            self.skipTest('Some unicode issue')
-        else:
-            self.assertRequest(requestJson, expectedResponseJson)
+        self.assertRequest(requestJson, expectedResponseJson)

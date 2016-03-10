@@ -73,7 +73,7 @@ class WebHook(webapp2.RequestHandler):
             elif command == 'start':
                 response['text'] = self.command_start()
             elif command == 'help':
-                response['text'] = self.command_help()
+                response['text'] = self.command_help(expression)
                 response['parse_mode'] = 'Markdown'
             else:
                 response['text'] = self.command_notFound()
@@ -160,10 +160,23 @@ My name is @UnitConversionBot. I can convert from one units to another. Just typ
 
 
 
-    def command_help(self):
-        helpInfo = formatAvailableUnits(units.index)
+    def command_help(self, unitsCategoryName):
+        if unitsCategoryName:
+            if unitsCategoryName in units.categoriesIndex:
+                helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
+                helpInfo += formatAvailableUnits(units.categoriesIndex[unitsCategoryName])
+                return helpInfo
+            else:
+                return "Sorry, the unit category '{}' is not available. Please type /help to get all unit categories".format(unitsCategory)
 
-        helpInfo += u"""\n\n
+        helpInfo = 'The bot supports following unit categories:\n'
+
+        for unitCategoryName in units.categories:
+            helpInfo += '- {}\n'.format(unitCategoryName)
+
+        helpInfo += """
+To get all available units of specific category type "/help #category#" ("/help length", for example).
+
 While asking me a question tet-a-tet you can omit a command. Just type:
 - 100 $ to €
 - 1 sq foot to m2
@@ -172,6 +185,8 @@ While asking me a question tet-a-tet you can omit a command. Just type:
 While asking me a question in a group please add the command "convert" (if I'm a group member too) or my username "UserConversionBot":
 - /convert 10 yr to mon
 - @UserConversionBot 1 ms to second
+
+You can also ask me without adding me to the chat. Just type '@UnitConversionBot 100 ft to m' when you need my help.
 
 You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
 

@@ -26,6 +26,7 @@ def unpackUnit(packedUnit, unitKey, category):
 
 
 index = {}
+categoriesIndex = {categoryName: {} for categoryName in categories}
 localVariables = locals()
 for categoryName in categories:
     categoryUnits = localVariables[categoryName]
@@ -37,6 +38,8 @@ for categoryName in categories:
         unit = unpackUnit(packedUnit, unitKey, categoryName)
         if ' ' in unit['shortName']:
             sys.exit('The unit\'s "{}" shortName contains a whitespace'.format(unitName))
+
+        categoriesIndex[categoryName][unitKey] = unit
 
         allUnitNames = unit['names'] + [name.lower() for name in unit['names']]
         # unitNames could have duplicates, therefore use set()

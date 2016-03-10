@@ -9,31 +9,21 @@ def formatValueUnit(valueUnit):
 
 
 def formatAvailableUnits(unitsIndex):
-    unitsByCategories = {}
-    for unit in unitsIndex.values():
-        unitCategory = unit['category']
-        if unitCategory not in unitsByCategories:
-            unitsByCategories[unitCategory] = {
-                'category': unit['category'],
-                'units': {}
-            }
+    units = unitsIndex.values()
+    if len(units) == 0:
+        return ''
 
-        unitsByCategories[unitCategory]['units'][unit['baseName']] = unit
+    unitsCategoryName = units[0]['category']
+    if unitsCategoryName == 'currencies':
+        units.sort(key=lambda x: x['baseName'])
+    else:
+        # Some units may have equal value (like dm3 and liter)
+        # To make sorting stable we're sorting by value and baseName
+        units.sort(key=lambda x: (x['value'], x['baseName']))
 
-    unitsList = u'*Full list of available units:*\n'
-    for categoryUnits in unitsByCategories.values():
-        unitsList += u'*{}*\n'.format(categoryUnits['category'].capitalize())
-
-        units = categoryUnits['units'].values()
-        if categoryUnits['category'] == 'currencies':
-            units.sort(key=lambda x: x['baseName'])
-        else:
-            units.sort(key=lambda x: x['value'])
-
-        for unit in units:
-            safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
-            unitsList += u'- {} `{}`\n'.format(unit['baseName'], safeShortName)
-
-        unitsList += '\n'
+    unitsList = ''
+    for unit in units:
+        safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
+        unitsList += u'- {} `{}`\n'.format(unit['baseName'], safeShortName)
 
     return unitsList.strip()
