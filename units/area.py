@@ -28,4 +28,3 @@ MILE_SQUARE = (_l.MILE[0]**2, _getNames(_l.MILE[1]))
 
 
 _BASE = METER_SQUARE
-_CATEGORY = 'area'

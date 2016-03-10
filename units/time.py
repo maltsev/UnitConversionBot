@@ -10,4 +10,3 @@ YEAR =        (DAY[0] * 365.2425,  ['yr', 'year', 'years'])
 
 
 _BASE = SECOND
-_CATEGORY = 'time'

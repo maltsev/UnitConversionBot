@@ -13,4 +13,3 @@ OUNCE = (POUND[0] / 16, ['oz', 'ounce', 'ounces'])
 
 
 _BASE = GRAM
-_CATEGORY = 'mass'

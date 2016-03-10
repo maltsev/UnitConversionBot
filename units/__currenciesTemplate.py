@@ -10,4 +10,3 @@ CNY = ('CNY!', [u'yuan', 'yuan', 'yuans'])
 
 
 _BASE = USD
-_CATEGORY = 'currency'
