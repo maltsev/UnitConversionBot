@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
 import json
 import hashlib
 import webapp2
 import logging
+import traceback
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
 from modules.converter import convertUnit, IncompatibleCategoriesException
 from modules.formatter import formatValueUnit, formatAvailableUnits
@@ -80,6 +82,8 @@ class WebHook(webapp2.RequestHandler):
         except Exception as error:
             logging.critical(error)
             response['text'] = CRITICAL_ERROR_MESSAGE
+            if os.environ.get('DEBUG'):
+                traceback.print_exc()
 
         return response
 
@@ -122,6 +126,8 @@ class WebHook(webapp2.RequestHandler):
                 'message_text': BOT_NAME,
                 'description': CRITICAL_ERROR_MESSAGE
             })
+            if os.environ.get('DEBUG'):
+                traceback.print_exc()
 
         return response
 
@@ -237,6 +243,8 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
         except Exception:
             responseMessage = InvalidExpressionException.defaultErrorMessage
             responseType = InvalidExpressionException.__name__
+            if os.environ.get('DEBUG'):
+                traceback.print_exc()
 
         log = {
             'command': 'convert',
