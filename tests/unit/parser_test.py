@@ -31,21 +31,37 @@ class ParserTests(unittest.TestCase):
 
     def test_parseExpression(self):
         cases = [
+            # Length
             ('1 ft to m', 1, 'FOOT', 'METER'),
             ('10 meters to kilometer', 10, 'METER', 'KILOMETER'),
             ('1.5 km in hour', 1.5, 'KILOMETER', 'HOUR'),
-            ('0.45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),
+            ('100,000m to ft', 100000, 'METER', 'FOOT'),
+
+            # Area
             (u'10 ft² to m²', 10, 'FOOT_SQUARE', 'METER_SQUARE'),
             ('100 km^2 to m^2', 100, 'KILOMETER_SQUARE', 'METER_SQUARE'),
-            (u'100 $ to ₽', 100, 'USD', 'RUB'),
-            ('100 fr to yen', 100, 'CHF', 'JPY'),
+
+            # Volume
             (u'10 fl. oz. to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             (u'10 fl oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             (u'10 fl.oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             ('12 in^3=m^3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
+
+            # Currencies
+            (u'100 $ to ₽', 100, 'USD', 'RUB'),
+            ('100 fr to yen', 100, 'CHF', 'JPY'),
+            (u'100.50 Nicaraguan Córdoba to rubles', 100.5, 'NIO', 'RUB'),
+            ('12 nuevo sol to won', 12, 'PEN', 'KRW'),
+
+            # Mass
+            ('0.45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),
+
+            # Speed
             ('12 km/hr to ft/s', 12, 'KILOMETER_PER_HOUR', 'FOOT_PER_SECOND'),
             ('1 m/s to km/h to mph', 1, 'METER_PER_SECOND', 'MILE_PER_HOUR'),
-            ('100,000m to ft', 100000, 'METER', 'FOOT'),
+
+            # Time
+            ('100 d to yr', 100, 'DAY', 'YEAR')
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
