@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import webapp2
-import controller
+from controller.WebHook import WebHook
 
 app = webapp2.WSGIApplication([
-    ('/api/webhook', controller.WebHook),
+    ('/api/webhook', WebHook),
 ], debug=True)
