@@ -18,8 +18,9 @@ class FormatterTests(unittest.TestCase):
             (1.2, 'KILOMETER_PER_HOUR', '1.2 km/h')
         ]
 
+        unitsIndex = units.getIndex()
         for value, unitName, formattedValueUnit in cases:
             self.assertEquals(formatValueUnit({
                 'value': value,
-                'unit': units.index[unitName]
+                'unit': unitsIndex[unitName]
             }), formattedValueUnit)

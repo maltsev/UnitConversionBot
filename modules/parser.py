@@ -3,8 +3,8 @@ import re
 import units
 
 
-def parseExpression(expression):
-    expression = normalizeExpression(expression)
+def parseExpression(expression, unitsIndex):
+    expression = normalizeExpression(expression, unitsIndex)
     expressionParts = expression.split(' ')
     if len(expressionParts) < 3:
         raise InvalidExpressionException(InvalidExpressionException.defaultErrorMessage)
@@ -16,10 +16,10 @@ def parseExpression(expression):
         raise InvalidValueException(InvalidValueException.errorMessage.format(rawFromValue))
 
     rawFromUnit = expressionParts[1]
-    fromUnit = getUnit(rawFromUnit)
+    fromUnit = getUnit(rawFromUnit, unitsIndex)
 
     rawToUnit = expressionParts[-1]
-    toUnit = getUnit(rawToUnit)
+    toUnit = getUnit(rawToUnit, unitsIndex)
 
     return {
         'fromValueUnit': {
@@ -32,14 +32,14 @@ def parseExpression(expression):
 
 
 
-def normalizeExpression(expression):
+def normalizeExpression(expression, unitsIndex):
     expression = expression.lower()
     expression = expression.replace(',', '').replace('convert', '').replace('=', ' = ')
     # Add whitespace after number
     expression = re.sub(r'([\./\d]+)(\D)', '\\1 \\2', expression)
     expression = re.sub(r'\s+', ' ', expression)
     expression = expression.replace('/ ', '/')
-    expression = normalizeUnitsInExpression(expression)
+    expression = normalizeUnitsInExpression(expression, unitsIndex)
     expression = expression.strip()
 
     return expression
@@ -47,12 +47,12 @@ def normalizeExpression(expression):
 
 
 
-def normalizeUnitsInExpression(expression):
-    denormalizedUnitNames = filter(lambda n: ' ' in n, units.index.keys())
+def normalizeUnitsInExpression(expression, unitsIndex):
+    denormalizedUnitNames = filter(lambda n: ' ' in n, unitsIndex.keys())
     denormalizedUnitNames.sort(key=len, reverse=True)
 
     for denormalizedUnitName in denormalizedUnitNames:
-        shortName = units.index[denormalizedUnitName]['shortName']
+        shortName = unitsIndex[denormalizedUnitName]['shortName']
         expression = expression.replace(denormalizedUnitName, shortName)
 
     expression = re.sub(r'(fl\.? ?oz\.? ?|oz\.? ?fl\.? ?)', 'fl.oz ', expression)
@@ -62,8 +62,8 @@ def normalizeUnitsInExpression(expression):
 
 
 
-def getUnit(rawUnit):
-    unit = units.index.get(rawUnit)
+def getUnit(rawUnit, unitsIndex):
+    unit = unitsIndex.get(rawUnit)
     if not unit:
         raise InvalidUnitException(InvalidUnitException.errorMessage.format(rawUnit))
 

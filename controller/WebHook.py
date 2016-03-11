@@ -8,6 +8,7 @@ import traceback
 from modules.parser import parseMessageText, parseExpression, InvalidExpressionException, InvalidUnitException
 from modules.converter import convertUnit, IncompatibleCategoriesException
 from modules.formatter import formatValueUnit, formatAvailableUnits
+from model import Rates
 import units
 
 
@@ -168,12 +169,13 @@ My name is @UnitConversionBot. I can convert from one units to another. Just typ
 
     def command_help(self, unitsCategoryName):
         if unitsCategoryName:
-            if unitsCategoryName in units.categoriesIndex:
+            categoriesIndex = units.getCategoriesIndex()
+            if unitsCategoryName in categoriesIndex:
                 helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
-                helpInfo += formatAvailableUnits(units.categoriesIndex[unitsCategoryName])
+                helpInfo += formatAvailableUnits(categoriesIndex[unitsCategoryName])
                 return helpInfo
             else:
-                return "Sorry, the unit category '{}' is not available. Please type /help to get all unit categories".format(unitsCategory)
+                return "Sorry, the unit category '{}' is not available. Please type /help to get all unit categories".format(unitsCategoryName)
 
         helpInfo = 'The bot supports following unit categories:\n'
 
@@ -204,26 +206,13 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
 
 
     def command_convert(self, expression):
-        try:
-            units = parseExpression(expression)
-            toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
-            responseMessage = formatValueUnit(toValueUnit)
-            responseType = 'success'
-        except (IncompatibleCategoriesException, InvalidExpressionException) as error:
-            responseMessage = unicode(error)
-            responseType = error.__class__.__name__
-        except Exception:
-            responseMessage = InvalidExpressionException.defaultErrorMessage
-            responseType = InvalidExpressionException.__name__
+        log = self.convert(expression)
+        responseMessage = log['response']
+        if log['type'] != 'success':
+            del log['response']
 
-        log = {
-            'command': 'convert',
-            'type': responseType,
-            'expression': expression
-        }
-
-        if responseType == 'success':
-            log['response'] = responseMessage
+        if 'fullResponse' in log:
+            del log['fullResponse']
 
         logging.info(log)
         return responseMessage
@@ -232,9 +221,36 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
 
 
     def command_convertInline(self, expression):
+        log = self.convert(expression)
+
+        if log['type'] == 'success':
+            response = {
+                'title': log['response'],
+                'message_text': log['fullResponse']
+            }
+        else:
+            response = {
+                'title': 'Error',
+                'message_text': BOT_NAME,
+                'description': log['response']
+            }
+
+        logging.info(log)
+        return response
+
+
+
+
+    def convert(self, expression):
         try:
-            units = parseExpression(expression)
-            toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
+            currenciesExchangeRates = {}
+            ratesModels = Rates.query().order(-Rates.date).fetch()
+            if len(ratesModels) > 0:
+                currenciesExchangeRates = ratesModels[0].content.get('rates', {})
+
+            unitsIndex = units.getIndex(True, currenciesExchangeRates=currenciesExchangeRates)
+            expressionUnits = parseExpression(expression, unitsIndex)
+            toValueUnit = convertUnit(expressionUnits['fromValueUnit'], expressionUnits['toUnit'])
             responseMessage = formatValueUnit(toValueUnit)
             responseType = 'success'
         except (IncompatibleCategoriesException, InvalidExpressionException) as error:
@@ -249,26 +265,15 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
         log = {
             'command': 'convert',
             'type': responseType,
-            'expression': expression
+            'expression': expression,
+            'response': responseMessage
         }
 
         if responseType == 'success':
-            log['response'] = responseMessage
-            fullResponse = u'{} = {}'.format(formatValueUnit(units['fromValueUnit']), formatValueUnit(toValueUnit))
-            log['fullResponse'] = fullResponse
-            response = {
-                'title': responseMessage,
-                'message_text': fullResponse
-            }
-        else:
-            response = {
-                'title': 'Error',
-                'message_text': BOT_NAME,
-                'description': responseMessage
-            }
+            log['fullResponse'] = u'{} = {}'.format(formatValueUnit(expressionUnits['fromValueUnit']), formatValueUnit(toValueUnit))
 
-        logging.info(log)
-        return response
+        return log
+
 
 
 

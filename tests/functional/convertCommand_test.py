@@ -1,11 +1,42 @@
 # -*- coding: utf-8 -*-
+import os
+import json
+import datetime
 import logging
 import unittest
 from testfixtures import log_capture
+from google.appengine.ext import ndb
+from google.appengine.ext import testbed
 from base import FunctionalTestCase, requestTemplate, responseTemplate
+from model import Rates
+
+file = open('./tests/exchangeRates.json')
+testExchangeRates = json.loads(file.read())
+file.close()
 
 
-class ConvertCommandTests(FunctionalTestCase):
+class ConverMixin(object):
+    def setUp(self):
+        if not os.environ.get('RUN_ON_INSTANCE'):
+            self.testbed = testbed.Testbed()
+            self.testbed.activate()
+            self.testbed.init_datastore_v3_stub()
+            self.testbed.init_memcache_stub()
+
+        ndb.get_context().clear_cache()
+        Rates(content=testExchangeRates).put()
+
+
+
+
+    def tearDown(self):
+        if not os.environ.get('RUN_ON_INSTANCE'):
+            self.testbed.deactivate()
+
+
+
+
+class ConvertCommandTests(ConverMixin, FunctionalTestCase):
     @log_capture(level=logging.INFO)
     def test_convertWithoutCommand(self, logs):
         requestJson = requestTemplate({
@@ -37,6 +68,30 @@ class ConvertCommandTests(FunctionalTestCase):
         expectedResponseJson = responseTemplate({
             'chat_id': 900,
             'text': '3.6 km/h'
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
+
+
+
+
+    def test_convertCurrencies(self):
+        # Add recent exchange rates
+        anotherTestExchangeRates = testExchangeRates.copy()
+        anotherTestExchangeRates['rates']['CZK'] = 1000000.0
+        futureDate = datetime.datetime.now() + datetime.timedelta(days=1)
+        Rates(content=anotherTestExchangeRates, date=futureDate).put()
+
+        requestJson = requestTemplate({
+            'text': u'10.5 Icelandic Króna to Kč',
+            'chat': {
+                'id': 901
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 901,
+            'text': '82,693.184 CZK'
         })
 
         self.assertRequest(requestJson, expectedResponseJson)

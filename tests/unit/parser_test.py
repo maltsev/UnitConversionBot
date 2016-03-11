@@ -73,18 +73,19 @@ class ParserTests(unittest.TestCase):
             (u'1/4 inch to cm', invalidValueErrorTemplate.format('1/4'))
         ]
 
+        unitsIndex = units.getIndex()
         for expression, value, fromUnitName, toUnitName in cases:
-            self.assertEqual(parseExpression(expression), {
+            self.assertEqual(parseExpression(expression, unitsIndex), {
                 'fromValueUnit': {
                     'value': value,
-                    'unit': units.index[fromUnitName]
+                    'unit': unitsIndex[fromUnitName]
                 },
-                'toUnit': units.index[toUnitName]
+                'toUnit': unitsIndex[toUnitName]
             })
 
         for expression, errorMessage in invalidTestCases:
             with self.assertRaises(InvalidExpressionException) as cm:
-                parseExpression(expression)
+                parseExpression(expression, unitsIndex)
             self.assertEqual(unicode(cm.exception), errorMessage)
 
 
@@ -97,5 +98,6 @@ class ParserTests(unittest.TestCase):
             (u'1/4€ in ₽', u'1/4 € in ₽')
         ]
 
+        unitsIndex = units.getIndex()
         for expression, expectedNormalizedExpression in cases:
-            self.assertEqual(normalizeExpression(expression), expectedNormalizedExpression)
+            self.assertEqual(normalizeExpression(expression, unitsIndex), expectedNormalizedExpression)

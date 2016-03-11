@@ -10,9 +10,14 @@ sys.path.append(GAE_BASE_PATH)
 import unittest
 import unit
 import functional
+import units
+from units import currencies
 
 RUN_ON_INSTANCE = '--instance' in sys.argv
 os.environ['RUN_ON_INSTANCE'] = '1' if RUN_ON_INSTANCE else ''
+os.environ['DEBUG'] = '1'
+
+units.getIndex(True, stubExchangeRate=True)
 
 alltests = unittest.TestSuite()
 if not RUN_ON_INSTANCE:

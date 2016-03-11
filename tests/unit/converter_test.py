@@ -37,16 +37,21 @@ class ConverterTests(unittest.TestCase):
             ((1,   'YEAR'), (365.2425, 'DAY')),
 
             # Currencies
-            ((2.1, 'USD'), (2, 'USD')),
-            ((10,  'USD'), (9, 'EUR')),
-            ((10,  'GBP'), (14, 'USD'))
+            ((2,     'USD'), (2,       'USD')),
+            ((10.2,  'USD'), (21.42,   'EUR')),
+            ((10.3,  'GBP'), (3.1212,  'USD'))
         ]
+
+        unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={
+            'EUR': 2.1,
+            'GBP': 3.3
+        })
 
         # Invalid case
         with self.assertRaises(Exception) as cm:
             convertUnit(
-                {'value': 1.0, 'unit': units.index['FOOT']},
-                units.index['GRAM']
+                {'value': 1.0, 'unit': unitsIndex['FOOT']},
+                unitsIndex['GRAM']
             )
         self.assertEqual(str(cm.exception), "Sorry, I can't convert foot to gram (at least in this universe).")
 
@@ -55,17 +60,16 @@ class ConverterTests(unittest.TestCase):
         for fromUnit, toUnit in cases:
             fromValueUnit = {
                 'value': float(fromUnit[0]),
-                'unit': units.index[fromUnit[1]]
+                'unit': unitsIndex[fromUnit[1]]
             }
 
             toValueUnit = {
                 'value': float(toUnit[0]),
-                'unit': units.index[toUnit[1]]
+                'unit': unitsIndex[toUnit[1]]
             }
 
             result = convertUnit(fromValueUnit, toValueUnit['unit'])
-            precision = 0 if fromValueUnit['unit']['category'] == 'currencies' else 4
-            result['value'] = round(result['value'], precision)
+            result['value'] = round(result['value'], 4)
 
             self.assertEqual(
                 result,
