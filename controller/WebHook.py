@@ -152,7 +152,7 @@ class WebHook(webapp2.RequestHandler):
     def command_start(self):
         startInfo = """Hi!
 
-My name is @UnitConversionBot. I can convert from one units to another. Just type something like "100 ft to m" (in private chat with me) or "/convert 1 km2 to m2" (in group chats). For more info type /help"""
+My name is @UnitConversionBot. I can convert from one unit to another. Just type something like "100 ft to m" (in private chat with me) or "/convert 1 km2 to m2" (in group chats). For more info type /help"""
 
         startInfo += "\n\n" + FEEDBACK_TEXT
 

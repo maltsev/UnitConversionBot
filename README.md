@@ -7,10 +7,10 @@
 Unit Conversion
 
 /setdescription
-I can convert from one units to another. Just type something like "100 ft to m" and I'll convert it for you.
+I can convert from one unit to another. Just type something like "100 ft to m" and I'll convert it for you.
 
 /setabouttext
-I can convert from one units to another.
+I can convert from one unit to another.
 
 /setcommands
 convert - Convert from one unit to another (e.g., "10 ft to m")
