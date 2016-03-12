@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
+import json
 sys.path.append('.')
 
 from modules.parser import parseExpression
@@ -12,7 +13,10 @@ if len(sys.argv) < 2:
 else:
     expressions = [' '.join(sys.argv[1:]).decode('utf-8').strip()]
 
-unitsIndex = units.getIndex()
+file = open('./tests/exchangeRates.json', 'r')
+exchangeRates = json.loads(file.read())['rates']
+file.close()
+unitsIndex = units.getIndex(True, currenciesExchangeRates=exchangeRates)
 for expression in expressions:
     try:
         units = parseExpression(expression, unitsIndex)
