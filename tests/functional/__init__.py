@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import unittest
 
 from webhook_test import WebHookTests
@@ -14,5 +15,7 @@ tests = [
     unittest.TestLoader().loadTestsFromTestCase(StartCommandTests),
     unittest.TestLoader().loadTestsFromTestCase(ConvertCommandTests),
     unittest.TestLoader().loadTestsFromTestCase(HelpCommandTests),
-    unittest.TestLoader().loadTestsFromTestCase(UpdateRatesTests),
 ]
+
+if not os.environ['RUN_ON_INSTANCE']:
+    tests.append(unittest.TestLoader().loadTestsFromTestCase(UpdateRatesTests))
