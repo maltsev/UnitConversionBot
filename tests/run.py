@@ -15,7 +15,6 @@ import unittest
 import unit
 import functional
 import units
-from units import currencies
 
 units.getIndex(True, stubExchangeRate=True)
 

@@ -6,8 +6,6 @@ import unittest
 import hashlib
 import random
 from testfixtures import log_capture
-from google.appengine.ext import ndb
-from google.appengine.ext import testbed
 from base import FunctionalTestCase
 from convertCommand_test import ConverMixin
 

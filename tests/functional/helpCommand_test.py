@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 import unittest
 from base import FunctionalTestCase, requestTemplate, responseTemplate
 

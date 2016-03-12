@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import re
-import units
 
 
 def parseExpression(expression, unitsIndex):
