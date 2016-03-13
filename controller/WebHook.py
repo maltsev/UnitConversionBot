@@ -190,9 +190,9 @@ While asking me a question tet-a-tet you can omit a command. Just type:
 - 1 sq foot to m2
 - 1 year to hours
 
-While asking me a question in a group please add the command "convert" (if I'm a group member too) or my username "UserConversionBot":
+While asking me a question in a group please add the command "convert" (if I'm a group member too) or my username "UnitConversionBot":
 - /convert 10 yr to mon
-- @UserConversionBot 1 ms to second
+- @UnitConversionBot 1 ms to second
 
 You can also ask me without adding me to the chat. Just type '@UnitConversionBot 100 ft to m' when you need my help.
 
