@@ -23,8 +23,9 @@ class ConverterTests(unittest.TestCase):
             ((12,   'IMPERIAL_GALLON'), (54.5531, 'LITER')),
 
             # Speed
-            ((1,   'METER_PER_SECOND'), (3.6, 'KILOMETER_PER_HOUR')),
-            ((100, 'MILE_PER_HOUR'),    (86.8976, 'KNOT')),
+            ((1,   'METER_PER_SECOND'),     (3.6, 'KILOMETER_PER_HOUR')),
+            ((100, 'MILE_PER_HOUR'),        (86.8976, 'KNOT')),
+            ((1,   'KILOMETER_PER_SECOND'), (2236.9363, 'MILE_PER_HOUR')),
 
             # Temperature
             #((0, 'CELSIUS'), (273.15, 'KELVIN')),

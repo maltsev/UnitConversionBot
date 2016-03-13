@@ -259,11 +259,19 @@ class HelpCommandTests(FunctionalTestCase):
 
     def test_speedHelp(self):
         self.assertHelp('speed', """
+- foot per hour `ft/h`
+- meter per hour `m/h`
+- foot per minute `ft/min`
+- meter per minute `m/min`
 - kilometer per hour `km/h`
 - foot per second `ft/s`
 - mile per hour `mph`
 - knot `kn`
 - meter per second `m/s`
+- kilometer per minute `km/min`
+- mile per minute `mi/min`
+- kilometer per second `km/s`
+- mile per second `mi/s`
         """)
 
 
