@@ -292,6 +292,16 @@ class HelpCommandTests(FunctionalTestCase):
 
 
 
+    def test_temperatureHelp(self):
+        self.assertHelp('temperature', """
+- Celsius `C`
+- Fahrenheit `F`
+- Kelvin `K`
+        """)
+
+
+
+
     def test_defaultHelp(self):
         requestJson = requestTemplate({
             'text': '/help',
@@ -312,6 +322,7 @@ The bot supports following unit categories:
 - mass
 - speed
 - time
+- temperature
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

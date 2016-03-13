@@ -3,13 +3,17 @@ import os
 import sys
 import logging
 import units
-import length, area, volume, currencies, mass, speed, time
-import model
+import length, area, volume, currencies, mass, speed, time, temperature
 
-categories = ['length', 'area', 'volume', 'currencies', 'mass', 'speed', 'time']
+categories = ['length', 'area', 'volume', 'currencies', 'mass', 'speed', 'time', 'temperature']
 
 
 def unpackUnit(packedUnit, unitKey, category, **kwargs):
+    unit = {
+        'key': unitKey,
+        'category': category,
+    }
+
     try:
         if category == 'currencies':
             stubValue = 1.0 if kwargs.get('stubExchangeRate') else None
@@ -17,24 +21,28 @@ def unpackUnit(packedUnit, unitKey, category, **kwargs):
             if not value:
                 return None
             value = 1 / value
-            unitNames = packedUnit[:]
+            unitNames = packedUnit
+        elif category == 'temperature':
+            value = 1
+            unitNames = packedUnit[2]
+            unit['convertFromBase'] = packedUnit[0]
+            unit['convertToBase'] = packedUnit[1]
         else:
             value = packedUnit[0]
-            unitNames = packedUnit[1][:]
+            unitNames = packedUnit[1]
     except TypeError as err:
         print packedUnit
         raise err
 
+    unitNames = unitNames[:]
     unitNames.append(unitKey)
 
-    return {
-        'key': unitKey,
-        'value': value,
-        'category': category,
-        'shortName': unitNames[0],
-        'baseName': unitNames[1],
-        'names': unitNames
-    }
+    unit['value'] = value
+    unit['shortName'] = unitNames[0]
+    unit['baseName'] = unitNames[1]
+    unit['names'] = unitNames
+
+    return unit
 
 
 

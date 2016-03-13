@@ -28,7 +28,20 @@ def formatAvailableUnits(unitsIndex):
             # Hack: use short name of currency (e.g., "forint" instead of "Hungarian Forint") in help
             safeShortName = unit['names'][-2] if len(unit['names']) > 3 else unit['shortName']
         else:
-            safeShortName = unit['shortName'].replace(u'µ', 'u').replace(u'²', '2').replace(u'³', '3')
+            safeShortName = massReplace(unit['shortName'], {
+                u'µ': 'u',
+                u'²': '2',
+                u'³': '3',
+                u'°': ''
+            })
         unitsList += u'- {} `{}`\n'.format(unit['baseName'], safeShortName)
 
     return unitsList.strip()
+
+
+
+def massReplace(string, replace):
+    for fromStr, toStr in replace.iteritems():
+        string = string.replace(fromStr, toStr)
+
+    return string

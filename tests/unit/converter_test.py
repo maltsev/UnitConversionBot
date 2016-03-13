@@ -22,25 +22,29 @@ class ConverterTests(unittest.TestCase):
             ((1234, 'MILLILITER'),      (1.234, 'LITER')),
             ((12,   'IMPERIAL_GALLON'), (54.5531, 'LITER')),
 
-            # Speed
-            ((1,   'METER_PER_SECOND'),     (3.6, 'KILOMETER_PER_HOUR')),
-            ((100, 'MILE_PER_HOUR'),        (86.8976, 'KNOT')),
-            ((1,   'KILOMETER_PER_SECOND'), (2236.9363, 'MILE_PER_HOUR')),
-
-            # Temperature
-            #((0, 'CELSIUS'), (273.15, 'KELVIN')),
+            # Currencies
+            ((2,     'USD'), (2,       'USD')),
+            ((10.2,  'USD'), (21.42,   'EUR')),
+            ((10.3,  'GBP'), (3.1212,  'USD')),
 
             # Mass
             ((1.2, 'POUND'), (544.3108, 'GRAM')),
             ((500, 'OUNCE'), (31.25, 'POUND')),
 
+            # Speed
+            ((1,   'METER_PER_SECOND'),     (3.6, 'KILOMETER_PER_HOUR')),
+            ((100, 'MILE_PER_HOUR'),        (86.8976, 'KNOT')),
+            ((1,   'KILOMETER_PER_SECOND'), (2236.9363, 'MILE_PER_HOUR')),
+
             # Time
             ((1,   'YEAR'), (365.2425, 'DAY')),
 
-            # Currencies
-            ((2,     'USD'), (2,       'USD')),
-            ((10.2,  'USD'), (21.42,   'EUR')),
-            ((10.3,  'GBP'), (3.1212,  'USD'))
+            # Temperature
+            ((12,     'CELSIUS'),     (12,        'CELSIUS')),
+            ((294.5,  'KELVIN'),      (21.35,     'CELSIUS')),
+            ((0,      'CELSIUS'),    (273.15,    'KELVIN')),
+            ((3284.9, 'FAHRENHEIT'), (1807.1667, 'CELSIUS')),
+            ((394.5,  'CELSIUS'),    (742.1,     'FAHRENHEIT'))
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={

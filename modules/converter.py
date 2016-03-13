@@ -9,7 +9,11 @@ def convertUnit(fromValueUnit, toUnit):
         )
         raise IncompatibleCategoriesException(errorMessage)
 
-    toValue = (fromValueUnit['value'] * fromUnit['value']) / toUnit['value']
+    if fromUnit['category'] == 'temperature':
+        baseUnitToValue = fromUnit['convertToBase'](fromValueUnit['value'])
+        toValue = toUnit['convertFromBase'](baseUnitToValue)
+    else:
+        toValue = (fromValueUnit['value'] * fromUnit['value']) / toUnit['value']
 
     toValueUnit = {
         'value': toValue,

@@ -61,7 +61,11 @@ class ParserTests(unittest.TestCase):
             ('1 m/s to km/h to mph', 1, 'METER_PER_SECOND', 'MILE_PER_HOUR'),
 
             # Time
-            ('100 d to yr', 100, 'DAY', 'YEAR')
+            ('100 d to yr', 100, 'DAY', 'YEAR'),
+
+            # Temperature
+            (u'100.5 °C to F', 100.5, 'CELSIUS', 'FAHRENHEIT'),
+            ('34 K = C', 34, 'KELVIN', 'CELSIUS')
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
