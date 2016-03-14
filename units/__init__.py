@@ -3,9 +3,19 @@ import os
 import sys
 import logging
 import units
-import length, area, volume, currencies, mass, speed, time, temperature
+import length, area, volume, currencies, mass, speed, time, temperature, density
 
-categories = ['length', 'area', 'volume', 'currencies', 'mass', 'speed', 'time', 'temperature']
+categories = [
+    'length',
+    'area',
+    'volume',
+    'currencies',
+    'mass',
+    'speed',
+    'time',
+    'temperature',
+    'density'
+]
 
 
 def unpackUnit(packedUnit, unitKey, category, **kwargs):

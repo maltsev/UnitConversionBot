@@ -302,6 +302,18 @@ class HelpCommandTests(FunctionalTestCase):
 
 
 
+    def test_densityHelp(self):
+        self.assertHelp('density', """
+- kilogram per cubic meter `kg/m3`
+- kilogram per liter `kg/l`
+- gram per cubic centimeter `g/cm3`
+- gram per milliliter `g/ml`
+- tonne per cubic meter `t/m3`
+        """)
+
+
+
+
     def test_defaultHelp(self):
         requestJson = requestTemplate({
             'text': '/help',
@@ -323,6 +335,7 @@ The bot supports following unit categories:
 - speed
 - time
 - temperature
+- density
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

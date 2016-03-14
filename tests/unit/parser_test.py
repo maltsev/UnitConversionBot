@@ -5,6 +5,8 @@ import units
 
 
 class ParserTests(unittest.TestCase):
+    maxDiff = None
+
     def test_parseMessageText(self):
         cases = [
             ('1 ft to m', '1 ft to m', ''),
@@ -67,7 +69,13 @@ class ParserTests(unittest.TestCase):
 
             # Temperature
             (u'100.5 °C to F', 100.5, 'CELSIUS', 'FAHRENHEIT'),
-            ('34 K = C', 34, 'KELVIN', 'CELSIUS')
+            ('34 K = C', 34, 'KELVIN', 'CELSIUS'),
+
+            # Density
+            (u'100 g/cm³ to kg/m³', 100, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC'),
+            ('19 gram per cubic cm to kilograms per cu metre', 19, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC'),
+            ('10 kg per m to grams per centimeters', 10, 'KILOGRAM_PER_METER_CUBIC', 'GRAM_PER_CENTIMETER_CUBIC'),
+            ('1 g/cm to kg/m3', 1, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC')
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."

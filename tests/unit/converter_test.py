@@ -44,7 +44,10 @@ class ConverterTests(unittest.TestCase):
             ((294.5,  'KELVIN'),      (21.35,     'CELSIUS')),
             ((0,      'CELSIUS'),    (273.15,    'KELVIN')),
             ((3284.9, 'FAHRENHEIT'), (1807.1667, 'CELSIUS')),
-            ((394.5,  'CELSIUS'),    (742.1,     'FAHRENHEIT'))
+            ((394.5,  'CELSIUS'),    (742.1,     'FAHRENHEIT')),
+
+            # Density
+            ((19.5, 'GRAM_PER_CENTIMETER_CUBIC'), (19500, 'KILOGRAM_PER_METER_CUBIC'))
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={
