@@ -42,6 +42,9 @@ class FunctionalTestCase(unittest.TestCase):
         self.assertEqual(responseData['response'].status_code, 200)
         self.assertEqual(responseData['contentType'], 'application/json')
         self.assertEqual(responseData['json'], expectedResponseJson)
+        if 'text' in responseData['json']:
+            responseTextLength = len(responseData['json']['text'])
+            self.assertTrue(responseTextLength < 4096, 'Response text contains {} chars'.format(responseTextLength))
 
 
 
