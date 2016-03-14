@@ -169,7 +169,7 @@ My name is @UnitConversionBot. I can convert from one unit to another. Just type
 
     def command_help(self, unitsCategoryName):
         if unitsCategoryName:
-            categoriesIndex = units.getCategoriesIndex()
+            categoriesIndex = units.getCategoriesIndex(True, stubExchangeRate=True)
             if unitsCategoryName in categoriesIndex:
                 helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
                 helpInfo += formatAvailableUnits(categoriesIndex[unitsCategoryName])
