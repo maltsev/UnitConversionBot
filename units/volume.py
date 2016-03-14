@@ -4,7 +4,8 @@ import length as _l
 def _getNames(lengthNames):
     shortName = lengthNames[0]
     names = [shortName + u'³']
-    for lengthName in lengthNames[1:]:
+    # Full name ("cubic meter") must be at the start
+    for lengthName in lengthNames[1:] + [shortName]:
         names.append('cubic ' + lengthName)
         names.append('cu ' + lengthName)
 
@@ -15,7 +16,7 @@ def _getNames(lengthNames):
 
 NANOMETER_CUBIC =  ( _l.NANOMETER[0]**3, _getNames(_l.NANOMETER[1]))
 MILLIMETER_CUBIC = (_l.MILLIMETER[0]**3, _getNames(_l.MILLIMETER[1]))
-CENTIMETER_CUBIC = (_l.CENTIMETER[0]**3, _getNames(_l.CENTIMETER[1]))
+CENTIMETER_CUBIC = (_l.CENTIMETER[0]**3, _getNames(_l.CENTIMETER[1]) + ['cc'])
 DECIMETER_CUBIC =  ( _l.DECIMETER[0]**3, _getNames(_l.DECIMETER[1]))
 METER_CUBIC =      (     _l.METER[0]**3, _getNames(_l.METER[1]))
 KILOMETER_CUBIC =  ( _l.KILOMETER[0]**3, _getNames(_l.KILOMETER[1]))

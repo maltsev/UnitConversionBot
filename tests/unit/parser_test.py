@@ -46,7 +46,8 @@ class ParserTests(unittest.TestCase):
             (u'10 fl. oz. to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             (u'10 fl oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
             (u'10 fl.oz to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),
-            ('12 in^3=m^3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
+            ('12 in^3=m3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
+            ('10 cubic m to cu dm', 10, 'METER_CUBIC', 'DECIMETER_CUBIC'),
 
             # Currencies
             (u'100 $ to ₽', 100, 'USD', 'RUB'),
