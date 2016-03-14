@@ -69,174 +69,174 @@ class HelpCommandTests(FunctionalTestCase):
         self.assertHelp('currencies', u"""
 - Afghan Afghani 'afghani'
 - Albanian Lek 'lek'
-- Algerian Dinar 'DZD'
+- Algerian Dinar DZD
 - Angolan Kwanza 'kwanza'
-- Argentine Peso 'ARS'
+- Argentine Peso ARS
 - Armenian Dram 'dram'
 - Aruban Florin 'florin'
-- Australian Dollar 'AUD'
-- Azerbaijani Manat 'AZN'
-- Bahamian Dollar 'BSD'
-- Bahraini Dinar 'BHD'
+- Australian Dollar AUD
+- Azerbaijani Manat AZN
+- Bahamian Dollar BSD
+- Bahraini Dinar BHD
 - Bangladeshi Taka 'taka'
-- Barbadian Dollar 'BBD'
-- Belarusian Ruble 'BYR'
-- Belize Dollar 'BZD'
-- Bermudan Dollar 'BMD'
+- Barbadian Dollar BBD
+- Belarusian Ruble BYR
+- Belize Dollar BZD
+- Bermudan Dollar BMD
 - Bhutanese Ngultrum 'ngultrum'
-- Bitcoin 'BTC'
+- Bitcoin BTC
 - Bolivian Boliviano 'boliviano'
-- Bosnia-Herzegovina Convertible Mark 'BAM'
+- Bosnia-Herzegovina Convertible Mark BAM
 - Botswanan Pula 'pula'
 - Brazilian Real 'real'
-- British Pound Sterling '£'
-- Brunei Dollar 'BND'
+- British Pound Sterling £
+- Brunei Dollar BND
 - Bulgarian Lev 'lev'
-- Burundian Franc 'BIF'
-- CFA Franc BCEAO 'XOF'
-- CFA Franc BEAC 'XAF'
-- CFP Franc 'XPF'
+- Burundian Franc BIF
+- CFA Franc BCEAO XOF
+- CFA Franc BEAC XAF
+- CFP Franc XPF
 - Cambodian Riel 'riel'
-- Canadian Dollar 'C$'
+- Canadian Dollar C$
 - Cape Verdean Escudo 'escudo'
-- Cayman Islands Dollar 'KYD'
-- Chilean Peso 'CLP'
-- Chilean Unit of Account (UF) 'CLF'
+- Cayman Islands Dollar KYD
+- Chilean Peso CLP
+- Chilean Unit of Account (UF) CLF
 - Chinese Yuan 'yuan'
-- Colombian Peso 'COP'
-- Comorian Franc 'KMF'
-- Congolese Franc 'CDF'
-- Costa Rican Colón 'CRC'
+- Colombian Peso COP
+- Comorian Franc KMF
+- Congolese Franc CDF
+- Costa Rican Colón CRC
 - Croatian Kuna 'kuna'
-- Cuban Convertible Peso 'CUC'
-- Cuban Peso 'CUP'
+- Cuban Convertible Peso CUC
+- Cuban Peso CUP
 - Czech Republic Koruna 'koruna'
-- Danish Krone 'DKK'
-- Djiboutian Franc 'DJF'
-- Dominican Peso 'DOP'
-- East Caribbean Dollar 'XCD'
-- Egyptian Pound 'EGP'
+- Danish Krone DKK
+- Djiboutian Franc DJF
+- Dominican Peso DOP
+- East Caribbean Dollar XCD
+- Egyptian Pound EGP
 - Eritrean Nakfa 'nakfa'
-- Estonian Kroon 'EEK'
+- Estonian Kroon EEK
 - Ethiopian Birr 'birr'
-- Euro '€'
-- Falkland Islands Pound 'FKP'
-- Fijian Dollar 'FJD'
+- Euro €
+- Falkland Islands Pound FKP
+- Fijian Dollar FJD
 - Gambian Dalasi 'dalasi'
 - Georgian Lari 'lari'
 - Ghanaian Cedi 'cedi'
-- Gibraltar Pound 'GIP'
-- Gold (troy ounce) 'XAU'
+- Gibraltar Pound GIP
+- Gold (troy ounce) XAU
 - Guatemalan Quetzal 'quetzal'
-- Guernsey Pound 'GGP'
-- Guinean Franc 'GNF'
-- Guyanaese Dollar 'GYD'
+- Guernsey Pound GGP
+- Guinean Franc GNF
+- Guyanaese Dollar GYD
 - Haitian Gourde 'gourde'
 - Honduran Lempira 'lempira'
-- Hong Kong Dollar 'HKD'
+- Hong Kong Dollar HKD
 - Hungarian Forint 'forint'
-- Icelandic Króna 'ISK'
+- Icelandic Króna ISK
 - Indian Rupee 'rupee'
 - Indonesian Rupiah 'rupiah'
-- Iranian Rial 'IRR'
-- Iraqi Dinar 'IQD'
+- Iranian Rial IRR
+- Iraqi Dinar IQD
 - Israeli New Sheqel 'sheqel'
-- Jamaican Dollar 'JMD'
-- Japanese Yen '¥'
-- Jersey Pound 'JEP'
-- Jordanian Dinar 'JOD'
+- Jamaican Dollar JMD
+- Japanese Yen ¥
+- Jersey Pound JEP
+- Jordanian Dinar JOD
 - Kazakhstani Tenge 'tenge'
-- Kenyan Shilling 'KES'
-- Kuwaiti Dinar 'KWD'
-- Kyrgystani Som 'KGS'
+- Kenyan Shilling KES
+- Kuwaiti Dinar KWD
+- Kyrgystani Som KGS
 - Laotian Kip 'kip'
 - Latvian Lats 'lats'
-- Lebanese Pound 'LBP'
+- Lebanese Pound LBP
 - Lesotho Loti 'Loti'
-- Liberian Dollar 'LRD'
-- Libyan Dinar 'LYD'
+- Liberian Dollar LRD
+- Libyan Dinar LYD
 - Lithuanian Litas 'litas'
 - Macanese Pataca 'pataca'
 - Macedonian Denar 'denar'
 - Malagasy Ariary 'ariary'
-- Malawian Kwacha 'MWK'
+- Malawian Kwacha MWK
 - Malaysian Ringgit 'ringgit'
 - Maldivian Rufiyaa 'rufiyaa'
-- Maltese Lira 'MTL'
-- Manx pound 'IMP'
+- Maltese Lira MTL
+- Manx pound IMP
 - Mauritanian Ouguiya 'ouguiya'
-- Mauritian Rupee 'MUR'
-- Mexican Peso 'MXN'
-- Moldovan Leu 'MDL'
+- Mauritian Rupee MUR
+- Mexican Peso MXN
+- Moldovan Leu MDL
 - Mongolian Tugrik 'tugrik'
-- Moroccan Dirham 'MAD'
+- Moroccan Dirham MAD
 - Mozambican Metical 'metical'
 - Myanma Kyat 'kyat'
-- Namibian Dollar 'NAD'
-- Nepalese Rupee 'NPR'
+- Namibian Dollar NAD
+- Nepalese Rupee NPR
 - Netherlands Antillean Guilder 'guilder'
-- New Taiwan Dollar 'TWD'
-- New Zealand Dollar 'NZD'
+- New Taiwan Dollar TWD
+- New Zealand Dollar NZD
 - Nicaraguan Córdoba 'cordoba'
 - Nigerian Naira 'naira'
-- North Korean Won 'KPW'
-- Norwegian Krone 'NOK'
-- Omani Rial 'OMR'
-- Pakistani Rupee 'PKR'
-- Palladium Ounce 'XPD'
+- North Korean Won KPW
+- Norwegian Krone NOK
+- Omani Rial OMR
+- Pakistani Rupee PKR
+- Palladium Ounce XPD
 - Panamanian Balboa 'balboa'
 - Papua New Guinean Kina 'kina'
 - Paraguayan Guarani 'guarani'
 - Peruvian Nuevo Sol 'nuevo sol'
-- Philippine Peso 'PHP'
-- Platinum Ounce 'XPT'
+- Philippine Peso PHP
+- Platinum Ounce XPT
 - Polish Zloty 'zloty'
-- Qatari Rial 'QAR'
-- Romanian Leu 'RON'
-- Russian Ruble '₽'
-- Rwandan Franc 'RWF'
-- Saint Helena Pound 'SHP'
-- Salvadoran Colón 'SVC'
+- Qatari Rial QAR
+- Romanian Leu RON
+- Russian Ruble ₽
+- Rwandan Franc RWF
+- Saint Helena Pound SHP
+- Salvadoran Colón SVC
 - Samoan Tala 'tala'
 - Saudi Riyal 'Riyal'
-- Serbian Dinar 'RSD'
-- Seychellois Rupee 'SCR'
+- Serbian Dinar RSD
+- Seychellois Rupee SCR
 - Sierra Leonean Leone 'leone'
-- Silver (troy ounce) 'XAG'
-- Singapore Dollar 'SGD'
-- Solomon Islands Dollar 'SBD'
-- Somali Shilling 'SOS'
+- Silver (troy ounce) XAG
+- Singapore Dollar SGD
+- Solomon Islands Dollar SBD
+- Somali Shilling SOS
 - South African Rand 'rand'
 - South Korean Won 'won'
-- Special Drawing Rights 'XDR'
-- Sri Lankan Rupee 'LKR'
-- Sudanese Pound 'SDG'
-- Surinamese Dollar 'SRD'
+- Special Drawing Rights XDR
+- Sri Lankan Rupee LKR
+- Sudanese Pound SDG
+- Surinamese Dollar SRD
 - Swazi Lilangeni 'lilangeni'
-- Swedish Krona 'SEK'
-- Swiss Franc 'Fr'
-- Syrian Pound 'SYP'
+- Swedish Krona SEK
+- Swiss Franc Fr
+- Syrian Pound SYP
 - São Tomé and Príncipe Dobra 'dobra'
 - Tajikistani Somoni 'somoni'
-- Tanzanian Shilling 'TZS'
+- Tanzanian Shilling TZS
 - Thai Baht 'Baht'
 - Tongan Paʻanga 'paanga'
-- Trinidad and Tobago Dollar 'TTD'
-- Tunisian Dinar 'TND'
-- Turkish Lira 'TRY'
-- Turkmenistani Manat 'TMT'
-- US Dollar '$'
-- Ugandan Shilling 'UGX'
+- Trinidad and Tobago Dollar TTD
+- Tunisian Dinar TND
+- Turkish Lira TRY
+- Turkmenistani Manat TMT
+- US Dollar $
+- Ugandan Shilling UGX
 - Ukrainian Hryvnia 'hryvnia'
-- United Arab Emirates Dirham 'AED'
-- Uruguayan Peso 'UYU'
-- Uzbekistan Som 'UZS'
+- UAE Dirham AED
+- Uruguayan Peso UYU
+- Uzbekistan Som UZS
 - Vanuatu Vatu 'vatu'
 - Venezuelan Bolívar Fuerte 'bolivar fuerte'
 - Vietnamese Dong 'dong'
-- Yemeni Rial 'YER'
-- Zambian Kwacha 'ZMW'
-- Zimbabwean Dollar 'ZWL'
+- Yemeni Rial YER
+- Zambian Kwacha ZMW
+- Zimbabwean Dollar ZWL
         """)
 
 

@@ -24,12 +24,19 @@ def formatAvailableUnits(unitsIndex):
 
     unitsList = ''
     for unit in units:
+        baseName = unit['baseName']
         if isCurrencies:
             # Hack: use short name of currency (e.g., "forint" instead of "Hungarian Forint") in help
             safeShortName = unit['names'][-2] if len(unit['names']) > 3 else unit['shortName']
-            # Telegram doesn't markdown big messages.
-            # Therefore single quotes are used to distinct currency short name
-            formatTemplate = u"- {} '{}'\n"
+
+            # Telegram message's text must be less than 4096 chars.
+            # The currencies list is big, so we've to shorten it somehow.
+            baseName = baseName.replace('United Arab Emirates', 'UAE')
+            if safeShortName.isupper() or len(safeShortName) < 3:
+                formatTemplate = u'- {} {}\n'
+            else:
+                formatTemplate = u"- {} '{}'\n"
+
         else:
             safeShortName = massReplace(unit['shortName'], {
                 u'µ': 'u',
@@ -38,7 +45,7 @@ def formatAvailableUnits(unitsIndex):
                 u'°': ''
             })
             formatTemplate = u'- {} `{}`\n'
-        unitsList += formatTemplate.format(unit['baseName'], safeShortName)
+        unitsList += formatTemplate.format(baseName, safeShortName)
 
     return unitsList.strip()
 
