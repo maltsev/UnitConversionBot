@@ -3,7 +3,7 @@ import sys
 import json
 sys.path.append('.')
 
-from modules.parser import parseExpression
+from modules.parser import parseExpression, parseMessageText
 from modules.converter import convertUnit
 from modules.formatter import formatValueUnit
 import units
@@ -19,7 +19,7 @@ file.close()
 unitsIndex = units.getIndex(True, currenciesExchangeRates=exchangeRates)
 for expression in expressions:
     try:
-        units = parseExpression(expression, unitsIndex)
+        units = parseExpression(parseMessageText(expression)['expression'], unitsIndex)
         toValueUnit = convertUnit(units['fromValueUnit'], units['toUnit'])
         print formatValueUnit(toValueUnit).encode('utf-8')
     except Exception as error:
