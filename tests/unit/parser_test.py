@@ -39,7 +39,8 @@ class ParserTests(unittest.TestCase):
 
             # Area
             (u'10 ft² to m²', 10, 'FOOT_SQUARE', 'METER_SQUARE'),
-            ('100 km^2 to m^2', 100, 'KILOMETER_SQUARE', 'METER_SQUARE'),
+            ('100 km2 to m^2', 100, 'KILOMETER_SQUARE', 'METER_SQUARE'),
+            ('1 sq cm to square m', 1, 'CENTIMETER_SQUARE', 'METER_SQUARE'),
 
             # Volume
             (u'10 fl. oz. to dm³', 10, 'IMPERIAL_FLUID_OUNCE', 'DECIMETER_CUBIC'),

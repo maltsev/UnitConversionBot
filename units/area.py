@@ -4,7 +4,8 @@ import length as _l
 def _getNames(lengthNames):
     shortName = lengthNames[0]
     names = [shortName + u'²']
-    for lengthName in lengthNames[1:]:
+    # Full name ("square meter") must be at the start
+    for lengthName in lengthNames[1:] + [shortName]:
         names.append('square ' + lengthName)
         names.append('sq ' + lengthName)
 
@@ -18,7 +19,7 @@ MILLIMETER_SQUARE = (_l.MILLIMETER[0]**2, _getNames(_l.MILLIMETER[1]))
 CENTIMETER_SQUARE = (_l.CENTIMETER[0]**2, _getNames(_l.CENTIMETER[1]))
 DECIMETER_SQUARE =  (_l.DECIMETER[0]**2,  _getNames(_l.DECIMETER[1]))
 METER_SQUARE =      (_l.METER[0]**2,      _getNames(_l.METER[1]))
-HECTARE =           (_l.HECTOMETER[0]**2, ['ha', 'hectare', 'hectares'] + _getNames(_l.HECTOMETER[1]))
+HECTARE =           (_l.HECTOMETER[0]**2, ['ha', 'hectare', 'hectares', 'hectar', 'hectars'] + _getNames(_l.HECTOMETER[1]))
 KILOMETER_SQUARE =  (_l.KILOMETER[0]**2,  _getNames(_l.KILOMETER[1]))
 
 INCH_SQUARE = (_l.INCH[0]**2, _getNames(_l.INCH[1]))
