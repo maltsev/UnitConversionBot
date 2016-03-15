@@ -5,7 +5,7 @@ import re
 def parseExpression(expression, unitsIndex):
     expression = normalizeExpression(expression, unitsIndex)
     expressionParts = expression.split(' ')
-    if len(expressionParts) < 3:
+    if len(expressionParts) < 2:
         raise InvalidExpressionException(InvalidExpressionException.defaultErrorMessage)
 
     rawFromValue = expressionParts[0]
@@ -17,8 +17,11 @@ def parseExpression(expression, unitsIndex):
     rawFromUnit = expressionParts[1]
     fromUnit = getUnit(rawFromUnit, unitsIndex)
 
-    rawToUnit = expressionParts[-1]
-    toUnit = getUnit(rawToUnit, unitsIndex)
+    toUnit = fromUnit['defaultToUnit']
+    if len(expressionParts) >= 3:
+        rawToUnit = expressionParts[-1]
+        if rawToUnit not in ['to', 'in', '=', 'go']:
+            toUnit = getUnit(rawToUnit, unitsIndex)
 
     return {
         'fromValueUnit': {

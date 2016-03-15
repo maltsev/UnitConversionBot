@@ -25,13 +25,15 @@ def unpackUnit(packedUnit, unitKey, category, **kwargs):
     }
 
     try:
+        defaultToUnitKey = packedUnit[-1]
         if category == 'currencies':
             stubValue = 1.0 if kwargs.get('stubExchangeRate') else None
             value = kwargs.get('currenciesExchangeRates', {}).get(unitKey, stubValue)
             if not value:
                 return None
             value = 1 / value
-            unitNames = packedUnit
+            unitNames = packedUnit[0]
+            defaultToUnitKey = currencies._BASE if len(packedUnit) < 2 else packedUnit[-1]
         elif category == 'temperature':
             value = 1
             unitNames = packedUnit[2]
@@ -51,6 +53,7 @@ def unpackUnit(packedUnit, unitKey, category, **kwargs):
     unit['shortName'] = unitNames[0]
     unit['baseName'] = unitNames[1]
     unit['names'] = unitNames
+    unit['defaultToUnitKey'] = defaultToUnitKey
 
     return unit
 
@@ -80,6 +83,7 @@ def getIndex(regenerate=False, **kwargs):
         return getIndex.index
 
     index = {}
+    unitKeys = []
     globalVariables = globals()
     for categoryName in categories:
         categoryUnits = globalVariables[categoryName]
@@ -97,6 +101,8 @@ def getIndex(regenerate=False, **kwargs):
                 logging.critical("The unit's '{}' shortName contains a whitespace".format(unitName))
                 continue
 
+            unitKeys.append(unitKey)
+
             allUnitNames = unit['names'] + [name.lower() for name in unit['names']]
             # unitNames could have duplicates, therefore use set()
             for unitName in set(allUnitNames):
@@ -104,6 +110,12 @@ def getIndex(regenerate=False, **kwargs):
                     logging.critical(u"The unit '{}' is already defined".format(unitName))
 
                 index[unitName] = unit
+
+
+    for unitKey in unitKeys:
+        unit = index[unitKey]
+        if 'defaultToUnit' not in unit:
+            unit['defaultToUnit'] = index[unit['defaultToUnitKey']]
 
 
     getIndex.index = index

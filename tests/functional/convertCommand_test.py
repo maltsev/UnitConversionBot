@@ -179,6 +179,26 @@ class ConvertCommandTests(ConverMixin, FunctionalTestCase):
 
 
     @log_capture(level=logging.INFO)
+    def test_convertWithoutToUnit(self, logs):
+        requestJson = requestTemplate({
+            'text': u'/convert 100 ft to',
+            'chat': {
+                'id': 530
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 530,
+            'text': u'30.48 m'
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'success', 'expression': u'100 ft to', 'response': u'30.48 m'}))
+
+
+
+
+    @log_capture(level=logging.INFO)
     def test_invalidExpression(self, logs):
         requestJson = requestTemplate({
             'text': u'1 фут в метры',

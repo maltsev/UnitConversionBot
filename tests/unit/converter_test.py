@@ -86,3 +86,28 @@ class ConverterTests(unittest.TestCase):
                 result,
                 toValueUnit
             )
+
+
+
+
+    def test_defaultUnits(self):
+        skipCategories = ['currencies', 'temperature']
+        skipUnits = ['METER_SQUARE', 'NANOMETER_SQUARE', 'NANOMETER_CUBIC']
+
+        categoriesIndex = units.getCategoriesIndex(True, stubExchangeRate=True)
+        for categoryName, category in categoriesIndex.iteritems():
+            if categoryName in skipCategories:
+                continue
+
+            for unit in category.values():
+                if unit['key'] in skipUnits:
+                    continue
+
+                fromValueUnit = {
+                    'value': 1.0,
+                    'unit': unit
+                }
+
+                result = convertUnit(fromValueUnit, unit['defaultToUnit'])
+                errorMessage = '{} and {} are too different'.format(unit['key'], unit['defaultToUnitKey'])
+                self.assertLess(0.00001, result['value'], errorMessage)

@@ -46,6 +46,24 @@ class InlineTests(ConverMixin, FunctionalTestCase):
 
 
 
+    @log_capture(level=logging.INFO)
+    def test_inlineConvertWithoutToUnit(self, logs):
+        requestJson = requestTemplate({
+            'id': '1235',
+            'query': '1 light year'
+        })
+
+        expectedResponseJson = responseTemplate('1235', {
+            'title': '9,460,730,472,580.801 km',
+            'message_text': '1 ly = 9,460,730,472,580.801 km'
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
+        self.checkLogs(logs, ('INFO', { 'command': 'convert', 'type': 'success', 'expression': u'1 light year', 'response': u'9,460,730,472,580.801 km', 'fullResponse': u'1 ly = 9,460,730,472,580.801 km'}))
+
+
+
+
     def test_invalidInlineConvert(self):
         requestJson = requestTemplate({
             'id': '11',
@@ -55,7 +73,7 @@ class InlineTests(ConverMixin, FunctionalTestCase):
         expectedResponseJson = responseTemplate('11', {
             'title': 'Error',
             'message_text': '@UnitConversionBot',
-            'description': "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
+            'description': "Sorry, I'm just a stupid bot :-( I don't know what does 'blah' mean. But my master probably does. I'd ask him to teach me."
         })
 
         self.assertRequest(requestJson, expectedResponseJson)
