@@ -34,6 +34,7 @@ class HelpCommandTests(FunctionalTestCase):
 - square foot `ft2`
 - square yard `yd2`
 - square meter `m2`
+- acre `ac`
 - hectare `ha`
 - square kilometer `km2`
 - square mile `mi2`
@@ -304,6 +305,7 @@ class HelpCommandTests(FunctionalTestCase):
 
     def test_densityHelp(self):
         self.assertHelp('density', """
+- gram per cubic meter `g/m3`
 - kilogram per cubic meter `kg/m3`
 - kilogram per liter `kg/l`
 - gram per cubic centimeter `g/cm3`

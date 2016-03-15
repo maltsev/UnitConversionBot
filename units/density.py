@@ -24,9 +24,12 @@ def _getNames(massNames, volumeNames, lengthNames=[]):
 
 
 GRAM_PER_CENTIMETER_CUBIC = (_m.GRAM[0] / _v.CENTIMETER_CUBIC[0], _getNames(_m.GRAM[1], _v.CENTIMETER_CUBIC[1], _l.CENTIMETER[1]))
-KILOGRAM_PER_METER_CUBIC =  (_m.KILOGRAM[0] / _v.METER_CUBIC[0],  _getNames(_m.KILOGRAM[1], _v.METER_CUBIC[1], _l.METER[1]))
-KILOGRAM_PER_LITER =        (_m.KILOGRAM[0] / _v.LITER[0],        _getNames(_m.KILOGRAM[1], _v.LITER[1]))
 GRAM_PER_MILLILITER =       (_m.GRAM[0] / _v.MILLILITER[0],       _getNames(_m.GRAM[1], _v.MILLILITER[1]))
-TONNE_PER_METER_CUBIC =     (_m.TONNE[0] / _v.METER_CUBIC[0],     _getNames(_m.TONNE[1], _v.METER_CUBIC[1], _l.METER[1]))
+GRAM_PER_METER_CUBIC =      (_m.GRAM[0] / _v.METER_CUBIC[0],  _getNames(_m.GRAM[1], _v.METER_CUBIC[1], _l.METER[1]))
+
+KILOGRAM_PER_METER_CUBIC = (_m.KILOGRAM[0] / _v.METER_CUBIC[0],  _getNames(_m.KILOGRAM[1], _v.METER_CUBIC[1], _l.METER[1]))
+KILOGRAM_PER_LITER =       (_m.KILOGRAM[0] / _v.LITER[0],        _getNames(_m.KILOGRAM[1], _v.LITER[1]))
+
+TONNE_PER_METER_CUBIC = (_m.TONNE[0] / _v.METER_CUBIC[0],     _getNames(_m.TONNE[1], _v.METER_CUBIC[1], _l.METER[1]))
 
 _BASE = KILOGRAM_PER_METER_CUBIC

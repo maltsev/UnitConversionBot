@@ -25,6 +25,7 @@ KILOMETER_SQUARE =  (_l.KILOMETER[0]**2,  _getNames(_l.KILOMETER[1]))
 INCH_SQUARE = (_l.INCH[0]**2, _getNames(_l.INCH[1]))
 FOOT_SQUARE = (_l.FOOT[0]**2, _getNames(_l.FOOT[1]))
 YARD_SQUARE = (_l.YARD[0]**2, _getNames(_l.YARD[1]))
+ACRE =        (YARD_SQUARE[0] * 4840, ['ac', 'acre', 'acres'])
 MILE_SQUARE = (_l.MILE[0]**2, _getNames(_l.MILE[1]))
 
 
