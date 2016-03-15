@@ -13,7 +13,7 @@ class ParserTests(unittest.TestCase):
             ("'1 ft to m'", '1 ft to m', ''),
             ('/start', '', 'start'),
             ('/start start', 'start', 'start'),
-            ('/convert@UnitConversionBot 1 day to hours', '1 day to hours', 'convert'),
+            ('/convert@UnitConversionBot 1 day to hours.', '1 day to hours', 'convert'),
             ('@UnitConversionBot 1 in to meter', '1 in to meter', ''),
             ('@UnitConversionBot 1 m/s to km/h', '1 m/s to km/h', ''),
             ('/ foob', '/ foob', ''),
