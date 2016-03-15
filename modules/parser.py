@@ -38,8 +38,8 @@ def normalizeExpression(expression, unitsIndex):
     expression = expression.lower()
     expression = expression.replace(',', '').replace('convert', '').replace('=', ' = ')
     # Add whitespace after number
-    expression = re.sub(r'([\./\d]+)(\D)', '\\1 \\2', expression)
-    expression = re.sub(r'\s+', ' ', expression)
+    expression = re.sub(r'([\./\d]+)(\D)', r'\1 \2', expression)
+    expression = re.sub(r'\s+', ' ', expression, 0, re.UNICODE)
     expression = expression.replace('/ ', '/')
     expression = normalizeUnitsInExpression(expression, unitsIndex)
     expression = expression.strip()
