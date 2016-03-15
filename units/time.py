@@ -6,7 +6,7 @@ HOUR =        (       60*60,       ['h', 'hour', 'hours', 'hr'])
 DAY =         (HOUR[0] * 24,       ['d', 'day', 'days'])
 WEEK =        (  DAY[0] * 7,       ['wk', 'week', 'weeks'])
 MONTH =       (DAY[0] * 30.436875, ['mon', 'month', 'months'])
-YEAR =        (DAY[0] * 365.2425,  ['yr', 'year', 'years'])
+YEAR =        (DAY[0] * 365.2425,  ['yr', 'year', 'years', 'y'])
 
 
 _BASE = SECOND

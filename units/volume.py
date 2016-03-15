@@ -8,9 +8,10 @@ def _getNames(lengthNames):
     for lengthName in lengthNames[1:] + [shortName]:
         names.append('cubic ' + lengthName)
         names.append('cu ' + lengthName)
+        names.append(lengthName + '^3')
+        names.append(lengthName + u'³')
 
     names.append(shortName + '3')
-    names.append(shortName + '^3')
     return names
 
 
