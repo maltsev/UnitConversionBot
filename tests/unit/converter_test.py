@@ -10,8 +10,11 @@ class ConverterTests(unittest.TestCase):
 
         cases = [
             # Length
-            ((1,  'FOOT'),          (0.3048, 'METER')),
-            ((13, 'NAUTICAL_MILE'), (24.076, 'KILOMETER')),
+            ((1,    'FOOT'),              (0.3048,     'METER')),
+            ((13,   'NAUTICAL_MILE'),     (24.076,     'KILOMETER')),
+            ((10,   'ANGSTROM'),          (1,          'NANOMETER')),
+            ((1000, 'ASTRONOMICAL_UNIT'), (0.0048,     'PARSEC')),
+            ((1,    'LIGHT_YEAR'),        (63241.0771, 'ASTRONOMICAL_UNIT')),
 
             # Area
             ((50.5, 'FOOT_SQUARE'),       (4.6916, 'METER_SQUARE')),

@@ -6,6 +6,7 @@ from base import FunctionalTestCase, requestTemplate, responseTemplate
 class HelpCommandTests(FunctionalTestCase):
     def test_lengthHelp(self):
         self.assertHelp('length', """
+- Angstrom `A`
 - nanometer `nm`
 - micrometer `um`
 - millimeter `mm`
@@ -19,6 +20,9 @@ class HelpCommandTests(FunctionalTestCase):
 - kilometer `km`
 - mile `mi`
 - nautical mile `nmi`
+- astronomical unit `au`
+- light-year `ly`
+- parsec `pc`
         """)
 
 
