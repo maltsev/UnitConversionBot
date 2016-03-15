@@ -62,6 +62,8 @@ class ParserTests(unittest.TestCase):
             ('12 nuevo sol to won', 12, 'PEN', 'KRW'),
             ('1 eur', 1, 'EUR', 'USD'),
             ('1 CZK', 1, 'CZK', 'EUR'),
+            ('$1 to CZK', 1, 'USD', 'CZK'),
+            (u'£ 100', 100, 'GBP', 'USD'),
 
             # Mass
             ('0.45 KG to G', 0.45, 'KILOGRAM', 'GRAM'),

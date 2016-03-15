@@ -58,6 +58,8 @@ def normalizeUnitsInExpression(expression, unitsIndex):
         expression = expression.replace(denormalizedUnitName, shortName)
 
     expression = re.sub(r'(fl\.? ?oz\.? ?|oz\.? ?fl\.? ?)', 'fl.oz ', expression)
+    # Place a currency sign after the number
+    expression = re.sub(r'([$€£¥₽]) ?([\.\d]+)', r'\2 \1', expression)
 
     return expression
 
