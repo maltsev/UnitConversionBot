@@ -346,6 +346,23 @@ class HelpCommandTests(FunctionalTestCase):
 
 
 
+    def test_pressureHelp(self):
+        self.assertHelp('pressure', """
+- pascal `Pa`
+- hectopascal `hPa`
+- torr
+- kilopascal `kPa`
+- pound-force per square inch `psi`
+- technical atmosphere `at`
+- bar
+- standard atmosphere `atm`
+- megapascal `MPa`
+- gigapascal `GPa`
+        """)
+
+
+
+
     def test_defaultHelp(self):
         requestJson = requestTemplate({
             'text': '/help',
@@ -369,6 +386,7 @@ The bot supports following unit categories:
 - temperature (°C, °F)
 - density (kg/m³)
 - information (MB, Kbit)
+- pressure (Pa, atm)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

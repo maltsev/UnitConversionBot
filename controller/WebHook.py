@@ -189,6 +189,7 @@ The bot supports following unit categories:
 - temperature (°C, °F)
 - density (kg/m³)
 - information (MB, Kbit)
+- pressure (Pa, atm)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

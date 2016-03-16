@@ -56,6 +56,13 @@ class ConverterTests(unittest.TestCase):
             ((1, 'GIGABYTE'), (1024, 'MEGABYTE')),
             ((1, 'BYTE'),     (8, 'BIT')),
             ((1, 'TERABYTE'), (1073741824, 'KILOBYTE')),
+
+            # Pressure
+            ((1, 'BAR'), (100000, 'PASCAL')),
+            ((1, 'TECHNICAL_ATMOSPHERE'), (98.0665, 'KILOPASCAL')),
+            ((1, 'STANDARD_ATMOSPHERE'), (1013.25, 'HECTOPASCAL')),
+            ((1, 'TORR'), (133.3224, 'PASCAL')),
+            ((1, 'POUND_PER_SQUARE_INCH'), (6894.7238, 'PASCAL')),
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={

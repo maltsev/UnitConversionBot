@@ -101,6 +101,11 @@ class ParserTests(unittest.TestCase):
             ('1 kilobit to yibit', 1, 'KILOBIT', 'YOTTABIT'),
             ('1 byte', 1, 'BYTE', 'BIT'),
             ('1 bit', 1, 'BIT', 'BYTE'),
+
+            # Pressure
+            ('1 hPa to pound-force per square inch', 1, 'HECTOPASCAL', 'POUND_PER_SQUARE_INCH'),
+            ('1 lbf/in2 = torr', 1, 'POUND_PER_SQUARE_INCH', 'TORR'),
+            ('1 Pa', 1, 'PASCAL', 'HECTOPASCAL')
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
