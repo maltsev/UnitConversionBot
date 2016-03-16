@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+from formatter import massReplace
 
 
 def parseExpression(expression, unitsIndex):
@@ -36,7 +37,11 @@ def parseExpression(expression, unitsIndex):
 
 def normalizeExpression(expression, unitsIndex):
     expression = expression.lower()
-    expression = expression.replace(',', '').replace('convert', '').replace('=', ' = ')
+    expression = massReplace(expression, {
+        ',': '',
+        'convert': '',
+        '=': ' = '
+    })
     # Add whitespace after number
     expression = re.sub(r'([\./\d]+)(\D)', r'\1 \2', expression)
     expression = re.sub(r'\s+', ' ', expression, 0, re.UNICODE)
