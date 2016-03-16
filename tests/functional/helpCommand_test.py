@@ -376,17 +376,17 @@ class HelpCommandTests(FunctionalTestCase):
             'parse_mode': 'Markdown',
             'text': u"""
 The bot supports following unit categories:
-- length (m, ft)
-- area (m², acre)
-- volume (litre, pint)
-- currencies ($, €)
-- mass (g, lb)
-- speed (km/h, mph)
-- time (min, ms)
-- temperature (°C, °F)
-- density (kg/m³)
-- information (MB, Kbit)
-- pressure (Pa, atm)
+- length (ft to m)
+- area (m² to acre)
+- volume (litre to pint)
+- currencies ($ to €)
+- mass (g to lb)
+- speed (km/h to mph)
+- time (min to ms)
+- temperature (°C to °F)
+- density (kg/m³ to g/cm³)
+- information (MB to Kbit)
+- pressure (atm to Pa)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 
