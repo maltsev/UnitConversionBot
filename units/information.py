@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
 
 def _getBitNames(prefixSI, prefixIEC):
     prefixFirstLetter = prefixSI[0].upper()

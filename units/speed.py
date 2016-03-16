@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
 import length as _l
 import time as _t
 

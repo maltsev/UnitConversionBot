@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
+
 MILLISECOND = (           0.001,   ['ms', 'millisecond', 'milliseconds', 'millisec', 'msec'], 'SECOND')
 SECOND =      (           1,       ['s', 'second', 'seconds', 'sec'], 'MILLISECOND')
 MINUTE =      (          60,       ['min', 'minute', 'minutes'], 'SECOND')

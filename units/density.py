@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
 import volume as _v
 import length as _l
 import mass as _m

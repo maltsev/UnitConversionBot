@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
+
 # Main symbol — µ (U+00B5), second — μ (U+03BC)
 NANOGRAM =  (   1e-9,  ['ng', 'nanogram', 'nanograms', 'nanogramme', 'nanogrammes'], 'MICROGRAM')
 MICROGRAM = (   1e-6,  [u'µg', 'microgram', 'micrograms', 'microgramme', 'microgrammes', u'μg', 'ug'], 'MILLIGRAM')

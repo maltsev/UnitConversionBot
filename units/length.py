@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
 from math import pi as _PI
 
 ANGSTROM =   (  1e-10,  ['A', 'Angstrom', 'Angstroms', u'ångström', 'Ångström', u'Å'], 'NANOMETER')

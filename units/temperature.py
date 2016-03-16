@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import division as _
+
 CELSIUS =    (lambda C: C,              lambda C: C,
 [u'°C', 'Celsius', 'Degree Celsius', 'Degrees Celsius', 'Celsius Degree', 'Celsius Degrees', 'C'], 'FAHRENHEIT')
 
