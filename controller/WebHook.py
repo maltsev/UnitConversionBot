@@ -169,14 +169,14 @@ My name is @UnitConversionBot. I can convert from one unit to another. Just type
 
     def command_help(self, unitsCategoryName):
         if unitsCategoryName:
-            categoriesIndex = units.getCategoriesIndex(True, stubExchangeRate=True)
-            if unitsCategoryName in categoriesIndex:
-                helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
-                helpInfo += formatAvailableUnits(categoriesIndex[unitsCategoryName])
-                return helpInfo
-            else:
-                return "Sorry, the unit category '{}' is not available. Please type /help to get all unit categories".format(unitsCategoryName)
+            return self.command_listAvailableUnits(unitsCategoryName)
+        else:
+            return self.command_defaultHelp()
 
+
+
+
+    def command_defaultHelp(self):
         helpInfo = 'The bot supports following unit categories:\n'
 
         for unitCategoryName in units.categories:
@@ -201,6 +201,18 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
         helpInfo += FEEDBACK_TEXT
 
         return helpInfo.strip()
+
+
+
+
+    def command_listAvailableUnits(self, unitsCategoryName):
+        categoriesIndex = units.getCategoriesIndex(True, stubExchangeRate=True)
+        if unitsCategoryName not in categoriesIndex:
+            return "Sorry, the unit category '{}' is not available. Please type /help to get all unit categories".format(unitsCategoryName)
+
+        helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
+        categoryUnits = categoriesIndex[unitsCategoryName]
+        return helpInfo + formatAvailableUnits(categoryUnits)
 
 
 
