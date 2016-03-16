@@ -50,7 +50,12 @@ class ConverterTests(unittest.TestCase):
             ((394.5,  'CELSIUS'),    (742.1,     'FAHRENHEIT')),
 
             # Density
-            ((19.5, 'GRAM_PER_CENTIMETER_CUBIC'), (19500, 'KILOGRAM_PER_METER_CUBIC'))
+            ((19.5, 'GRAM_PER_CENTIMETER_CUBIC'), (19500, 'KILOGRAM_PER_METER_CUBIC')),
+
+            # Information
+            ((1, 'GIGABYTE'), (1024, 'MEGABYTE')),
+            ((1, 'BYTE'),     (8, 'BIT')),
+            ((1, 'TERABYTE'), (1073741824, 'KILOBYTE')),
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={

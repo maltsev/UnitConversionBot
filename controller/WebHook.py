@@ -212,7 +212,17 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
 
         helpInfo = u'*The full list of {} units:*\n'.format(unitsCategoryName)
         categoryUnits = categoriesIndex[unitsCategoryName]
-        return helpInfo + formatAvailableUnits(categoryUnits)
+        if unitsCategoryName != 'information':
+            return helpInfo + formatAvailableUnits(categoryUnits)
+
+        # List bits first, then bytes
+        bitUnits = {unitKey: unit for unitKey, unit in categoryUnits.iteritems() if 'BIT' in unit['key']}
+        helpInfo += formatAvailableUnits(bitUnits)
+
+        byteUnits = {unitKey: unit for unitKey, unit in categoryUnits.iteritems() if 'BYTE' in unit['key']}
+        helpInfo += '\n\n' + formatAvailableUnits(byteUnits)
+
+        return helpInfo
 
 
 

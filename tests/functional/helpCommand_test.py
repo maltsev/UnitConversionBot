@@ -320,6 +320,32 @@ class HelpCommandTests(FunctionalTestCase):
 
 
 
+    def test_informationHelp(self):
+        self.assertHelp('information', """
+- bit
+- kilobit `Kbit`
+- megabit `Mbit`
+- gigabit `Gbit`
+- terabit `Tbit`
+- petabit `Pbit`
+- exabit `Ebit`
+- zettabit `Zbit`
+- yottabit `Ybit`
+
+- byte
+- kilobyte `KB`
+- megabyte `MB`
+- gigabyte `GB`
+- terabyte `TB`
+- petabyte `PB`
+- exabyte `EB`
+- zettabyte `ZB`
+- yottabyte `YB`
+        """)
+
+
+
+
     def test_defaultHelp(self):
         requestJson = requestTemplate({
             'text': '/help',
@@ -342,6 +368,7 @@ The bot supports following unit categories:
 - time
 - temperature
 - density
+- information
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

@@ -91,7 +91,16 @@ class ParserTests(unittest.TestCase):
             ('10 kg per m to grams per centimeters', 10, 'KILOGRAM_PER_METER_CUBIC', 'GRAM_PER_CENTIMETER_CUBIC'),
             ('1 g/cm to kg/m3', 1, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC'),
             ('1 kg/m to g/ml', 1, 'KILOGRAM_PER_METER_CUBIC', 'GRAM_PER_MILLILITER'),
-            ('1 g/cm', 1, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC')
+            ('1 g/cm', 1, 'GRAM_PER_CENTIMETER_CUBIC', 'KILOGRAM_PER_METER_CUBIC'),
+
+            # Information
+            ('1 Mb to kb', 1, 'MEGABYTE', 'KILOBYTE'),
+            ('1 gigabyte to kibibyte', 1, 'GIGABYTE', 'KILOBYTE'),
+            ('1 mbytes to kbyte', 1, 'MEGABYTE', 'KILOBYTE'),
+            ('1 mbit to kibibits', 1, 'MEGABIT', 'KILOBIT'),
+            ('1 kilobit to yibit', 1, 'KILOBIT', 'YOTTABIT'),
+            ('1 byte', 1, 'BYTE', 'BIT'),
+            ('1 bit', 1, 'BIT', 'BYTE'),
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."
