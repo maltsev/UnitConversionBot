@@ -4,7 +4,7 @@
 # Therefore here are stored only currencies' names.
 # The exchange rates are stored in the Data Store
 
-USD = (['USD',  'US Dollar', 'US Dollars', 'American dollar', 'American dollars', '$'], 'EUR')
+USD = (['USD',  'US Dollar', 'US Dollars', 'American dollar', 'American dollars', 'dollar', 'dollars', '$'], 'EUR')
 
 AED = (['AED',  'United Arab Emirates Dirham'],)
 AFN = (['AFN',  'Afghan Afghani', 'afghani'],)
@@ -13,7 +13,7 @@ AMD = (['AMD',  'Armenian Dram', 'dram'],)
 ANG = (['ANG',  'Netherlands Antillean Guilder', 'guilder'], 'EUR')
 AOA = (['AOA',  'Angolan Kwanza', 'kwanza'],)
 ARS = (['ARS',  'Argentine Peso'],)
-AUD = (['AUD',  'Australian Dollar', 'aus$', 'AUD'],)
+AUD = (['AUD',  'Australian Dollar', 'aus$', '$aus', 'AUD'],)
 AWG = (['AWG',  'Aruban Florin', 'florin'],)
 AZN = (['AZN',  'Azerbaijani Manat'],)
 BAM = (['BAM',  'Bosnia-Herzegovina Convertible Mark'], 'EUR')
