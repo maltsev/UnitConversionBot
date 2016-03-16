@@ -177,12 +177,19 @@ My name is @UnitConversionBot. I can convert from one unit to another. Just type
 
 
     def command_defaultHelp(self):
-        helpInfo = 'The bot supports following unit categories:\n'
+        helpInfo = """
+The bot supports following unit categories:
+- length (m, ft)
+- area (m², acre)
+- volume (litre, pint)
+- currencies ($, €)
+- mass (g, lb)
+- speed (km/h, mph)
+- time (min, ms)
+- temperature (°C, °F)
+- density (kg/m³)
+- information (MB, Kbit)
 
-        for unitCategoryName in units.categories:
-            helpInfo += '- {}\n'.format(unitCategoryName)
-
-        helpInfo += """
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 
 While asking me a question tet-a-tet you can omit a command. Just type:
