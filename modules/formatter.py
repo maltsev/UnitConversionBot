@@ -25,7 +25,7 @@ def formatAvailableUnits(unitsIndex):
     unitsList = ''
     for unit in units:
         baseName = unit['baseName']
-        formatTemplate = u'- {} `{}`\n'
+        isMarkdownShortName = True
 
         if isCurrencies:
             # Hack: use short name of currency (e.g., "forint" instead of "Hungarian Forint") in help
@@ -35,7 +35,7 @@ def formatAvailableUnits(unitsIndex):
             # The currencies list is big, so we've to shorten it somehow.
             baseName = baseName.replace('United Arab Emirates', 'UAE')
             if safeShortName.isupper() or len(safeShortName) < 3:
-                formatTemplate = u'- {} {}\n'
+                isMarkdownShortName = False
 
         else:
             safeShortName = massReplace(unit['shortName'], {
@@ -44,6 +44,15 @@ def formatAvailableUnits(unitsIndex):
                 u'³': '3',
                 u'°': ''
             })
+
+        formatTemplate = u'- {}'
+        if safeShortName.lower() != baseName.lower():
+            if isMarkdownShortName:
+                formatTemplate += ' `{}`'
+            else:
+                formatTemplate += ' {}'
+
+        formatTemplate += '\n'
         unitsList += formatTemplate.format(baseName, safeShortName)
 
     return unitsList.strip()
