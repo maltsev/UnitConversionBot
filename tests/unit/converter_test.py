@@ -63,6 +63,8 @@ class ConverterTests(unittest.TestCase):
             ((1, 'STANDARD_ATMOSPHERE'), (1013.25, 'HECTOPASCAL')),
             ((1, 'TORR'), (133.3224, 'PASCAL')),
             ((1, 'POUND_PER_SQUARE_INCH'), (6894.7238, 'PASCAL')),
+            ((1, 'KILOBAR'), (14503.8443, 'POUND_PER_SQUARE_INCH')),
+            ((1, 'MEGABAR'), (986923.2667, 'STANDARD_ATMOSPHERE')),
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={

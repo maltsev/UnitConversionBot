@@ -9,6 +9,9 @@ MEGAPASCAL =  (1e6, ['MPa', 'megapascal', 'megapascals'], 'PASCAL')
 GIGAPASCAL =  (1e9, ['GPa', 'gigapascal', 'gigapascals'], 'PASCAL')
 
 BAR =                   (1e5, ['bar', 'bar', 'bars'], 'STANDARD_ATMOSPHERE')
+KILOBAR =               (BAR[0]*1e3, ['kbar', 'kilobar', 'kilobars'], 'POUND_PER_SQUARE_INCH')
+MEGABAR =               (BAR[0]*1e6, ['Mbar', 'megabar', 'megabars'], 'POUND_PER_SQUARE_INCH')
+
 TECHNICAL_ATMOSPHERE =  (98066.5, ['at', 'technical atmosphere', 'technical atmospheres'], 'BAR')
 STANDARD_ATMOSPHERE =   (101325, ['atm', 'standard atmosphere', 'standard atmospheres'], 'BAR')
 TORR =                  (STANDARD_ATMOSPHERE[0] / 760, ['Torr', 'torr', 'torrs'], 'BAR')

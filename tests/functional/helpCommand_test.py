@@ -357,7 +357,9 @@ class HelpCommandTests(FunctionalTestCase):
 - bar
 - standard atmosphere `atm`
 - megapascal `MPa`
+- kilobar `kbar`
 - gigapascal `GPa`
+- megabar `Mbar`
         """)
 
 
