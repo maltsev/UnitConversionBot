@@ -40,7 +40,8 @@ class ConverterTests(unittest.TestCase):
             ((1,   'KILOMETER_PER_SECOND'), (2236.9363, 'MILE_PER_HOUR')),
 
             # Time
-            ((1,   'YEAR'), (365.2425, 'DAY')),
+            ((1, 'YEAR'),   (365.2425, 'DAY')),
+            ((1, 'MILLISECOND'), (1000000, 'NANOSECOND')),
 
             # Temperature
             ((12,     'CELSIUS'),     (12,        'CELSIUS')),
@@ -106,7 +107,7 @@ class ConverterTests(unittest.TestCase):
 
     def test_defaultUnits(self):
         skipCategories = ['currencies', 'temperature']
-        skipUnits = ['METER_SQUARE', 'NANOMETER_SQUARE', 'NANOMETER_CUBIC']
+        skipUnits = ['METER_SQUARE', 'NANOMETER_SQUARE', 'NANOMETER_CUBIC', 'NANOSECOND']
 
         categoriesIndex = units.getCategoriesIndex(True, stubExchangeRate=True)
         for categoryName, category in categoriesIndex.iteritems():

@@ -284,6 +284,7 @@ class HelpCommandTests(FunctionalTestCase):
 
     def test_timeHelp(self):
         self.assertHelp('time', """
+- nanosecond `ns`
 - millisecond `ms`
 - second `s`
 - minute `min`
