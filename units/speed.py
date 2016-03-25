@@ -19,7 +19,7 @@ METER_PER_HOUR =   (_l.METER[0] / _HOUR_VALUE,   ['m/h'] + _getNames('per hour',
 
 KILOMETER_PER_SECOND = (_l.KILOMETER[0] / _SECOND_VALUE, ['km/s'] + _getNames('per second', _l.KILOMETER[1]), 'KILOMETER_PER_HOUR')
 KILOMETER_PER_MINUTE = (_l.KILOMETER[0] / _MINUTE_VALUE, ['km/min'] + _getNames('per minute', _l.KILOMETER[1]), 'KILOMETER_PER_HOUR')
-KILOMETER_PER_HOUR =   (_l.KILOMETER[0] / _HOUR_VALUE,   ['km/h'] + _getNames('per hour', _l.KILOMETER[1]) + ['km/hr', 'kmph', 'kmh'], 'METER_PER_SECOND')
+KILOMETER_PER_HOUR =   (_l.KILOMETER[0] / _HOUR_VALUE,   ['km/h'] + _getNames('per hour', _l.KILOMETER[1]) + ['km/hr', 'kmph', 'kmh', 'kph'], 'METER_PER_SECOND')
 
 MILE_PER_SECOND = (_l.MILE[0] / _SECOND_VALUE, ['mi/s'] + _getNames('per second', _l.MILE[1]), 'KILOMETER_PER_HOUR')
 MILE_PER_MINUTE = (_l.MILE[0] / _MINUTE_VALUE, ['mi/min'] + _getNames('per minute', _l.MILE[1]), 'KILOMETER_PER_HOUR')

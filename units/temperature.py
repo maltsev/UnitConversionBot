@@ -2,7 +2,7 @@
 from __future__ import division as _
 
 CELSIUS =    (lambda C: C,              lambda C: C,
-[u'°C', 'Celsius', 'Degree Celsius', 'Degrees Celsius', 'Celsius Degree', 'Celsius Degrees', 'C'], 'FAHRENHEIT')
+[u'°C', 'Celsius', 'Degree Celsius', 'Degrees Celsius', 'Celsius Degree', 'Celsius Degrees', 'celcius', 'C'], 'FAHRENHEIT')
 
 FAHRENHEIT = (lambda C: (C * 1.8) + 32, lambda F: (F - 32) * 5/9,
 [u'°F', 'Fahrenheit', 'Degree Fahrenheit', 'Degrees Fahrenheit', 'Fahrenheit Degree', 'Fahrenheit Degrees', 'F'], 'CELSIUS')
