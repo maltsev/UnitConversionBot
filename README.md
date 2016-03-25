@@ -24,10 +24,14 @@ Disabled
 ```
 
 
+
+
 ## StoreBot.me
+https://storebot.me/bot/unitconversionbot
+
 ### Description
 ```
-The bot can convert from one unit to another. Just type something like 100 ft to m and the bot will convert it for you. It supports also inline commands.
+The bot can convert from one unit to another. Just type something like 100 ft to m and the bot will convert it. It supports also inline commands.
 
 The bot can convert between 282 units in 11 categories:
 - length (ft to m)
@@ -36,6 +40,37 @@ The bot can convert between 282 units in 11 categories:
 - mass (g to lb)
 - temperature (°C to °F)
 - ... and other
+
+For more info type /help
+```
+
+
+
+
+## BotFamily.com
+http://botfamily.com/bot/details/UnitConversionBot
+
+### Short description
+```
+The bot can convert from one unit to another. Just type something like "100 ft to m" and the bot will convert it.
+```
+
+### Description
+```
+The bot can convert from one unit to another. Just type something like 100 ft to m and the bot will convert it. It supports also inline commands.
+
+The bot can convert between 282 units in 11 categories:
+- length (ft to m)
+- area (m² to acre)
+- volume (litre to pint)
+- currencies ($ to €)
+- mass (g to lb)
+- speed (km/h to mph)
+- time (min to ms)
+- temperature (°C to °F)
+- density (kg/m³ to g/cm³)
+- information (MB to Kbit)
+- pressure (atm to Pa)
 
 For more info type /help
 ```
