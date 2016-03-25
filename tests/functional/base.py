@@ -52,6 +52,7 @@ class FunctionalTestCase(unittest.TestCase):
 def responseTemplate(response):
     template = {
         'method': 'sendMessage',
+        'disable_web_page_preview': True,
         'disable_notification': True
     }
 

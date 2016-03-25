@@ -407,7 +407,7 @@ You can also ask me without adding me to the chat. Just type '@UnitConversionBot
 You can use both short (`m2`) and full unit names (square meter).
 
 
-If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev
+If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev or rate me at https://storebot.me/bot/unitconversionbot
 Thank you for chatting with me :-)
             """.strip()
         })

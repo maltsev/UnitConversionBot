@@ -13,7 +13,7 @@ import units
 
 
 FEEDBACK_TEXT = """
-If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev
+If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev or rate me at https://storebot.me/bot/unitconversionbot
 Thank you for chatting with me :-)
 """.strip()
 
@@ -61,6 +61,7 @@ class WebHook(webapp2.RequestHandler):
             response = {
                 'method': 'sendMessage',
                 'chat_id': chatId,
+                'disable_web_page_preview': True,
                 'disable_notification': True
             }
 
