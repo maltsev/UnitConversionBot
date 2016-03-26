@@ -54,6 +54,7 @@ class ParserTests(unittest.TestCase):
             ('12 in^3=m3', 12, 'INCH_CUBIC', 'METER_CUBIC'),
             ('10 cubic m to cu dm', 10, 'METER_CUBIC', 'DECIMETER_CUBIC'),
             ('1 meter^3', 1, 'METER_CUBIC', 'CENTIMETER_CUBIC'),
+            ('1 cup', 1, 'CUP', 'MILLILITER'),
 
             # Currencies
             (u'100 $ to ₽', 100, 'USD', 'RUB'),

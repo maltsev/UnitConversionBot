@@ -24,6 +24,9 @@ class ConverterTests(unittest.TestCase):
             ((1.2,  'METER_CUBIC'),     (1200, 'LITER')),
             ((1234, 'MILLILITER'),      (1.234, 'LITER')),
             ((12,   'IMPERIAL_GALLON'), (54.5531, 'LITER')),
+            ((1,    'CUP'),             (250, 'MILLILITER')),
+            ((1,    'TEASPOON'),        (5, 'MILLILITER')),
+            ((1,    'TABLESPOON'),      (15, 'MILLILITER')),
 
             # Currencies
             ((2,     'USD'), (2,       'USD')),

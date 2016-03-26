@@ -53,8 +53,11 @@ class HelpCommandTests(FunctionalTestCase):
 - cubic millimeter `mm3`
 - cubic centimeter `cm3`
 - milliliter `ml`
+- teaspoon `tsp`
+- tablespoon `tbsp`
 - cubic inch `in3`
 - imperial fluid ounce `fl.oz`
+- cup
 - imperial pint `pt`
 - cubic decimeter `dm3`
 - liter `l`
