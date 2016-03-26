@@ -114,7 +114,6 @@ class HelpCommandTests(FunctionalTestCase):
 - Costa Rican Colón CRC
 - Croatian Kuna `kuna`
 - Cuban Convertible Peso CUC
-- Cuban Peso CUP
 - Czech Republic Koruna `koruna`
 - Danish Krone DKK
 - Djiboutian Franc DJF
