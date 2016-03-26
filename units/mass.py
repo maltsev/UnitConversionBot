@@ -7,7 +7,7 @@ MICROGRAM = (   1e-6,  [u'µg', 'microgram', 'micrograms', 'microgramme', 'micro
 MILLIGRAM = (   0.001, ['mg', 'milligram', 'milligrams', 'milligramme', 'milligrammes'], 'GRAM')
 GRAM =      (   1,     ['g', 'gram', 'grams', 'gramme', 'grammes'], 'MILLIGRAM')
 KILOGRAM =  (1000,     ['kg', 'kilogram', 'kilograms', 'kilogramme', 'kilogrammes'], 'POUND')
-TONNE =     (   1e6,   ['t', 'tonne', 'tonnes', 'megagramm', 'megagramms', 'megagramme', 'megamgrammes'], 'KILOGRAM')
+TONNE =     (   1e6,   ['t', 'tonne', 'tonnes', 'megagramm', 'megagramms', 'megagramme', 'megamgrammes', 'ton'], 'KILOGRAM')
 
 
 POUND = (453.59237,     ['lb', 'pound', 'pounds', 'lbm', 'lbs'], 'GRAM')
