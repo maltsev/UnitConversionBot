@@ -312,6 +312,7 @@ class HelpCommandTests(FunctionalTestCase):
         self.assertHelp('density', """
 - gram per cubic meter `g/m3`
 - kilogram per cubic meter `kg/m3`
+- pound per imperial gallon `lb/gal`
 - kilogram per liter `kg/l`
 - gram per cubic centimeter `g/cm3`
 - gram per milliliter `g/ml`
