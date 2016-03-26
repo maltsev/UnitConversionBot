@@ -23,6 +23,7 @@ skip_files:
   - .*\.pyc$
   - ^static/logo\.png$
   - ^static/logo\.pxm$
+  - ^static/screenshot\.png$
   - ^\.gitignore$
   - ^devRequirements\.txt$
   - ^README\.md$
