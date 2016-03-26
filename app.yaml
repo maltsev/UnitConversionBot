@@ -1,5 +1,5 @@
 application: unitconversionbot
-version: v0-4-1
+version: v0-4-2
 runtime: python27
 api_version: 1
 threadsafe: true
