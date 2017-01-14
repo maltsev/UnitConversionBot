@@ -275,7 +275,7 @@ You can use both short (`m2`) and full unit names (square meter).\n\n\n"""
     def convert(self, expression):
         try:
             currenciesExchangeRates = {}
-            ratesModels = Rates.query().order(-Rates.date).fetch()
+            ratesModels = Rates.query().order(-Rates.date).fetch(1)
             if len(ratesModels) > 0:
                 currenciesExchangeRates = ratesModels[0].content.get('rates', {})
 
