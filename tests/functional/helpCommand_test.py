@@ -250,8 +250,12 @@ class HelpCommandTests(FunctionalTestCase):
 - nanogram `ng`
 - microgram `ug`
 - milligram `mg`
+- troy grain `gr`
 - gram `g`
+- pennyweight `dwt`
 - ounce `oz`
+- troy ounce `ozt`
+- troy pound `tlb`
 - pound `lb`
 - kilogram `kg`
 - tonne `t`
