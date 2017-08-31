@@ -88,7 +88,7 @@ class HelpCommandTests(FunctionalTestCase):
 - Bahraini Dinar BHD
 - Bangladeshi Taka `taka`
 - Barbadian Dollar BBD
-- Belarusian Ruble BYR
+- Belarusian Ruble BYN
 - Belize Dollar BZD
 - Bermudan Dollar BMD
 - Bhutanese Ngultrum `ngultrum`
@@ -124,7 +124,6 @@ class HelpCommandTests(FunctionalTestCase):
 - East Caribbean Dollar XCD
 - Egyptian Pound EGP
 - Eritrean Nakfa `nakfa`
-- Estonian Kroon EEK
 - Ethiopian Birr `birr`
 - Euro €
 - Falkland Islands Pound FKP
@@ -157,19 +156,16 @@ class HelpCommandTests(FunctionalTestCase):
 - Kuwaiti Dinar KWD
 - Kyrgystani Som KGS
 - Laotian Kip `kip`
-- Latvian Lats `lats`
 - Lebanese Pound LBP
 - Lesotho Loti `Loti`
 - Liberian Dollar LRD
 - Libyan Dinar LYD
-- Lithuanian Litas `litas`
 - Macanese Pataca `pataca`
 - Macedonian Denar `denar`
 - Malagasy Ariary `ariary`
 - Malawian Kwacha MWK
 - Malaysian Ringgit `ringgit`
 - Maldivian Rufiyaa `rufiyaa`
-- Maltese Lira MTL
 - Manx pound IMP
 - Mauritanian Ouguiya `ouguiya`
 - Mauritian Rupee MUR

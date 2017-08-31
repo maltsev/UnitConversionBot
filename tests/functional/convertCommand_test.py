@@ -85,7 +85,7 @@ class ConvertCommandTests(ConverMixin, FunctionalTestCase):
             anotherTestExchangeRates['rates']['CZK'] = 1000000.0
             futureDate = datetime.datetime.now() + datetime.timedelta(days=1)
             Rates(content=anotherTestExchangeRates, date=futureDate).put()
-            responseMessage = '82,693.184 CZK'
+            responseMessage = '99,318.956 CZK'
 
         requestJson = requestTemplate({
             'text': u'10.5 Icelandic Króna to Kč',
