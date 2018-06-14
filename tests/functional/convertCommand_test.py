@@ -291,3 +291,36 @@ class ConvertCommandTests(ConverMixin, FunctionalTestCase):
 
         self.assertRequest(requestJson, expectedResponseJson)
         self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'InvalidValueException', 'expression': u'one ft to m'}))
+
+
+    @log_capture(level=logging.INFO)
+    def test_convertHugeNumber(self, logs):
+        requestJson = requestTemplate({
+            'text': '99999999999.999 km to m',
+            'chat': {
+                'id': 11
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 11,
+            'text': u"Sorry, I can't convert such big numbers."
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)
+        self.checkLogs(logs, ('INFO', {'command': 'convert', 'type': 'InvalidValueException', 'expression': u'99999999999.999 km to m'}))
+
+
+        requestJson = requestTemplate({
+            'text': '99999999999.99 km to m',
+            'chat': {
+                'id': 9
+            }
+        })
+
+        expectedResponseJson = responseTemplate({
+            'chat_id': 9,
+            'text': '99,999,999,999,990 m',
+        })
+
+        self.assertRequest(requestJson, expectedResponseJson)

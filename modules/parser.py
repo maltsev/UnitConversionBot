@@ -15,6 +15,9 @@ def parseExpression(expression, unitsIndex):
     except ValueError:
         raise InvalidValueException(InvalidValueException.errorMessage.format(rawFromValue))
 
+    if len(rawFromValue) > 14:
+        raise InvalidValueException("Sorry, I can't convert such big numbers.")
+
     rawFromUnit = expressionParts[1]
     fromUnit = getUnit(rawFromUnit, unitsIndex)
 
