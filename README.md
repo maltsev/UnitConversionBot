@@ -1,4 +1,4 @@
-# [Unit Conversion Bot](https://t.me/UnitConversionBot)
+# [Unit Conversion Bot](https://t.me/UnitConversionBot) [![Build Status](https://travis-ci.org/maltsev/UnitConversionBot.svg?branch=master)](https://travis-ci.org/maltsev/UnitConversionBot)
 
 A [Telegram](https://telegram.org/) bot that converts units (e.g. feet → meters).
 Uses [Google App Engine](https://cloud.google.com/appengine/).
