@@ -32,7 +32,10 @@ def formatAvailableUnits(unitsIndex):
             safeShortName = unit['names'][-2] if len(unit['names']) > 3 else unit['shortName']
 
             # Telegram message's text must be less than 4096 chars.
-            # The currencies list is big, so we've to shorten it somehow.
+            # The currencies list is big, so we've to shorten it.
+            if unit['key'] in ['AWG', 'BBD', 'BIF', 'CVE', 'CDF', 'DJF']:
+                continue
+
             baseName = baseName.replace('United Arab Emirates', 'UAE')
             if safeShortName.isupper() or len(safeShortName) < 3:
                 isMarkdownShortName = False

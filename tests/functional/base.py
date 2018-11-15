@@ -44,6 +44,7 @@ class FunctionalTestCase(unittest.TestCase):
         self.assertEqual(responseData['json'], expectedResponseJson)
         if 'text' in responseData['json']:
             responseTextLength = len(responseData['json']['text'])
+            # Telegram message must be less than 4096 chars
             self.assertTrue(responseTextLength < 4096, 'Response text contains {} chars'.format(responseTextLength))
 
 
