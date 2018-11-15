@@ -92,6 +92,7 @@ class HelpCommandTests(FunctionalTestCase):
 - Belize Dollar BZD
 - Bermudan Dollar BMD
 - Bhutanese Ngultrum `ngultrum`
+- BitShares BTS
 - Bitcoin BTC
 - Bolivian Boliviano `boliviano`
 - Bosnia-Herzegovina Convertible Mark BAM
@@ -119,14 +120,21 @@ class HelpCommandTests(FunctionalTestCase):
 - Cuban Convertible Peso CUC
 - Czech Republic Koruna `koruna`
 - Danish Krone DKK
+- Dash
 - Djiboutian Franc DJF
+- DogeCoin DOGE
 - Dominican Peso DOP
+- EarthCoin EAC
 - East Caribbean Dollar XCD
 - Egyptian Pound EGP
+- Emercoin EMC
 - Eritrean Nakfa `nakfa`
+- Ethereum ETH
 - Ethiopian Birr `birr`
 - Euro €
+- Factom FCT
 - Falkland Islands Pound FKP
+- Feathercoin FTC
 - Fijian Dollar FJD
 - Gambian Dalasi `dalasi`
 - Georgian Lari `lari`
@@ -160,6 +168,7 @@ class HelpCommandTests(FunctionalTestCase):
 - Lesotho Loti `Loti`
 - Liberian Dollar LRD
 - Libyan Dinar LYD
+- LiteCoin LTC
 - Macanese Pataca `pataca`
 - Macedonian Denar `denar`
 - Malagasy Ariary `ariary`
@@ -171,10 +180,12 @@ class HelpCommandTests(FunctionalTestCase):
 - Mauritian Rupee MUR
 - Mexican Peso MXN
 - Moldovan Leu MDL
+- Monero XMR
 - Mongolian Tugrik `tugrik`
 - Moroccan Dirham MAD
 - Mozambican Metical `metical`
 - Myanma Kyat `kyat`
+- Namecoin NMC
 - Namibian Dollar NAD
 - Nepalese Rupee NPR
 - Netherlands Antillean Guilder `guilder`
@@ -184,17 +195,22 @@ class HelpCommandTests(FunctionalTestCase):
 - Nigerian Naira `naira`
 - North Korean Won KPW
 - Norwegian Krone NOK
+- NovaCoin NVC
+- Nxt
 - Omani Rial OMR
 - Pakistani Rupee PKR
 - Palladium Ounce XPD
 - Panamanian Balboa `balboa`
 - Papua New Guinean Kina `kina`
 - Paraguayan Guarani `guarani`
+- Peercoin PPC
 - Peruvian Nuevo Sol `nuevo sol`
 - Philippine Peso PHP
 - Platinum Ounce XPT
 - Polish Zloty `zloty`
+- Primecoin XPM
 - Qatari Rial QAR
+- Ripple XRP
 - Romanian Leu RON
 - Russian Ruble ₽
 - Rwandan Franc RWF
@@ -213,6 +229,7 @@ class HelpCommandTests(FunctionalTestCase):
 - South Korean Won `won`
 - Special Drawing Rights XDR
 - Sri Lankan Rupee LKR
+- Stellar STR
 - Sudanese Pound SDG
 - Surinamese Dollar SRD
 - Swazi Lilangeni `lilangeni`
@@ -236,6 +253,7 @@ class HelpCommandTests(FunctionalTestCase):
 - Uzbekistan Som UZS
 - Vanuatu Vatu `vatu`
 - Venezuelan Bolívar Fuerte `bolivar fuerte`
+- VertCoin VTC
 - Vietnamese Dong `dong`
 - Yemeni Rial YER
 - Zambian Kwacha ZMW

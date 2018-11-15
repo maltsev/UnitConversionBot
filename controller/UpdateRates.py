@@ -9,7 +9,7 @@ from config import OPENEXHANGERATES_API_KEY
 class UpdateRates(webapp2.RequestHandler):
     def get(self):
         try:
-            apiUrl = 'https://openexchangerates.org/api/latest.json?app_id=' + OPENEXHANGERATES_API_KEY
+            apiUrl = 'https://openexchangerates.org/api/latest.json?show_alternative=1&app_id=' + OPENEXHANGERATES_API_KEY
             result = urlfetch.fetch(apiUrl)
             if result.status_code != 200:
                 raise Exception(result.content)
