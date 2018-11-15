@@ -24,6 +24,7 @@ skip_files:
   - ^static/logo\.png$
   - ^static/logo\.pxm$
   - ^static/screenshot\.png$
+  - ^static/description\.md$
   - ^\.gitignore$
   - ^devRequirements\.txt$
   - ^README\.md$

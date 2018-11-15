@@ -1,76 +1,20 @@
-# Unit Conversion Bot
-[@unitconversionbot](http://telegram.me/UnitConversionBot)
+# [Unit Conversion Bot](https://t.me/UnitConversionBot)
 
-## BotFather Config
-```
-/setname
-Unit Conversion
-
-/setdescription
-I can convert from one unit to another. Just type something like "100 ft to m" and I'll convert it for you.
-
-/setabouttext
-I can convert from one unit to another.
-
-/setcommands
-convert - Convert from one unit to another (e.g., "10 ft to m")
-help - Help and a full list of available units
-
-/setinline
-Convert units (e.g., "10 ft to m")
-
-/setinlinefeedback
-Disabled
-```
+A [Telegram](https://telegram.org/) bot that converts units (e.g. feet → meters).
+Uses [Google App Engine](https://cloud.google.com/appengine/).
 
 
+## Local Setup
+1. Install Python 2.7.
+2. [Download](https://cloud.google.com/appengine/docs/standard/python/download) and install the original App Engine SDK for Python.
+3. Open _Google App Engine Launcher_.
+4. Click _File → Add Existing Application_.
+5. Specify the path and click _Add_.
+6. `make init`.
+
+To run tests run `make test`.
 
 
-## StoreBot.me
-https://storebot.me/bot/unitconversionbot
-
-### Description
-```
-The bot can convert from one unit to another. Just type something like 100 ft to m and the bot will convert it. It supports also inline commands.
-
-The bot can convert between 282 units in 11 categories:
-- length (ft to m)
-- volume (litre to pint)
-- currencies ($ to €)
-- mass (g to lb)
-- temperature (°C to °F)
-- ... and other
-
-For more info type /help
-```
-
-
-
-
-## BotFamily.com
-http://botfamily.com/bot/details/UnitConversionBot
-
-### Short description
-```
-The bot can convert from one unit to another. Just type something like "100 ft to m" and the bot will convert it.
-```
-
-### Description
-```
-The bot can convert from one unit to another. Just type something like 100 ft to m and the bot will convert it. It supports also inline commands.
-
-The bot can convert between 282 units in 11 categories:
-- length (ft to m)
-- area (m² to acre)
-- volume (litre to pint)
-- currencies ($ to €)
-- mass (g to lb)
-- speed (km/h to mph)
-- time (min to ms)
-- temperature (°C to °F)
-- density (kg/m³ to g/cm³)
-- information (MB to Kbit)
-- pressure (atm to Pa)
-
-For more info type /help
-```
+## Deploy
+Get an API key from [Open Exchange Rates](https://openexchangerates.org/signup/free) and save it to `localConfig.py`.
+To deploy the bot to Google Cloud click _Deploy_ in _Google App Engine Launcher_.
