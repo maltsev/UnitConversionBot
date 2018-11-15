@@ -18,3 +18,8 @@ To run tests run `make test`.
 ## Deploy
 Get an API key from [Open Exchange Rates](https://openexchangerates.org/signup/free) and save it to `localConfig.py`.
 To deploy the bot to Google Cloud click _Deploy_ in _Google App Engine Launcher_.
+
+
+## License
+GNU General Public License v3.0
+See [LICENSE.txt](https://github.com/maltsev/UnitConversionBot/blob/master/LICENSE.txt) to see the full text.
