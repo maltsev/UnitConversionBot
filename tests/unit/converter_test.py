@@ -27,6 +27,12 @@ class ConverterTests(unittest.TestCase):
             ((1,    'CUP'),             (250, 'MILLILITER')),
             ((1,    'TEASPOON'),        (5, 'MILLILITER')),
             ((1,    'TABLESPOON'),      (15, 'MILLILITER')),
+            ((1,    'US_FLUID_OUNCE'),  (29.5735, 'MILLILITER')),
+            ((1,    'US_GILL'),         (118.2941, 'MILLILITER')),
+            ((1,    'US_PINT'),         (473.1765, 'MILLILITER')),
+            ((1,    'US_QUART'),        (946.3529, 'MILLILITER')),
+            ((1,    'US_GALLON'),       (3.7854, 'LITER')),
+
 
             # Currencies
             ((2,     'USD'), (2,       'USD')),

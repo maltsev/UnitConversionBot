@@ -57,11 +57,16 @@ class HelpCommandTests(FunctionalTestCase):
 - tablespoon `tbsp`
 - cubic inch `in3`
 - imperial fluid ounce `fl.oz`
+- US fluid ounce `US-fl.oz`
+- US gill `US-gill`
 - cup
+- US pint `US-pt`
 - imperial pint `pt`
+- US quart `US-qt`
 - cubic decimeter `dm3`
 - liter `l`
 - imperial quart `qt`
+- US gallon `US-gal`
 - imperial gallon `gal`
 - cubic foot `ft3`
 - cubic yard `yd3`

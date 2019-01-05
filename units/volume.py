@@ -37,11 +37,11 @@ IMPERIAL_PINT = (IMPERIAL_FLUID_OUNCE[0] * 20, ['pt', 'imperial pint', 'imperial
 IMPERIAL_QUART = (IMPERIAL_FLUID_OUNCE[0] * 40, ['qt', 'imperial quart', 'imperial quarts', 'quart', 'quarts'], 'LITER')
 IMPERIAL_GALLON = (IMPERIAL_FLUID_OUNCE[0] * 160, ['gal', 'imperial gallon', 'imperial gallons', 'gallon', 'gallons'], 'LITER')
 
-# US_FLUID_OUNCE = (29.5735295625 * MILLILITER[0], ['US fl.oz', 'US fluid ounce', 'US fluid ounces'], 'MILLILITER')
-# US_GILL = (US_FLUID_OUNCE[0] * 4, ['US gill', 'US gill', 'US gills'], 'MILLILITER')
-# US_PINT = (US_FLUID_OUNCE[0] * 16, ['US pt', 'US pint', 'US pints'], 'MILLILITER')
-# US_QUART = (US_FLUID_OUNCE[0] * 32, ['US qt', 'US quart', 'US quarts'], 'LITER')
-# US_GALLON = (US_FLUID_OUNCE[0] * 128, ['US gal', 'US gallon', 'US gallons'], 'LITER')
+US_FLUID_OUNCE = (29.5735295625 * MILLILITER[0], ['US-fl.oz', 'US fluid ounce', 'US fluid ounces'], 'MILLILITER')
+US_GILL = (US_FLUID_OUNCE[0] * 4, ['US-gill', 'US gill', 'US gills'], 'MILLILITER')
+US_PINT = (US_FLUID_OUNCE[0] * 16, ['US-pt', 'US pint', 'US pints'], 'MILLILITER')
+US_QUART = (US_FLUID_OUNCE[0] * 32, ['US-qt', 'US quart', 'US quarts'], 'LITER')
+US_GALLON = (US_FLUID_OUNCE[0] * 128, ['US-gal', 'US gallon', 'US gallons'], 'LITER')
 
 TEASPOON = (5 * MILLILITER[0], ['tsp', 'teaspoon', 'teaspoons', 'tspn'], 'MILLILITER')
 TABLESPOON = (15 * MILLILITER[0], ['tbsp', 'tablespoon', 'tablespoons'], 'MILLILITER')
