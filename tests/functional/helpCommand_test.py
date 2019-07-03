@@ -386,6 +386,17 @@ class HelpCommandTests(FunctionalTestCase):
 
 
 
+    def test_fuelConsumptionHelp(self):
+        self.assertHelp('fuel consumption', """
+- kilometer per US gallon `km/US-gal`
+- mile per US gallon `mpg`
+- kilometer per liter `km/l`
+- mile per liter `mi/l`
+        """)
+
+
+
+
     def test_defaultHelp(self):
         requestJson = requestTemplate({
             'text': '/help',
@@ -410,6 +421,7 @@ The bot supports following unit categories:
 - density (kg/m³ to g/cm³)
 - information (MB to Kbit)
 - pressure (atm to Pa)
+- fuel consumption (mpg to km/l)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

@@ -3,7 +3,7 @@ import os
 import sys
 import logging
 import units
-import length, area, volume, currencies, mass, speed, time, temperature, density, information, pressure
+import length, area, volume, currencies, mass, speed, time, temperature, density, information, pressure, fuel_consumption
 
 categories = [
     'length',
@@ -16,7 +16,8 @@ categories = [
     'temperature',
     'density',
     'information',
-    'pressure'
+    'pressure',
+    'fuel_consumption',
 ]
 
 
@@ -68,7 +69,7 @@ def getCategoriesIndex(regenerate=False, **kwargs):
     index = getIndex(regenerate, **kwargs)
     categoriesIndex = {}
     for unit in index.values():
-        unitCategory = unit['category']
+        unitCategory = unit['category'].replace('_', ' ')
         if unitCategory not in categoriesIndex:
             categoriesIndex[unitCategory] = {}
 

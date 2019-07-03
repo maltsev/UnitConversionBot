@@ -75,6 +75,11 @@ class ConverterTests(unittest.TestCase):
             ((1, 'POUND_PER_SQUARE_INCH'), (6894.7238, 'PASCAL')),
             ((1, 'KILOBAR'), (14503.8443, 'POUND_PER_SQUARE_INCH')),
             ((1, 'MEGABAR'), (986923.2667, 'STANDARD_ATMOSPHERE')),
+
+            # Fuel consumption
+            ((1, 'MILE_PER_US_GALLON'), (0.4251, 'KILOMETER_PER_LITER')),
+            ((1, 'MILE_PER_US_GALLON'), (0.2642, 'MILE_PER_LITER')),
+            ((1, 'MILE_PER_US_GALLON'), (1.6093, 'KILOMETER_PER_US_GALON'))
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={
