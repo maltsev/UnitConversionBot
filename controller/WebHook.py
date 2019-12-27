@@ -193,6 +193,7 @@ The bot supports following unit categories:
 - pressure (atm to Pa)
 - fuel consumption (mpg to km/l)
 - power (horsepower to kW)
+- torque (N-m to lbf-ft)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

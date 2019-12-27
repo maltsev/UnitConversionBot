@@ -106,7 +106,10 @@ class ParserTests(unittest.TestCase):
             # Pressure
             ('1 hPa to pound-force per square inch', 1, 'HECTOPASCAL', 'POUND_PER_SQUARE_INCH'),
             ('1 lbf/in2 = torr', 1, 'POUND_PER_SQUARE_INCH', 'TORR'),
-            ('1 Pa', 1, 'PASCAL', 'HECTOPASCAL')
+            ('1 Pa', 1, 'PASCAL', 'HECTOPASCAL'),
+
+            # Torque
+            ('1 n m to lbf ft', 1, 'NEWTON_METER', 'POUND_FOOT'),
         ]
 
         invalidExpressionError = "Sorry, I don't understand your question. I'm just a bot :-( Please ask something simple like '100 ft to m'."

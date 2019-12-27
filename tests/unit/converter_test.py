@@ -85,6 +85,10 @@ class ConverterTests(unittest.TestCase):
             ((1, 'KILOWATT'), (1000, 'WATT')),
             ((1, 'METRIC_HORSEPOWER'), (735.4987, 'WATT')),
             ((1, 'MECHANICAL_HORSEPOWER'), (745.6999, 'WATT')),
+
+            # Torque
+            ((1, 'NEWTON_METER'), (0.7376, 'POUND_FOOT')),
+            ((1, 'POUND_FOOT'), (1.3558, 'NEWTON_METER')),
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={
