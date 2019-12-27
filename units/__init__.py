@@ -3,7 +3,7 @@ import os
 import sys
 import logging
 import units
-import length, area, volume, currencies, mass, speed, time, temperature, density, information, pressure, fuel_consumption
+import length, area, volume, currencies, mass, speed, time, temperature, density, information, pressure, fuel_consumption, power
 
 categories = [
     'length',
@@ -18,6 +18,7 @@ categories = [
     'information',
     'pressure',
     'fuel_consumption',
+    'power',
 ]
 
 

@@ -395,6 +395,13 @@ class HelpCommandTests(FunctionalTestCase):
         """)
 
 
+    def test_powerHelp(self):
+        self.assertHelp('power', """
+- watt `W`
+- metric horsepower `PS`
+- mechanical horsepower `hp`
+- kilowatt `kW`
+        """)
 
 
     def test_defaultHelp(self):
@@ -422,6 +429,7 @@ The bot supports following unit categories:
 - information (MB to Kbit)
 - pressure (atm to Pa)
 - fuel consumption (mpg to km/l)
+- power (horsepower to kW)
 
 To get all available units of specific category type "/help #category#" ("/help length", for example).
 

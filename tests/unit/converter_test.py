@@ -79,7 +79,12 @@ class ConverterTests(unittest.TestCase):
             # Fuel consumption
             ((1, 'MILE_PER_US_GALLON'), (0.4251, 'KILOMETER_PER_LITER')),
             ((1, 'MILE_PER_US_GALLON'), (0.2642, 'MILE_PER_LITER')),
-            ((1, 'MILE_PER_US_GALLON'), (1.6093, 'KILOMETER_PER_US_GALON'))
+            ((1, 'MILE_PER_US_GALLON'), (1.6093, 'KILOMETER_PER_US_GALON')),
+
+            # Power
+            ((1, 'KILOWATT'), (1000, 'WATT')),
+            ((1, 'METRIC_HORSEPOWER'), (735.4987, 'WATT')),
+            ((1, 'MECHANICAL_HORSEPOWER'), (745.6999, 'WATT')),
         ]
 
         unitsIndex = units.getIndex(True, stubExchangeRate=True, currenciesExchangeRates={
