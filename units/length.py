@@ -21,7 +21,7 @@ MILE = (FOOT[0] * 5280, ['mi', 'mile', 'miles'], 'KILOMETER')
 NAUTICAL_MILE = (1852, ['nmi', 'nautical mile', 'nautical miles'], 'KILOMETER')
 
 ASTRONOMICAL_UNIT = (149597870700, ['au', 'astronomical unit', 'astronimical units', 'ua'], 'KILOMETER')
-RACK_UNIT = (0.04445, ['U', 'unit', 'units', 'rack unit', 'rack units'], 'CENTIMETER')
+RACK_UNIT = (0.04445, ['U', 'rack unit', 'rack units', 'unit', 'units'], 'CENTIMETER')
 PARSEC = ((648000 * ASTRONOMICAL_UNIT[0]) / _PI, ['pc', 'parsec', 'parsecs'], 'KILOMETER')
 LIGHT_YEAR = (9460730472580800, ['ly', 'light-year', 'light-years', 'light year', 'light years', 'lightyear', 'lightyears'], 'KILOMETER')
 
