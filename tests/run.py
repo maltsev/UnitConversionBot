@@ -33,4 +33,6 @@ if not RUN_ON_INSTANCE:
 alltests.addTests(functional.tests)
 
 if __name__ == '__main__':
-    unittest.TextTestRunner().run(alltests)
+    result = unittest.TextTestRunner().run(alltests)
+    if not result.wasSuccessful():
+        sys.exit(1)
