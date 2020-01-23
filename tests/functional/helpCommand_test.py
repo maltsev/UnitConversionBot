@@ -12,6 +12,7 @@ class HelpCommandTests(FunctionalTestCase):
 - millimeter `mm`
 - centimeter `cm`
 - inch `in`
+- rack unit `U`
 - decimeter `dm`
 - foot `ft`
 - yard `yd`
