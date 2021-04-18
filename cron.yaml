@@ -1,4 +1,0 @@
-cron:
-- description: Exchange rates update
-  url: /api/rates/update
-  schedule: every 2 hours

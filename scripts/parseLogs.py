@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import os
 import ast
 import json
@@ -21,8 +21,6 @@ for root, dirs, files in os.walk(statsDir):
                 fullLogs.append(json.loads(fullLogStr))
 
 
-
-
 def printExpression(logLine):
     if logLine['severity'] != 'INFO':
         return
@@ -34,15 +32,11 @@ def printExpression(logLine):
     try:
         logLineJson = ast.literal_eval(logMessage)
     except Exception as error:
-        print logLine['logMessage']
-        print error
+        print(logLine['logMessage'])
+        print(error)
 
     if 'type' in logLineJson:
-        print logLineJson['expression'].encode('utf-8')
-
-
-
-
+        print(logLineJson['expression'])
 
     logMessage = logLine['logMessage']
     if '{' not in logMessage:
@@ -51,13 +45,11 @@ def printExpression(logLine):
     try:
         logLineJson = ast.literal_eval(logMessage)
     except Exception as error:
-        print logLine['logMessage']
-        print error
+        print(logLine['logMessage'])
+        print(error)
 
     if 'message' in logLineJson and 'from' in logLineJson['message']:
-        print logLineJson['message']['from']['id']
-
-
+        print(logLineJson['message']['from']['id'])
 
 
 for fullLog in fullLogs:

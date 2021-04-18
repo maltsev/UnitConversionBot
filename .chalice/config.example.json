@@ -1,0 +1,20 @@
+{
+  "version": "2.0",
+  "app_name": "unitconversionbot",
+  "environment_variables": {
+    "OPENEXHANGERATES_API_KEY": "### INSERT KEY HERE ###",
+    "MONITOR_PING_URL": "### For example, https://healthchecks.io/ ###",
+    "S3_BUCKET": "### INSERT S3 bucket name here ###",
+    "S3_BUCKET_REGION": "eu-central-1"
+  },
+  "stages": {
+    "dev": {
+      "autogen_policy": true,
+      "api_gateway_stage": "dev"
+    },
+    "prod": {
+      "autogen_policy": true,
+      "api_gateway_stage": "prod"
+    }
+  }
+}

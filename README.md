@@ -1,23 +1,19 @@
 # [Unit Conversion Bot](https://t.me/UnitConversionBot) [![Build Status](https://travis-ci.org/maltsev/UnitConversionBot.svg?branch=master)](https://travis-ci.org/maltsev/UnitConversionBot)
 
 A [Telegram](https://telegram.org/) bot that converts units (e.g. feet → meters).
-Uses [Google App Engine](https://cloud.google.com/appengine/).
+Uses [AWS Lambda](https://aws.amazon.com/lambda/).
 
 
 ## Local Setup
-1. Install Python 2.7.
-2. [Download](https://cloud.google.com/appengine/docs/standard/python/download) and install the original App Engine SDK for Python.
-3. Open _Google App Engine Launcher_.
-4. Click _File → Add Existing Application_.
-5. Specify the path and click _Add_.
-6. `make init`.
+1. Install Python 3 and [Chalice](https://aws.github.io/chalice/index.html).
+2. Run `make serve-local` to run it locally.
 
 To run tests run `make test`.
 
 
 ## Deploy
-Get an API key from [Open Exchange Rates](https://openexchangerates.org/signup/free) and save it to `localConfig.py`.
-To deploy the bot to Google Cloud click _Deploy_ in _Google App Engine Launcher_.
+Copy `.chalice/config.example.json` to `.chalice/config.json`.
+Insert an API key from [Open Exchange Rates](https://openexchangerates.org/signup/free) and a S3 bucket name to the config file.
 
 
 ## License

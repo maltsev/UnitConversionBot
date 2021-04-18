@@ -73,4 +73,8 @@ target/
 
 # Custom
 /stats/
-/localConfig.py
+.chalice/deployments/
+.chalice/deployed/
+.chalice/venv/
+.chalice/config.json
+/venv/
