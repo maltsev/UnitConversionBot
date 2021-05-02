@@ -77,6 +77,7 @@ def getCategoriesIndex():
 
 def getIndex():
     exchange_rates = fetchExchangeRates()
+    exchange_rates['MBTC'] = exchange_rates['BTC'] * 1000
     index = {}
     unitKeys = []
     globalVariables = globals()

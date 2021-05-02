@@ -20,6 +20,10 @@ def test_convertCurrencies():
         '2.179 CZK',
         text='10.5 Icelandic Króna to Kč',
     )
+    check(
+        '3.913 €',
+        text='1 mBTC to €',
+    )
 
 
 def test_convert(caplog):

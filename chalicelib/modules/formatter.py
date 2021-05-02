@@ -30,7 +30,7 @@ def formatAvailableUnits(unitsIndex):
 
             # Telegram message's text must be less than 4096 chars.
             # The currencies list is big, so we've to shorten it.
-            if unit['key'] in ['AWG', 'BBD', 'BIF', 'CVE', 'CDF', 'DJF']:
+            if unit['key'] in ['AWG', 'BBD', 'BIF', 'CVE', 'CDF', 'DJF', 'MBTC']:
                 continue
 
             baseName = baseName.replace('United Arab Emirates', 'UAE')
