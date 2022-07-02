@@ -14,13 +14,16 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Install dependencies
+      - name: Install pipenv
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install --user pipenv
+
+      - name: Install dependencies
+        run: pipenv install --dev
 
       - name: Lint
-        run: make lint
+        run: pipenv run make lint
 
       - name: Test
-        run: make test
+        run: pipenv run make test

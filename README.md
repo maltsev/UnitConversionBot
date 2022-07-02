@@ -5,10 +5,11 @@ Uses [AWS Lambda](https://aws.amazon.com/lambda/).
 
 
 ## Local Setup
-1. Install Python 3 and [Chalice](https://aws.github.io/chalice/index.html).
-2. Run `make serve-local` to run it locally.
+1. Install Python 3 and [pipenv](https://pipenv.pypa.io/en/latest/).
+1. Run `pipenv install --dev`.
+2. Run `pipenv run make serve-local` to run it locally.
 
-To run tests run `make test`.
+To run tests run `pipenv run make test`.
 
 
 ## Deploy
