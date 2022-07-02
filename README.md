@@ -1,4 +1,4 @@
-# [Unit Conversion Bot](https://t.me/UnitConversionBot) [![Build Status](https://travis-ci.org/maltsev/UnitConversionBot.svg?branch=master)](https://travis-ci.org/maltsev/UnitConversionBot)
+# [Unit Conversion Bot](https://t.me/UnitConversionBot) ![Build status](https://github.com/maltsev/UnitConversionBot/actions/workflows/ci.yml/badge.svg)
 
 A [Telegram](https://telegram.org/) bot that converts units (e.g. feet → meters).
 Uses [AWS Lambda](https://aws.amazon.com/lambda/).
