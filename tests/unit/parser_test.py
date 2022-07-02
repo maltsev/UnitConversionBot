@@ -34,6 +34,9 @@ def test_parseExpression():
         ('100,000m to ft', 100000, 'METER', 'FOOT'),
         ('93ft', 93, 'FOOT', 'METER'),
         ('38 meters to', 38, 'METER', 'FOOT'),
+        ('100 cm to in', 100, 'CENTIMETER', 'INCH'),
+        ('100 cm in', 100, 'CENTIMETER', 'INCH'),
+        ('100 cm to', 100, 'CENTIMETER', 'METER'),
 
         # Area
         ('10 ft² to m²', 10, 'FOOT_SQUARE', 'METER_SQUARE'),

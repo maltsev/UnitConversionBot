@@ -23,7 +23,7 @@ def parseExpression(expression, unitsIndex):
     toUnit = fromUnit['defaultToUnit']
     if len(expressionParts) >= 3:
         rawToUnit = expressionParts[-1]
-        if rawToUnit not in ['to', 'in', '=', 'go']:
+        if rawToUnit not in ['to', '=', 'go']:
             toUnit = getUnit(rawToUnit, unitsIndex)
 
     return {
