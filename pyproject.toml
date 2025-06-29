@@ -1,6 +1,6 @@
 [project]
 name = "unit-conversion-bot"
-version = "0.1.0"
+version = "1.0.0"
 description = "Unit conversion bot for Telegram: https://t.me/UnitConversionBot"
 readme = "README.md"
 requires-python = ">=3.13"
