@@ -6,8 +6,12 @@ serve-local:
 	DEBUG=1 chalice local --host 0.0.0.0 --port 8001 --autoreload
 
 lint:
-	flake8
-	git ls-tree -r --name-only --full-tree HEAD | grep '.py' | xargs pylint --errors-only --output-format=colorized
+	ruff check .
+	black --check .
+
+prettify:
+	ruff format .
+	black .
 
 deploy:
 	chalice deploy --stage prod
