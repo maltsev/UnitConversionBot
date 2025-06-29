@@ -4,7 +4,7 @@ from chalicelib.modules.formatter import massReplace
 
 def parseExpression(expression, unitsIndex):
     expression = normalizeExpression(expression, unitsIndex)
-    expressionParts = expression.split(' ')
+    expressionParts = expression.split(" ")
     if len(expressionParts) < 2:
         raise InvalidExpressionException(InvalidExpressionException.defaultErrorMessage)
 
@@ -12,7 +12,9 @@ def parseExpression(expression, unitsIndex):
     try:
         fromValue = float(rawFromValue)
     except ValueError:
-        raise InvalidValueException(InvalidValueException.errorMessage.format(rawFromValue))
+        raise InvalidValueException(
+            InvalidValueException.errorMessage.format(rawFromValue)
+        )
 
     if len(rawFromValue) > 14:
         raise InvalidValueException("Sorry, I can't convert such big numbers.")
@@ -20,32 +22,22 @@ def parseExpression(expression, unitsIndex):
     rawFromUnit = expressionParts[1]
     fromUnit = getUnit(rawFromUnit, unitsIndex)
 
-    toUnit = fromUnit['defaultToUnit']
+    toUnit = fromUnit["defaultToUnit"]
     if len(expressionParts) >= 3:
         rawToUnit = expressionParts[-1]
-        if rawToUnit not in ['to', '=', 'go']:
+        if rawToUnit not in ["to", "=", "go"]:
             toUnit = getUnit(rawToUnit, unitsIndex)
 
-    return {
-        'fromValueUnit': {
-            'value': fromValue,
-            'unit': fromUnit
-        },
-        'toUnit': toUnit
-    }
+    return {"fromValueUnit": {"value": fromValue, "unit": fromUnit}, "toUnit": toUnit}
 
 
 def normalizeExpression(expression, unitsIndex):
     expression = expression.lower()
-    expression = massReplace(expression, {
-        ',': '',
-        'convert': '',
-        '=': ' = '
-    })
+    expression = massReplace(expression, {",": "", "convert": "", "=": " = "})
     # Add whitespace after number
-    expression = re.sub(r'([\./\d]+)(\D)', r'\1 \2', expression)
-    expression = re.sub(r'\s+', ' ', expression, 0, re.UNICODE)
-    expression = expression.replace('/ ', '/')
+    expression = re.sub(r"([\./\d]+)(\D)", r"\1 \2", expression)
+    expression = re.sub(r"\s+", " ", expression, count=0, flags=re.UNICODE)
+    expression = expression.replace("/ ", "/")
     expression = normalizeUnitsInExpression(expression, unitsIndex)
     expression = expression.strip()
 
@@ -53,16 +45,16 @@ def normalizeExpression(expression, unitsIndex):
 
 
 def normalizeUnitsInExpression(expression, unitsIndex):
-    denormalizedUnitNames = list(filter(lambda n: ' ' in n, unitsIndex.keys()))
+    denormalizedUnitNames = list(filter(lambda n: " " in n, unitsIndex.keys()))
     denormalizedUnitNames.sort(key=len, reverse=True)
 
     for denormalizedUnitName in denormalizedUnitNames:
-        shortName = unitsIndex[denormalizedUnitName]['shortName']
+        shortName = unitsIndex[denormalizedUnitName]["shortName"]
         expression = expression.replace(denormalizedUnitName, shortName)
 
-    expression = re.sub(r'(fl\.? ?oz\.? ?|oz\.? ?fl\.? ?)', 'fl.oz ', expression)
+    expression = re.sub(r"(fl\.? ?oz\.? ?|oz\.? ?fl\.? ?)", "fl.oz ", expression)
     # Place a currency sign after the number
-    expression = re.sub(r'([$€£¥₽]) ?([\.\d]+)', r'\2 \1', expression)
+    expression = re.sub(r"([$€£¥₽]) ?([\.\d]+)", r"\2 \1", expression)
 
     return expression
 
@@ -77,26 +69,23 @@ def getUnit(rawUnit, unitsIndex):
 
 def parseMessageText(messageText):
     # Take only the first line
-    messageText = messageText.split('\n')[0]
+    messageText = messageText.split("\n")[0]
 
     # Remove @mentions
-    messageText = re.sub(r'@\w+', '', messageText)
+    messageText = re.sub(r"@\w+", "", messageText)
 
     # Add whitespace in case messageText contains only the command
-    parts = re.split(r'^/(\w+) ', messageText + ' ')
+    parts = re.split(r"^/(\w+) ", messageText + " ")
     if len(parts) == 1:
         expression = messageText.strip()
-        command = ''
+        command = ""
     else:
         expression = parts[2].strip()
         command = parts[1].strip()
 
-    expression = expression.strip('\'".')
+    expression = expression.strip("'\".")
 
-    return {
-        'expression': expression,
-        'command': command
-    }
+    return {"expression": expression, "command": command}
 
 
 class InvalidExpressionException(Exception):

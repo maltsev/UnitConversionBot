@@ -1,5 +1,3 @@
-
-
 from tests.functional import check
 
 startMessage = """
@@ -16,5 +14,5 @@ Thank you for chatting with me :-)
 def test_start():
     check(
         startMessage,
-        text='/start',
+        text="/start",
     )

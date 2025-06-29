@@ -3,14 +3,16 @@ from tests.functional import check
 
 def checkHelp(unitsCategory, expected_text_list):
     check(
-        f'*The full list of {unitsCategory} units:*\n{expected_text_list.strip()}',
-        text=f'/help {unitsCategory}',
-        parse_mode='Markdown'
+        f"*The full list of {unitsCategory} units:*\n{expected_text_list.strip()}",
+        text=f"/help {unitsCategory}",
+        parse_mode="Markdown",
     )
 
 
 def test_lengthHelp():
-    checkHelp('length', """
+    checkHelp(
+        "length",
+        """
 - Angstrom `A`
 - nanometer `nm`
 - micrometer `um`
@@ -29,11 +31,14 @@ def test_lengthHelp():
 - astronomical unit `au`
 - light-year `ly`
 - parsec `pc`
-    """)
+    """,
+    )
 
 
 def test_areaHelp():
-    checkHelp('area', """
+    checkHelp(
+        "area",
+        """
 - square nanometer `nm2`
 - square millimeter `mm2`
 - square centimeter `cm2`
@@ -46,11 +51,14 @@ def test_areaHelp():
 - hectare `ha`
 - square kilometer `km2`
 - square mile `mi2`
-    """)
+    """,
+    )
 
 
 def test_volumeHelp():
-    checkHelp('volume', """
+    checkHelp(
+        "volume",
+        """
 - cubic nanometer `nm3`
 - cubic millimeter `mm3`
 - cubic centimeter `cm3`
@@ -75,11 +83,14 @@ def test_volumeHelp():
 - cubic meter `m3`
 - cubic kilometer `km3`
 - cubic mile `mi3`
-    """)
+    """,
+    )
 
 
 def test_currenciesHelp():
-    checkHelp('currencies', """
+    checkHelp(
+        "currencies",
+        """
 - Afghan Afghani `afghani`
 - Albanian Lek `lek`
 - Algerian Dinar DZD
@@ -248,11 +259,14 @@ def test_currenciesHelp():
 - Yemeni Rial YER
 - Zambian Kwacha ZMW
 - Zimbabwean Dollar ZWL
-    """)
+    """,
+    )
 
 
 def test_massHelp():
-    checkHelp('mass', """
+    checkHelp(
+        "mass",
+        """
 - nanogram `ng`
 - microgram `ug`
 - milligram `mg`
@@ -265,11 +279,14 @@ def test_massHelp():
 - pound `lb`
 - kilogram `kg`
 - tonne `t`
-    """)
+    """,
+    )
 
 
 def test_speedHelp():
-    checkHelp('speed', """
+    checkHelp(
+        "speed",
+        """
 - foot per hour `ft/h`
 - meter per hour `m/h`
 - foot per minute `ft/min`
@@ -283,11 +300,14 @@ def test_speedHelp():
 - mile per minute `mi/min`
 - kilometer per second `km/s`
 - mile per second `mi/s`
-    """)
+    """,
+    )
 
 
 def test_timeHelp():
-    checkHelp('time', """
+    checkHelp(
+        "time",
+        """
 - nanosecond `ns`
 - millisecond `ms`
 - second `s`
@@ -297,19 +317,25 @@ def test_timeHelp():
 - week `wk`
 - month `mon`
 - year `yr`
-    """)
+    """,
+    )
 
 
 def test_temperatureHelp():
-    checkHelp('temperature', """
+    checkHelp(
+        "temperature",
+        """
 - Celsius `C`
 - Fahrenheit `F`
 - Kelvin `K`
-    """)
+    """,
+    )
 
 
 def test_densityHelp():
-    checkHelp('density', """
+    checkHelp(
+        "density",
+        """
 - gram per cubic meter `g/m3`
 - kilogram per cubic meter `kg/m3`
 - pound per imperial gallon `lb/gal`
@@ -317,11 +343,14 @@ def test_densityHelp():
 - gram per cubic centimeter `g/cm3`
 - gram per milliliter `g/ml`
 - tonne per cubic meter `t/m3`
-    """)
+    """,
+    )
 
 
 def test_informationHelp():
-    checkHelp('information', """
+    checkHelp(
+        "information",
+        """
 - bit
 - kilobit `Kbit`
 - megabit `Mbit`
@@ -341,11 +370,14 @@ def test_informationHelp():
 - exabyte `EB`
 - zettabyte `ZB`
 - yottabyte `YB`
-    """)
+    """,
+    )
 
 
 def test_pressureHelp():
-    checkHelp('pressure', """
+    checkHelp(
+        "pressure",
+        """
 - pascal `Pa`
 - hectopascal `hPa`
 - torr
@@ -358,32 +390,42 @@ def test_pressureHelp():
 - kilobar `kbar`
 - gigapascal `GPa`
 - megabar `Mbar`
-    """)
+    """,
+    )
 
 
 def test_fuelConsumptionHelp():
-    checkHelp('fuel consumption', """
+    checkHelp(
+        "fuel consumption",
+        """
 - kilometer per US gallon `km/US-gal`
 - mile per US gallon `mpg`
 - kilometer per liter `km/l`
 - mile per liter `mi/l`
-    """)
+    """,
+    )
 
 
 def test_powerHelp():
-    checkHelp('power', """
+    checkHelp(
+        "power",
+        """
 - watt `W`
 - metric horsepower `PS`
 - mechanical horsepower `hp`
 - kilowatt `kW`
-    """)
+    """,
+    )
 
 
 def test_torqueHelp():
-    checkHelp('torque', """
+    checkHelp(
+        "torque",
+        """
 - newton meter `N-m`
 - pound foot `lbf-ft`
-    """)
+    """,
+    )
 
 
 def test_defaultHelp():
@@ -424,6 +466,6 @@ You can use both short (`m2`) and full unit names (square meter).
 If you have an issue or just want to say thanks, feel free to contact my master @kirillmaltsev or rate me at https://storebot.me/bot/unitconversionbot
 Thank you for chatting with me :-)
         """.strip(),
-        text='/help',
-        parse_mode='Markdown'
+        text="/help",
+        parse_mode="Markdown",
     )
